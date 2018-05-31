@@ -64,11 +64,12 @@
     <item Text="8. Báo cáo lợi nhuận bán hàng" NavigateUrl="~/Pages/BaoCao/LoiNhuanBanHang.aspx" />
   </item>
   <item Text="Hệ thống" ImageUrl="~/Menu/safebox.png">
-    <item Text="1. Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />
-    <item Text="2. Danh sách tài khoản" NavigateUrl="~/Pages/TaiKhoan/DanhSachTaiKhoan.aspx" />
-    <item Text="3. Lý do xuất khác" NavigateUrl="~/Pages/HeThong/LyDoXuat.aspx" />
-    <item Text="4. Thông tin cửa hàng" NavigateUrl="~/Pages/HeThong/ThongTinCuaHang.aspx" />
-    <item Text="5. Đăng xuất"  NavigateUrl="~/Pages/TaiKhoan/DangXuat.aspx" />
-    <item Text="6. Trợ giúp"  NavigateUrl="https://gpm.vn/" Target="_blank" />
+    <item Text="1. Danh sách chi nhánh" NavigateUrl="~/Pages/HeThong/ChiNhanh.aspx" />
+    <item Text="2. Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />
+    <item Text="3. Danh sách tài khoản" NavigateUrl="~/Pages/TaiKhoan/DanhSachTaiKhoan.aspx" />
+    <item Text="4. Lý do xuất khác" NavigateUrl="~/Pages/HeThong/LyDoXuat.aspx" />
+    <item Text="5. Thông tin cửa hàng" NavigateUrl="~/Pages/HeThong/ThongTinCuaHang.aspx" />
+    <item Text="6. Đăng xuất"  NavigateUrl="~/Pages/TaiKhoan/DangXuat.aspx" />
+    <item Text="7. Trợ giúp"  NavigateUrl="https://gpm.vn/" Target="_blank" />
   </item>
 </items>

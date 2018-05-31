@@ -270,6 +270,7 @@ namespace KobePaint.Pages.BanHang
                         ghPhieuGiaoHang giaohang = new ghPhieuGiaoHang();
                         giaohang.NgayTao = DateTime.Now;
                         giaohang.MaPhieu = MaPhieu;
+                        giaohang.ChiNhanhID = Formats.IDChiNhanh();
                         giaohang.NhanVienID = Formats.IDUser();
                         giaohang.GhiChuGiaoHang = memoGhiChu.Text;
                         giaohang.KhachHangID = IDkhachHang;
@@ -291,7 +292,7 @@ namespace KobePaint.Pages.BanHang
                         giaohang.CongNoHienTai = KH.CongNo;
                         DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                         DBDataProvider.DB.SubmitChanges();
-                        int IDPhieuGiaoHang = giaohang.IDPhieuGiaoHang;
+                        int IDPhieuGiaoHang =  Convert.ToInt32(giaohang.IDPhieuGiaoHang);
                         hiddenFields["IDPhieuMoi"] = IDPhieuGiaoHang;
                         foreach (var prod in listReceiptProducts)
                         {
@@ -309,7 +310,7 @@ namespace KobePaint.Pages.BanHang
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null)
                             {
-                                TonKhoBanDau.TonKho -= prod.SoLuong;
+                                TonKhoBanDau.hhTonKhos.Where(tk => tk.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong -= prod.SoLuong;
                                 var HH = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                                 //ghi thẻ kho
                                 #region thẻ kho
@@ -318,7 +319,8 @@ namespace KobePaint.Pages.BanHang
                                 thekho.DienGiai = "Bán hàng #" + giaohang.MaPhieu;
                                 thekho.Nhap = 0;
                                 thekho.Xuat = prod.SoLuong;
-                                thekho.Ton = HH.TonKho;
+                                thekho.Ton = HH.hhTonKhos.Where(tk => tk.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.GiaThoiDiem = prod.GiaBan;
                                 thekho.HangHoaID = HH.IDHangHoa;
                                 thekho.NhanVienID = Formats.IDUser();
@@ -339,6 +341,7 @@ namespace KobePaint.Pages.BanHang
                             nhatky.NoDau = KH.CongNo;
                             nhatky.NhapHang = TongTien;
                             nhatky.TraHang = 0;
+                            nhatky.ChiNhanhID = Formats.IDChiNhanh();
                             nhatky.GiamGia = Convert.ToDouble(spGiamGia.Number);
                             nhatky.NoCuoi = KH.CongNo += (-1) * Convert.ToDouble(spTienTraKhach.Number);
                             nhatky.ThanhToan = Convert.ToDouble(spKhachHangThoan.Number);
@@ -359,6 +362,7 @@ namespace KobePaint.Pages.BanHang
                             nhatky.DienGiai = "Bán hàng";
                             nhatky.NoDau = KH.CongNo;
                             nhatky.NhapHang = TongTien;
+                            nhatky.ChiNhanhID = Formats.IDChiNhanh();
                             nhatky.GiamGia = Convert.ToDouble(spGiamGia.Number);
                             nhatky.TraHang = 0;
                             nhatky.NoCuoi = KH.CongNo;
@@ -557,7 +561,7 @@ namespace KobePaint.Pages.BanHang
                         tblHangHoa.MaHang,
                         tblHangHoa.TenHangHoa,
                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                        Convert.ToInt32(tblHangHoa.TonKho),
+                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                         1,
                         GiaBan,
                         Convert.ToDouble(tblHangHoa.GiaVon),
@@ -763,7 +767,7 @@ namespace KobePaint.Pages.BanHang
                                         tblHangHoa.MaHang,
                                         tblHangHoa.TenHangHoa,
                                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                                       Convert.ToInt32(tblHangHoa.TonKho),
+                                      Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                         SoLuong,
                                        GiaBan,
                                        Convert.ToDouble(tblHangHoa.GiaVon),

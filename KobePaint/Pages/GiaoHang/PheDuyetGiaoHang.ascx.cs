@@ -64,6 +64,7 @@ namespace KobePaint.Pages.GiaoHang
                                 nhatky.MaPhieu = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDKhachHang);
                                 nhatky.NhanVienID = Formats.IDUser();
                                 nhatky.SoPhieu = PhieuGH.MaPhieu;
+                                nhatky.ChiNhanhID = PhieuGH.ChiNhanhID;
                                 nhatky.IDKhachHang = IDKhachHang;
                                 DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
                                 DBDataProvider.DB.SubmitChanges();
@@ -85,7 +86,7 @@ namespace KobePaint.Pages.GiaoHang
                             foreach (var prod in PhieuGiaoHangCT)
                             {
                                 var HH = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.HangHoaID).FirstOrDefault();
-                                HH.TonKho += prod.SoLuong;
+                                HH.hhTonKhos.Where(tk => tk.ChiNhanhID == PhieuGH.ChiNhanhID).FirstOrDefault().SoLuong += prod.SoLuong;
                             }
                             var remove_TheKho = (from tk in DBDataProvider.DB.kTheKhos
                                                  where tk.DienGiai == "Lập phiếu giao hàng#" + PhieuGH.MaPhieu

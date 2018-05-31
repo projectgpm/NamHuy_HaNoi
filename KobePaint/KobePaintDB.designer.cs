@@ -22,7 +22,7 @@ namespace KobePaint
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="demo3_qlbanhang")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="NamHuy_HaNoi")]
 	public partial class KobePaintDBDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -75,6 +75,9 @@ namespace KobePaint
     partial void InserthhNhomHang(hhNhomHang instance);
     partial void UpdatehhNhomHang(hhNhomHang instance);
     partial void DeletehhNhomHang(hhNhomHang instance);
+    partial void InserthhTonKho(hhTonKho instance);
+    partial void UpdatehhTonKho(hhTonKho instance);
+    partial void DeletehhTonKho(hhTonKho instance);
     partial void InsertkhKhachHang(khKhachHang instance);
     partial void UpdatekhKhachHang(khKhachHang instance);
     partial void DeletekhKhachHang(khKhachHang instance);
@@ -281,6 +284,14 @@ namespace KobePaint
 			get
 			{
 				return this.GetTable<hhNhomHang>();
+			}
+		}
+		
+		public System.Data.Linq.Table<hhTonKho> hhTonKhos
+		{
+			get
+			{
+				return this.GetTable<hhTonKho>();
 			}
 		}
 		
@@ -1830,6 +1841,8 @@ namespace KobePaint
 		
 		private string _TinhThanh;
 		
+		private EntitySet<hhTonKho> _hhTonKhos;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1858,6 +1871,7 @@ namespace KobePaint
 		
 		public chChiNhanh()
 		{
+			this._hhTonKhos = new EntitySet<hhTonKho>(new Action<hhTonKho>(this.attach_hhTonKhos), new Action<hhTonKho>(this.detach_hhTonKhos));
 			OnCreated();
 		}
 		
@@ -2061,6 +2075,19 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chChiNhanh_hhTonKho", Storage="_hhTonKhos", ThisKey="IDChiNhanh", OtherKey="ChiNhanhID")]
+		public EntitySet<hhTonKho> hhTonKhos
+		{
+			get
+			{
+				return this._hhTonKhos;
+			}
+			set
+			{
+				this._hhTonKhos.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2080,6 +2107,18 @@ namespace KobePaint
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_hhTonKhos(hhTonKho entity)
+		{
+			this.SendPropertyChanging();
+			entity.chChiNhanh = this;
+		}
+		
+		private void detach_hhTonKhos(hhTonKho entity)
+		{
+			this.SendPropertyChanging();
+			entity.chChiNhanh = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ghPhieuDaiLyThanhToan")]
@@ -2094,7 +2133,7 @@ namespace KobePaint
 		
 		private string _SoHoaDon;
 		
-		private System.Nullable<int> _KhachHangID;
+		private System.Nullable<long> _KhachHangID;
 		
 		private System.Nullable<double> _SoTienThu;
 		
@@ -2110,6 +2149,8 @@ namespace KobePaint
 		
 		private System.Nullable<System.DateTime> _NgayLap;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntityRef<khKhachHang> _khKhachHang;
 		
     #region Extensibility Method Definitions
@@ -2122,7 +2163,7 @@ namespace KobePaint
     partial void OnSTTPhieuThuChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
-    partial void OnKhachHangIDChanging(System.Nullable<int> value);
+    partial void OnKhachHangIDChanging(System.Nullable<long> value);
     partial void OnKhachHangIDChanged();
     partial void OnSoTienThuChanging(System.Nullable<double> value);
     partial void OnSoTienThuChanged();
@@ -2138,6 +2179,8 @@ namespace KobePaint
     partial void OnCongNoCuChanged();
     partial void OnNgayLapChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayLapChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public ghPhieuDaiLyThanhToan()
@@ -2206,8 +2249,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="Int")]
-		public System.Nullable<int> KhachHangID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="BigInt")]
+		public System.Nullable<long> KhachHangID
 		{
 			get
 			{
@@ -2370,6 +2413,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="khKhachHang_ghPhieuDaiLyThanhToan", Storage="_khKhachHang", ThisKey="KhachHangID", OtherKey="IDKhachHang", IsForeignKey=true)]
 		public khKhachHang khKhachHang
 		{
@@ -2397,7 +2460,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._KhachHangID = default(Nullable<int>);
+						this._KhachHangID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -2431,7 +2494,7 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDPhieuGiaoHang;
+		private long _IDPhieuGiaoHang;
 		
 		private System.Nullable<System.DateTime> _NgayTao;
 		
@@ -2441,7 +2504,7 @@ namespace KobePaint
 		
 		private string _GhiChuGiaoHang;
 		
-		private System.Nullable<int> _KhachHangID;
+		private System.Nullable<long> _KhachHangID;
 		
 		private System.Nullable<System.DateTime> _NgayGiao;
 		
@@ -2477,6 +2540,8 @@ namespace KobePaint
 		
 		private System.Nullable<double> _GiamGia;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntitySet<ghPhieuGiaoHangChiTiet> _ghPhieuGiaoHangChiTiets;
 		
 		private EntityRef<khKhachHang> _khKhachHang;
@@ -2487,7 +2552,7 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDPhieuGiaoHangChanging(int value);
+    partial void OnIDPhieuGiaoHangChanging(long value);
     partial void OnIDPhieuGiaoHangChanged();
     partial void OnNgayTaoChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayTaoChanged();
@@ -2497,7 +2562,7 @@ namespace KobePaint
     partial void OnNhanVienIDChanged();
     partial void OnGhiChuGiaoHangChanging(string value);
     partial void OnGhiChuGiaoHangChanged();
-    partial void OnKhachHangIDChanging(System.Nullable<int> value);
+    partial void OnKhachHangIDChanging(System.Nullable<long> value);
     partial void OnKhachHangIDChanged();
     partial void OnNgayGiaoChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayGiaoChanged();
@@ -2533,6 +2598,8 @@ namespace KobePaint
     partial void OnNgayDuyetChanged();
     partial void OnGiamGiaChanging(System.Nullable<double> value);
     partial void OnGiamGiaChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public ghPhieuGiaoHang()
@@ -2543,8 +2610,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuGiaoHang", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDPhieuGiaoHang
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuGiaoHang", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDPhieuGiaoHang
 		{
 			get
 			{
@@ -2647,8 +2714,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="Int")]
-		public System.Nullable<int> KhachHangID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="BigInt")]
+		public System.Nullable<long> KhachHangID
 		{
 			get
 			{
@@ -3011,6 +3078,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ghPhieuGiaoHang_ghPhieuGiaoHangChiTiet", Storage="_ghPhieuGiaoHangChiTiets", ThisKey="IDPhieuGiaoHang", OtherKey="PhieuGiaoHangID")]
 		public EntitySet<ghPhieuGiaoHangChiTiet> ghPhieuGiaoHangChiTiets
 		{
@@ -3051,7 +3138,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._KhachHangID = default(Nullable<int>);
+						this._KhachHangID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -3131,9 +3218,9 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
-		private System.Nullable<int> _PhieuGiaoHangID;
+		private System.Nullable<long> _PhieuGiaoHangID;
 		
 		private System.Nullable<int> _HangHoaID;
 		
@@ -3155,9 +3242,9 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnPhieuGiaoHangIDChanging(System.Nullable<int> value);
+    partial void OnPhieuGiaoHangIDChanging(System.Nullable<long> value);
     partial void OnPhieuGiaoHangIDChanged();
     partial void OnHangHoaIDChanging(System.Nullable<int> value);
     partial void OnHangHoaIDChanged();
@@ -3180,8 +3267,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -3200,8 +3287,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuGiaoHangID", DbType="Int")]
-		public System.Nullable<int> PhieuGiaoHangID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuGiaoHangID", DbType="BigInt")]
+		public System.Nullable<long> PhieuGiaoHangID
 		{
 			get
 			{
@@ -3375,7 +3462,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._PhieuGiaoHangID = default(Nullable<int>);
+						this._PhieuGiaoHangID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("ghPhieuGiaoHang");
 				}
@@ -3449,7 +3536,7 @@ namespace KobePaint
 		
 		private string _SoHoaDon;
 		
-		private System.Nullable<int> _KhachHangID;
+		private System.Nullable<long> _KhachHangID;
 		
 		private System.Nullable<double> _SoTienThu;
 		
@@ -3481,7 +3568,7 @@ namespace KobePaint
     partial void OnSTTPhieuThuChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
-    partial void OnKhachHangIDChanging(System.Nullable<int> value);
+    partial void OnKhachHangIDChanging(System.Nullable<long> value);
     partial void OnKhachHangIDChanged();
     partial void OnSoTienThuChanging(System.Nullable<double> value);
     partial void OnSoTienThuChanged();
@@ -3568,8 +3655,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="Int")]
-		public System.Nullable<int> KhachHangID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="BigInt")]
+		public System.Nullable<long> KhachHangID
 		{
 			get
 			{
@@ -3783,7 +3870,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._KhachHangID = default(Nullable<int>);
+						this._KhachHangID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -4301,13 +4388,13 @@ namespace KobePaint
 		
 		private System.Nullable<double> _GiaVon;
 		
-		private System.Nullable<int> _TonKho;
-		
 		private System.Nullable<int> _DaXoa;
 		
 		private EntitySet<bgChiTietBangGia> _bgChiTietBangGias;
 		
 		private EntitySet<ghPhieuGiaoHangChiTiet> _ghPhieuGiaoHangChiTiets;
+		
+		private EntitySet<hhTonKho> _hhTonKhos;
 		
 		private EntitySet<kNhapKhoChiTiet> _kNhapKhoChiTiets;
 		
@@ -4343,8 +4430,6 @@ namespace KobePaint
     partial void OnGiaBanChanged();
     partial void OnGiaVonChanging(System.Nullable<double> value);
     partial void OnGiaVonChanged();
-    partial void OnTonKhoChanging(System.Nullable<int> value);
-    partial void OnTonKhoChanged();
     partial void OnDaXoaChanging(System.Nullable<int> value);
     partial void OnDaXoaChanged();
     #endregion
@@ -4353,6 +4438,7 @@ namespace KobePaint
 		{
 			this._bgChiTietBangGias = new EntitySet<bgChiTietBangGia>(new Action<bgChiTietBangGia>(this.attach_bgChiTietBangGias), new Action<bgChiTietBangGia>(this.detach_bgChiTietBangGias));
 			this._ghPhieuGiaoHangChiTiets = new EntitySet<ghPhieuGiaoHangChiTiet>(new Action<ghPhieuGiaoHangChiTiet>(this.attach_ghPhieuGiaoHangChiTiets), new Action<ghPhieuGiaoHangChiTiet>(this.detach_ghPhieuGiaoHangChiTiets));
+			this._hhTonKhos = new EntitySet<hhTonKho>(new Action<hhTonKho>(this.attach_hhTonKhos), new Action<hhTonKho>(this.detach_hhTonKhos));
 			this._kNhapKhoChiTiets = new EntitySet<kNhapKhoChiTiet>(new Action<kNhapKhoChiTiet>(this.attach_kNhapKhoChiTiets), new Action<kNhapKhoChiTiet>(this.detach_kNhapKhoChiTiets));
 			this._kPhieuTraHangChiTiets = new EntitySet<kPhieuTraHangChiTiet>(new Action<kPhieuTraHangChiTiet>(this.attach_kPhieuTraHangChiTiets), new Action<kPhieuTraHangChiTiet>(this.detach_kPhieuTraHangChiTiets));
 			this._kPhieuTraHangNCCChiTiets = new EntitySet<kPhieuTraHangNCCChiTiet>(new Action<kPhieuTraHangNCCChiTiet>(this.attach_kPhieuTraHangNCCChiTiets), new Action<kPhieuTraHangNCCChiTiet>(this.detach_kPhieuTraHangNCCChiTiets));
@@ -4565,26 +4651,6 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TonKho", DbType="Int")]
-		public System.Nullable<int> TonKho
-		{
-			get
-			{
-				return this._TonKho;
-			}
-			set
-			{
-				if ((this._TonKho != value))
-				{
-					this.OnTonKhoChanging(value);
-					this.SendPropertyChanging();
-					this._TonKho = value;
-					this.SendPropertyChanged("TonKho");
-					this.OnTonKhoChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaXoa", DbType="Int")]
 		public System.Nullable<int> DaXoa
 		{
@@ -4628,6 +4694,19 @@ namespace KobePaint
 			set
 			{
 				this._ghPhieuGiaoHangChiTiets.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="hhHangHoa_hhTonKho", Storage="_hhTonKhos", ThisKey="IDHangHoa", OtherKey="HangHoaID")]
+		public EntitySet<hhTonKho> hhTonKhos
+		{
+			get
+			{
+				return this._hhTonKhos;
+			}
+			set
+			{
+				this._hhTonKhos.Assign(value);
 			}
 		}
 		
@@ -4756,6 +4835,18 @@ namespace KobePaint
 		}
 		
 		private void detach_ghPhieuGiaoHangChiTiets(ghPhieuGiaoHangChiTiet entity)
+		{
+			this.SendPropertyChanging();
+			entity.hhHangHoa = null;
+		}
+		
+		private void attach_hhTonKhos(hhTonKho entity)
+		{
+			this.SendPropertyChanging();
+			entity.hhHangHoa = this;
+		}
+		
+		private void detach_hhTonKhos(hhTonKho entity)
 		{
 			this.SendPropertyChanging();
 			entity.hhHangHoa = null;
@@ -5030,13 +5121,253 @@ namespace KobePaint
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.hhTonKho")]
+	public partial class hhTonKho : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _IDTonKho;
+		
+		private int _HangHoaID;
+		
+		private System.Nullable<int> _ChiNhanhID;
+		
+		private System.Nullable<int> _SoLuong;
+		
+		private System.Nullable<System.DateTime> _NgayCapNhat;
+		
+		private EntityRef<chChiNhanh> _chChiNhanh;
+		
+		private EntityRef<hhHangHoa> _hhHangHoa;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDTonKhoChanging(long value);
+    partial void OnIDTonKhoChanged();
+    partial void OnHangHoaIDChanging(int value);
+    partial void OnHangHoaIDChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
+    partial void OnSoLuongChanging(System.Nullable<int> value);
+    partial void OnSoLuongChanged();
+    partial void OnNgayCapNhatChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayCapNhatChanged();
+    #endregion
+		
+		public hhTonKho()
+		{
+			this._chChiNhanh = default(EntityRef<chChiNhanh>);
+			this._hhHangHoa = default(EntityRef<hhHangHoa>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDTonKho", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDTonKho
+		{
+			get
+			{
+				return this._IDTonKho;
+			}
+			set
+			{
+				if ((this._IDTonKho != value))
+				{
+					this.OnIDTonKhoChanging(value);
+					this.SendPropertyChanging();
+					this._IDTonKho = value;
+					this.SendPropertyChanged("IDTonKho");
+					this.OnIDTonKhoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HangHoaID", DbType="Int NOT NULL")]
+		public int HangHoaID
+		{
+			get
+			{
+				return this._HangHoaID;
+			}
+			set
+			{
+				if ((this._HangHoaID != value))
+				{
+					if (this._hhHangHoa.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHangHoaIDChanging(value);
+					this.SendPropertyChanging();
+					this._HangHoaID = value;
+					this.SendPropertyChanged("HangHoaID");
+					this.OnHangHoaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					if (this._chChiNhanh.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int")]
+		public System.Nullable<int> SoLuong
+		{
+			get
+			{
+				return this._SoLuong;
+			}
+			set
+			{
+				if ((this._SoLuong != value))
+				{
+					this.OnSoLuongChanging(value);
+					this.SendPropertyChanging();
+					this._SoLuong = value;
+					this.SendPropertyChanged("SoLuong");
+					this.OnSoLuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayCapNhat", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> NgayCapNhat
+		{
+			get
+			{
+				return this._NgayCapNhat;
+			}
+			set
+			{
+				if ((this._NgayCapNhat != value))
+				{
+					this.OnNgayCapNhatChanging(value);
+					this.SendPropertyChanging();
+					this._NgayCapNhat = value;
+					this.SendPropertyChanged("NgayCapNhat");
+					this.OnNgayCapNhatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chChiNhanh_hhTonKho", Storage="_chChiNhanh", ThisKey="ChiNhanhID", OtherKey="IDChiNhanh", IsForeignKey=true)]
+		public chChiNhanh chChiNhanh
+		{
+			get
+			{
+				return this._chChiNhanh.Entity;
+			}
+			set
+			{
+				chChiNhanh previousValue = this._chChiNhanh.Entity;
+				if (((previousValue != value) 
+							|| (this._chChiNhanh.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._chChiNhanh.Entity = null;
+						previousValue.hhTonKhos.Remove(this);
+					}
+					this._chChiNhanh.Entity = value;
+					if ((value != null))
+					{
+						value.hhTonKhos.Add(this);
+						this._ChiNhanhID = value.IDChiNhanh;
+					}
+					else
+					{
+						this._ChiNhanhID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("chChiNhanh");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="hhHangHoa_hhTonKho", Storage="_hhHangHoa", ThisKey="HangHoaID", OtherKey="IDHangHoa", IsForeignKey=true)]
+		public hhHangHoa hhHangHoa
+		{
+			get
+			{
+				return this._hhHangHoa.Entity;
+			}
+			set
+			{
+				hhHangHoa previousValue = this._hhHangHoa.Entity;
+				if (((previousValue != value) 
+							|| (this._hhHangHoa.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._hhHangHoa.Entity = null;
+						previousValue.hhTonKhos.Remove(this);
+					}
+					this._hhHangHoa.Entity = value;
+					if ((value != null))
+					{
+						value.hhTonKhos.Add(this);
+						this._HangHoaID = value.IDHangHoa;
+					}
+					else
+					{
+						this._HangHoaID = default(int);
+					}
+					this.SendPropertyChanged("hhHangHoa");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.khKhachHang")]
 	public partial class khKhachHang : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDKhachHang;
+		private long _IDKhachHang;
 		
 		private System.Nullable<int> _LoaiKhachHangID;
 		
@@ -5074,6 +5405,8 @@ namespace KobePaint
 		
 		private System.Nullable<int> _ThoiHanThanhToan;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntitySet<ghPhieuDaiLyThanhToan> _ghPhieuDaiLyThanhToans;
 		
 		private EntitySet<ghPhieuGiaoHang> _ghPhieuGiaoHangs;
@@ -5096,7 +5429,7 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDKhachHangChanging(int value);
+    partial void OnIDKhachHangChanging(long value);
     partial void OnIDKhachHangChanged();
     partial void OnLoaiKhachHangIDChanging(System.Nullable<int> value);
     partial void OnLoaiKhachHangIDChanged();
@@ -5134,6 +5467,8 @@ namespace KobePaint
     partial void OnHanMucCongNoChanged();
     partial void OnThoiHanThanhToanChanging(System.Nullable<int> value);
     partial void OnThoiHanThanhToanChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public khKhachHang()
@@ -5150,8 +5485,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDKhachHang", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDKhachHang
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDKhachHang", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDKhachHang
 		{
 			get
 			{
@@ -5534,6 +5869,26 @@ namespace KobePaint
 					this._ThoiHanThanhToan = value;
 					this.SendPropertyChanged("ThoiHanThanhToan");
 					this.OnThoiHanThanhToanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
 				}
 			}
 		}
@@ -5970,7 +6325,7 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDCongNo;
+		private long _IDCongNo;
 		
 		private System.Nullable<System.DateTime> _NgayNhap;
 		
@@ -5996,11 +6351,13 @@ namespace KobePaint
 		
 		private System.Nullable<double> _GiamGia;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDCongNoChanging(int value);
+    partial void OnIDCongNoChanging(long value);
     partial void OnIDCongNoChanged();
     partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayNhapChanged();
@@ -6026,6 +6383,8 @@ namespace KobePaint
     partial void OnMaPhieuChanged();
     partial void OnGiamGiaChanging(System.Nullable<double> value);
     partial void OnGiamGiaChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public khNhatKyCongNo()
@@ -6033,8 +6392,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDCongNo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDCongNo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDCongNo", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDCongNo
 		{
 			get
 			{
@@ -6293,6 +6652,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6338,6 +6717,8 @@ namespace KobePaint
 		
 		private System.Nullable<int> _DaXoa;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntityRef<nvNhanVien> _nvNhanVien;
 		
     #region Extensibility Method Definitions
@@ -6362,6 +6743,8 @@ namespace KobePaint
     partial void OnSoLuongChanged();
     partial void OnDaXoaChanging(System.Nullable<int> value);
     partial void OnDaXoaChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public kKiemKe()
@@ -6554,6 +6937,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="nvNhanVien_kKiemKe", Storage="_nvNhanVien", ThisKey="IDNhanVien", OtherKey="IDNhanVien", IsForeignKey=true)]
 		public nvNhanVien nvNhanVien
 		{
@@ -6615,13 +7018,13 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
 		private System.Nullable<int> _PhieuKiemKeID;
 		
 		private System.Nullable<int> _HangHoaID;
 		
-		private System.Nullable<int> _TonKhoHeThong;
+		private int _TonKhoHeThong;
 		
 		private System.Nullable<int> _TonKhoThucTe;
 		
@@ -6633,13 +7036,13 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
     partial void OnPhieuKiemKeIDChanging(System.Nullable<int> value);
     partial void OnPhieuKiemKeIDChanged();
     partial void OnHangHoaIDChanging(System.Nullable<int> value);
     partial void OnHangHoaIDChanged();
-    partial void OnTonKhoHeThongChanging(System.Nullable<int> value);
+    partial void OnTonKhoHeThongChanging(int value);
     partial void OnTonKhoHeThongChanged();
     partial void OnTonKhoThucTeChanging(System.Nullable<int> value);
     partial void OnTonKhoThucTeChanged();
@@ -6654,8 +7057,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -6714,8 +7117,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TonKhoHeThong", DbType="Int")]
-		public System.Nullable<int> TonKhoHeThong
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TonKhoHeThong", DbType="Int NOT NULL")]
+		public int TonKhoHeThong
 		{
 			get
 			{
@@ -6931,9 +7334,9 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDNhapKho;
+		private long _IDNhapKho;
 		
-		private System.Nullable<int> _NCCID;
+		private System.Nullable<long> _NCCID;
 		
 		private string _SoHoaDon;
 		
@@ -6977,9 +7380,9 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDNhapKhoChanging(int value);
+    partial void OnIDNhapKhoChanging(long value);
     partial void OnIDNhapKhoChanged();
-    partial void OnNCCIDChanging(System.Nullable<int> value);
+    partial void OnNCCIDChanging(System.Nullable<long> value);
     partial void OnNCCIDChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
@@ -7023,8 +7426,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDNhapKho", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDNhapKho
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDNhapKho", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDNhapKho
 		{
 			get
 			{
@@ -7043,8 +7446,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NCCID", DbType="Int")]
-		public System.Nullable<int> NCCID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NCCID", DbType="BigInt")]
+		public System.Nullable<long> NCCID
 		{
 			get
 			{
@@ -7431,7 +7834,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._NCCID = default(Nullable<int>);
+						this._NCCID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -7511,9 +7914,9 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
-		private System.Nullable<int> _NhapKhoID;
+		private System.Nullable<long> _NhapKhoID;
 		
 		private System.Nullable<int> _HangHoaID;
 		
@@ -7535,9 +7938,9 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnNhapKhoIDChanging(System.Nullable<int> value);
+    partial void OnNhapKhoIDChanging(System.Nullable<long> value);
     partial void OnNhapKhoIDChanged();
     partial void OnHangHoaIDChanging(System.Nullable<int> value);
     partial void OnHangHoaIDChanged();
@@ -7560,8 +7963,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -7580,8 +7983,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhapKhoID", DbType="Int")]
-		public System.Nullable<int> NhapKhoID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhapKhoID", DbType="BigInt")]
+		public System.Nullable<long> NhapKhoID
 		{
 			get
 			{
@@ -7789,7 +8192,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._NhapKhoID = default(Nullable<int>);
+						this._NhapKhoID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("kNhapKho");
 				}
@@ -7823,13 +8226,13 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDPhieuThu;
+		private long _IDPhieuThu;
 		
 		private System.Nullable<int> _STTPhieuThu;
 		
 		private string _SoHoaDon;
 		
-		private System.Nullable<int> _KhachHangID;
+		private System.Nullable<long> _KhachHangID;
 		
 		private System.Nullable<double> _SoTienThu;
 		
@@ -7853,13 +8256,13 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDPhieuThuChanging(int value);
+    partial void OnIDPhieuThuChanging(long value);
     partial void OnIDPhieuThuChanged();
     partial void OnSTTPhieuThuChanging(System.Nullable<int> value);
     partial void OnSTTPhieuThuChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
-    partial void OnKhachHangIDChanging(System.Nullable<int> value);
+    partial void OnKhachHangIDChanging(System.Nullable<long> value);
     partial void OnKhachHangIDChanged();
     partial void OnSoTienThuChanging(System.Nullable<double> value);
     partial void OnSoTienThuChanged();
@@ -7884,8 +8287,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuThu", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDPhieuThu
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuThu", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDPhieuThu
 		{
 			get
 			{
@@ -7944,8 +8347,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="Int")]
-		public System.Nullable<int> KhachHangID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhachHangID", DbType="BigInt")]
+		public System.Nullable<long> KhachHangID
 		{
 			get
 			{
@@ -8139,7 +8542,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._KhachHangID = default(Nullable<int>);
+						this._KhachHangID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -8207,11 +8610,11 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDPhieuTraHang;
+		private long _IDPhieuTraHang;
 		
 		private string _MaPhieu;
 		
-		private System.Nullable<int> _DaiLyID;
+		private System.Nullable<long> _DaiLyID;
 		
 		private System.Nullable<int> _SoPhieuTra;
 		
@@ -8241,6 +8644,8 @@ namespace KobePaint
 		
 		private System.Nullable<System.DateTime> _NgayDuyet;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntitySet<kPhieuTraHangChiTiet> _kPhieuTraHangChiTiets;
 		
 		private EntityRef<khKhachHang> _khKhachHang;
@@ -8251,11 +8656,11 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDPhieuTraHangChanging(int value);
+    partial void OnIDPhieuTraHangChanging(long value);
     partial void OnIDPhieuTraHangChanged();
     partial void OnMaPhieuChanging(string value);
     partial void OnMaPhieuChanged();
-    partial void OnDaiLyIDChanging(System.Nullable<int> value);
+    partial void OnDaiLyIDChanging(System.Nullable<long> value);
     partial void OnDaiLyIDChanged();
     partial void OnSoPhieuTraChanging(System.Nullable<int> value);
     partial void OnSoPhieuTraChanged();
@@ -8285,6 +8690,8 @@ namespace KobePaint
     partial void OnSTTDonHangChanged();
     partial void OnNgayDuyetChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayDuyetChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public kPhieuTraHang()
@@ -8295,8 +8702,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuTraHang", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDPhieuTraHang
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuTraHang", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDPhieuTraHang
 		{
 			get
 			{
@@ -8335,8 +8742,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaiLyID", DbType="Int")]
-		public System.Nullable<int> DaiLyID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaiLyID", DbType="BigInt")]
+		public System.Nullable<long> DaiLyID
 		{
 			get
 			{
@@ -8643,6 +9050,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="kPhieuTraHang_kPhieuTraHangChiTiet", Storage="_kPhieuTraHangChiTiets", ThisKey="IDPhieuTraHang", OtherKey="PhieuTraHangNCCID")]
 		public EntitySet<kPhieuTraHangChiTiet> kPhieuTraHangChiTiets
 		{
@@ -8683,7 +9110,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._DaiLyID = default(Nullable<int>);
+						this._DaiLyID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -8763,9 +9190,9 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
-		private System.Nullable<int> _PhieuTraHangNCCID;
+		private System.Nullable<long> _PhieuTraHangNCCID;
 		
 		private System.Nullable<int> _HangHoaID;
 		
@@ -8787,9 +9214,9 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnPhieuTraHangNCCIDChanging(System.Nullable<int> value);
+    partial void OnPhieuTraHangNCCIDChanging(System.Nullable<long> value);
     partial void OnPhieuTraHangNCCIDChanged();
     partial void OnHangHoaIDChanging(System.Nullable<int> value);
     partial void OnHangHoaIDChanged();
@@ -8812,8 +9239,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -8832,8 +9259,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuTraHangNCCID", DbType="Int")]
-		public System.Nullable<int> PhieuTraHangNCCID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhieuTraHangNCCID", DbType="BigInt")]
+		public System.Nullable<long> PhieuTraHangNCCID
 		{
 			get
 			{
@@ -9041,7 +9468,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._PhieuTraHangNCCID = default(Nullable<int>);
+						this._PhieuTraHangNCCID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("kPhieuTraHang");
 				}
@@ -9079,7 +9506,7 @@ namespace KobePaint
 		
 		private string _MaPhieu;
 		
-		private System.Nullable<int> _NhaCungCapID;
+		private System.Nullable<long> _NhaCungCapID;
 		
 		private System.Nullable<int> _SoPhieuTra;
 		
@@ -9119,7 +9546,7 @@ namespace KobePaint
     partial void OnIDPhieuTraHangChanged();
     partial void OnMaPhieuChanging(string value);
     partial void OnMaPhieuChanged();
-    partial void OnNhaCungCapIDChanging(System.Nullable<int> value);
+    partial void OnNhaCungCapIDChanging(System.Nullable<long> value);
     partial void OnNhaCungCapIDChanged();
     partial void OnSoPhieuTraChanging(System.Nullable<int> value);
     partial void OnSoPhieuTraChanged();
@@ -9195,8 +9622,8 @@ namespace KobePaint
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhaCungCapID", DbType="Int")]
-		public System.Nullable<int> NhaCungCapID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhaCungCapID", DbType="BigInt")]
+		public System.Nullable<long> NhaCungCapID
 		{
 			get
 			{
@@ -9503,7 +9930,7 @@ namespace KobePaint
 					}
 					else
 					{
-						this._NhaCungCapID = default(Nullable<int>);
+						this._NhaCungCapID = default(Nullable<long>);
 					}
 					this.SendPropertyChanged("khKhachHang");
 				}
@@ -9583,7 +10010,7 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
 		private System.Nullable<int> _PhieuTraHangNCCID;
 		
@@ -9607,7 +10034,7 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
     partial void OnPhieuTraHangNCCIDChanging(System.Nullable<int> value);
     partial void OnPhieuTraHangNCCIDChanged();
@@ -9632,8 +10059,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -9895,7 +10322,7 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _IDPhieuXuat;
+		private long _IDPhieuXuat;
 		
 		private string _MaPhieuXuat;
 		
@@ -9913,13 +10340,15 @@ namespace KobePaint
 		
 		private System.Nullable<int> _SoLuong;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntityRef<nvNhanVien> _nvNhanVien;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDPhieuXuatChanging(int value);
+    partial void OnIDPhieuXuatChanging(long value);
     partial void OnIDPhieuXuatChanged();
     partial void OnMaPhieuXuatChanging(string value);
     partial void OnMaPhieuXuatChanged();
@@ -9937,6 +10366,8 @@ namespace KobePaint
     partial void OnTongTienChanged();
     partial void OnSoLuongChanging(System.Nullable<int> value);
     partial void OnSoLuongChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public kPhieuXuatKhac()
@@ -9945,8 +10376,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuXuat", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDPhieuXuat
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPhieuXuat", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long IDPhieuXuat
 		{
 			get
 			{
@@ -10129,6 +10560,26 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="nvNhanVien_kPhieuXuatKhac", Storage="_nvNhanVien", ThisKey="IDNhanVien", OtherKey="IDNhanVien", IsForeignKey=true)]
 		public nvNhanVien nvNhanVien
 		{
@@ -10190,7 +10641,7 @@ namespace KobePaint
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ID;
+		private long _ID;
 		
 		private System.Nullable<int> _PhieuXuatID;
 		
@@ -10210,7 +10661,7 @@ namespace KobePaint
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIDChanging(int value);
+    partial void OnIDChanging(long value);
     partial void OnIDChanged();
     partial void OnPhieuXuatIDChanging(System.Nullable<int> value);
     partial void OnPhieuXuatIDChanged();
@@ -10233,8 +10684,8 @@ namespace KobePaint
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long ID
 		{
 			get
 			{
@@ -10438,6 +10889,8 @@ namespace KobePaint
 		
 		private System.Nullable<double> _GiaThoiDiem;
 		
+		private System.Nullable<int> _ChiNhanhID;
+		
 		private EntityRef<hhHangHoa> _hhHangHoa;
 		
     #region Extensibility Method Definitions
@@ -10462,6 +10915,8 @@ namespace KobePaint
     partial void OnNhanVienIDChanged();
     partial void OnGiaThoiDiemChanging(System.Nullable<double> value);
     partial void OnGiaThoiDiemChanged();
+    partial void OnChiNhanhIDChanging(System.Nullable<int> value);
+    partial void OnChiNhanhIDChanged();
     #endregion
 		
 		public kTheKho()
@@ -10650,6 +11105,26 @@ namespace KobePaint
 					this._GiaThoiDiem = value;
 					this.SendPropertyChanged("GiaThoiDiem");
 					this.OnGiaThoiDiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiNhanhID", DbType="Int")]
+		public System.Nullable<int> ChiNhanhID
+		{
+			get
+			{
+				return this._ChiNhanhID;
+			}
+			set
+			{
+				if ((this._ChiNhanhID != value))
+				{
+					this.OnChiNhanhIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiNhanhID = value;
+					this.SendPropertyChanged("ChiNhanhID");
+					this.OnChiNhanhIDChanged();
 				}
 			}
 		}

@@ -74,11 +74,16 @@ namespace KobePaint.Pages.HangHoa
                         hanghoa.NgayNhap = DateTime.Now;
                         hanghoa.LoaiHHID = Convert.ToInt32(ccbLoaiHangHoa.Value.ToString());
                         int SL = Convert.ToInt32(spSoLuong.Number);
-
-                        hanghoa.TonKho = SL;
                         DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
                         DBDataProvider.DB.SubmitChanges();
                         int IDHangHoa = hanghoa.IDHangHoa;
+
+                        hhTonKho tk = new hhTonKho();
+                        tk.ChiNhanhID = Formats.IDChiNhanh();
+                        tk.HangHoaID = IDHangHoa;
+                        tk.SoLuong = SL;
+                        tk.NgayCapNhat = DateTime.Now;
+                        DBDataProvider.DB.hhTonKhos.InsertOnSubmit(tk);
 
                         if (SL > 0)
                         {
@@ -88,6 +93,7 @@ namespace KobePaint.Pages.HangHoa
                             thekho.DienGiai = "Khai báo hàng hóa";
                             thekho.Nhap = SL;
                             thekho.Xuat = 0;
+                            thekho.ChiNhanhID = Formats.IDChiNhanh();
                             thekho.Ton = SL;
                             thekho.GiaThoiDiem = Convert.ToDouble(spGiaVon.Number);
                             thekho.NhanVienID = Formats.IDUser();

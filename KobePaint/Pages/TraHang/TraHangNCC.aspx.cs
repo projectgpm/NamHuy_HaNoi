@@ -209,7 +209,7 @@ namespace KobePaint.Pages.TraHang
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null)
                             {
-                                TonKhoBanDau.TonKho -= prod.SoLuong;
+                                TonKhoBanDau.hhTonKhos.Where(s => s.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong -= prod.SoLuong;
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
                                 thekho.NgayNhap = DateTime.Now;
@@ -217,6 +217,7 @@ namespace KobePaint.Pages.TraHang
                                 thekho.Nhap = 0;
                                 thekho.GiaThoiDiem = prod.TienTra;
                                 thekho.Xuat = prod.SoLuong;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.Ton = prod.TonKho - prod.SoLuong;
                                 thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
                                 thekho.NhanVienID = Formats.IDUser();
@@ -331,7 +332,7 @@ namespace KobePaint.Pages.TraHang
                          tblHangHoa.MaHang,
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
-                         Convert.ToInt32(tblHangHoa.TonKho),
+                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                          SoLuong, SoLuong*Convert.ToDouble(tblHangHoa.GiaVon), Convert.ToDouble(tblHangHoa.GiaVon),
                          tblHangHoa.hhDonViTinh.TenDonViTinh
                          );

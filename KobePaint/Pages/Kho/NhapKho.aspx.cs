@@ -195,7 +195,7 @@ namespace KobePaint.Pages.Kho
                          tblHangHoa.MaHang,
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
-                         Convert.ToInt32(tblHangHoa.TonKho),
+                       Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                          1, Convert.ToDouble(tblHangHoa.GiaVon),
                          Convert.ToDouble(tblHangHoa.GiaBan),
                          Convert.ToDouble(tblHangHoa.GiaBan));
@@ -306,6 +306,7 @@ namespace KobePaint.Pages.Kho
                         nhapKho.TrangThaiPhieu = 0;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
                         nhapKho.TongSoLuong = TongSoLuong;
                         nhapKho.GhiChu = memoGhiChu.Text;
+                       
                         nhapKho.NgayTao = DateTime.Now;
                         nhapKho.DaXoa = 0;
                         nhapKho.ThanhToan = ThanhToan;
@@ -316,7 +317,7 @@ namespace KobePaint.Pages.Kho
                         nhapKho.TTThanhToan = 0;
                         DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                         DBDataProvider.DB.SubmitChanges();
-                        int IDNhap = nhapKho.IDNhapKho;
+                        int IDNhap =  Convert.ToInt32(nhapKho.IDNhapKho);
                         nhapKho.Url = "TraHang.aspx?id=" + IDNhap;
                         foreach (var prod in listReceiptProducts)
                         {
@@ -336,7 +337,7 @@ namespace KobePaint.Pages.Kho
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null)
                             {
-                                TonKhoBanDau.TonKho += prod.SoLuong;
+                                TonKhoBanDau.hhTonKhos.Where(s => s.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong += prod.SoLuong;
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
                                 thekho.NgayNhap = DateTime.Now;
@@ -344,6 +345,7 @@ namespace KobePaint.Pages.Kho
                                 thekho.Nhap = prod.SoLuong;
                                 thekho.Xuat = 0;
                                 thekho.GiaThoiDiem = prod.GiaVon;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.Ton = prod.SoLuong + prod.TonKho;
                                 thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
                                 thekho.NhanVienID = Formats.IDUser();
@@ -570,7 +572,7 @@ namespace KobePaint.Pages.Kho
                     nhapKho.TrangThaiPhieu = 1;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
-                    int IDNhap = nhapKho.IDNhapKho;
+                    int IDNhap =  Convert.ToInt32(nhapKho.IDNhapKho);
                     nhapKho.Url = "CapNhat.aspx?id=" + IDNhap;
                     foreach (var prod in listReceiptProducts)
                     {
@@ -680,7 +682,7 @@ namespace KobePaint.Pages.Kho
                                          tblHangHoa.MaHang,
                                          tblHangHoa.TenHangHoa,
                                          GiaVon,
-                                         Convert.ToInt32(tblHangHoa.TonKho),
+                                         Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                          SoLuong, GiaVon * SoLuong, GiaBan, GiaBan);
                                     listReceiptProducts.Add(newRecpPro);
                                 }

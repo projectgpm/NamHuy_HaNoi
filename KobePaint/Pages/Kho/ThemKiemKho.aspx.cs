@@ -92,6 +92,7 @@ namespace KobePaint.Pages.Kho
                         kk.DaXoa = 0;
                         kk.NgayTao = DateTime.Now;
                         kk.ChenhLech = ChenhLech;
+                        kk.ChiNhanhID = Formats.IDChiNhanh();
                         //kk.TrangThai = 0;
                         DBDataProvider.DB.kKiemKes.InsertOnSubmit(kk);
                         DBDataProvider.DB.SubmitChanges();
@@ -114,7 +115,7 @@ namespace KobePaint.Pages.Kho
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null)
                             {
-                                TonKhoBanDau.TonKho = prod.TonKhoThucTe;
+                                TonKhoBanDau.hhTonKhos.Where(s => s.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong = prod.TonKhoThucTe;
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
                                 thekho.NgayNhap = DateTime.Now;
@@ -131,6 +132,7 @@ namespace KobePaint.Pages.Kho
                                 }
                                 thekho.Ton = prod.TonKhoThucTe;
                                 thekho.GiaThoiDiem = 0;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
                                 thekho.NhanVienID = Formats.IDUser();
                                 DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
@@ -222,9 +224,9 @@ namespace KobePaint.Pages.Kho
                             tblHangHoa.IDHangHoa,
                             tblHangHoa.MaHang,
                             tblHangHoa.TenHangHoa,
-                             Convert.ToInt32(tblHangHoa.TonKho),
+                            Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                             0,
-                            - Convert.ToInt32(tblHangHoa.TonKho),
+                            -Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                             0,
                             ""
                         );
@@ -418,9 +420,9 @@ namespace KobePaint.Pages.Kho
                                            tblHangHoa.IDHangHoa,
                                            tblHangHoa.MaHang,
                                            tblHangHoa.TenHangHoa,
-                                            Convert.ToInt32(tblHangHoa.TonKho),
+                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                            TonKhoThucTe,
-                                            TonKhoThucTe - Convert.ToInt32(tblHangHoa.TonKho),
+                                            TonKhoThucTe - Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                            1,
                                            DienGiai
                                        );

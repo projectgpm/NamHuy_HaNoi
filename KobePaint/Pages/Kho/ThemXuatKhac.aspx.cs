@@ -130,7 +130,7 @@ namespace KobePaint.Pages.Kho
                         tblHangHoa.MaHang,
                         tblHangHoa.TenHangHoa,
                         Convert.ToDouble(tblHangHoa.GiaVon),
-                        Convert.ToInt32(tblHangHoa.TonKho),
+                       Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                         1,
                         Convert.ToDouble(tblHangHoa.GiaVon),
                         3
@@ -327,7 +327,7 @@ namespace KobePaint.Pages.Kho
                                            tblHangHoa.MaHang,
                                            tblHangHoa.TenHangHoa,
                                            GiaVon,
-                                           Convert.ToInt32(tblHangHoa.TonKho),
+                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                            SoLuong,
                                            ThanhTien,
                                            3
@@ -388,7 +388,7 @@ namespace KobePaint.Pages.Kho
                         DBDataProvider.DB.kPhieuXuatKhacs.InsertOnSubmit(xuatkho);
                         DBDataProvider.DB.SubmitChanges();
 
-                        int IDXuat = xuatkho.IDPhieuXuat;
+                        int IDXuat =  Convert.ToInt32(xuatkho.IDPhieuXuat);
 
                         foreach (var prod in listReceiptProducts)
                         {
@@ -407,7 +407,7 @@ namespace KobePaint.Pages.Kho
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null)
                             {
-                                TonKhoBanDau.TonKho -= prod.SoLuong;
+                                TonKhoBanDau.hhTonKhos.Where(tk => tk.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong -= prod.SoLuong;
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
                                 thekho.NgayNhap = DateTime.Now;
@@ -416,6 +416,7 @@ namespace KobePaint.Pages.Kho
                                 thekho.Xuat = prod.SoLuong;
                                 thekho.Ton = prod.TonKho - prod.SoLuong;
                                 thekho.GiaThoiDiem = 0;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
                                 thekho.NhanVienID = Formats.IDUser();
                                 DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);

@@ -34,6 +34,7 @@ namespace KobePaint.Pages.TraHang
             }
             if (!IsPostBack)
             {
+                dsNhaCungCap.SelectParameters["ChiNhanhID"].DefaultValue = Formats.IDChiNhanh().ToString();
                 txtTenNhanVien.Text = Formats.NameUser();
                 listReceiptProducts = new List<oImportProduct_TraHangNCC>();
                 hdfViewReport["view"] = 0;
@@ -191,6 +192,7 @@ namespace KobePaint.Pages.TraHang
                         phieutra.NhanVienID = Formats.IDUser();
                         phieutra.GhiChu = memoGhiChu.Text;
                         phieutra.TongSoLuong = TongSoLuong;
+                        phieutra.ChiNhanhID = Formats.IDChiNhanh();
                         phieutra.TongTienHang = TongTien;
                         phieutra.ThanhToan = ckGiamCongNo.Checked == true ? 0 : TongTien;
                         phieutra.DuyetDonHang = 0; // 0 chưa duyệt , 1 đã duyệt
@@ -198,7 +200,7 @@ namespace KobePaint.Pages.TraHang
                         phieutra.HinhThucTT = ckGiamCongNo.Checked == true ? 1 : 0;
                         DBDataProvider.DB.kPhieuTraHangs.InsertOnSubmit(phieutra);
                         DBDataProvider.DB.SubmitChanges();
-                        int IDPhieuTraHang = phieutra.IDPhieuTraHang;
+                        int IDPhieuTraHang =  Convert.ToInt32(phieutra.IDPhieuTraHang);
                         foreach (var prod in listReceiptProducts)
                         {
                             // insert Chi tiet
@@ -298,7 +300,7 @@ namespace KobePaint.Pages.TraHang
                          tblHangHoa.MaHang,
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
-                         Convert.ToInt32(tblHangHoa.TonKho),
+                         Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                          SoLuong, SoLuong * Convert.ToDouble(tblHangHoa.GiaBan), Convert.ToDouble(tblHangHoa.GiaBan),
                          tblHangHoa.hhDonViTinh.TenDonViTinh
                          );

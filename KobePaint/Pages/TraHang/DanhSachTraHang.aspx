@@ -159,41 +159,41 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="1" Width="90px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="2" Width="90px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
                 <%--<DataItemTemplate>
                      <a target="_blank" href="<%# Eval("Url") %>" > <%# Eval("MaPhieu") %></a>
                 </DataItemTemplate>--%>
 <CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="DaiLyID" VisibleIndex="2">
+            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="DaiLyID" VisibleIndex="3">
                 <PropertiesComboBox DataSourceID="dsNhaCC" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày trả" FieldName="NgayTra" VisibleIndex="3" Width="120px">
+            <dx:GridViewDataDateColumn Caption="Ngày trả" FieldName="NgayTra" VisibleIndex="4" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" DisplayFormatInEditMode="True">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Người nhập" FieldName="NhanVienID" VisibleIndex="4">
+            <dx:GridViewDataComboBoxColumn Caption="Người nhập" FieldName="NhanVienID" VisibleIndex="5">
                 <PropertiesComboBox DataSourceID="dsNhanVien" TextField="HoTen" ValueField="IDNhanVien">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="5" Width="50px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="6" Width="50px" CellStyle-HorizontalAlign="Center">
                 <PropertiesSpinEdit DisplayFormatString="N0">
                 </PropertiesSpinEdit>
 
 <CellStyle HorizontalAlign="Center"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTienHang" VisibleIndex="6" CellStyle-Font-Bold="true" Width="100px"> 
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTienHang" VisibleIndex="7" CellStyle-Font-Bold="true" Width="100px"> 
                 <PropertiesSpinEdit DisplayFormatString="N0" >
                 </PropertiesSpinEdit>
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="ConLai" VisibleIndex="7" Width="100px">
+            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="ConLai" VisibleIndex="8" Width="100px">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataMemoColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="8">
+            <dx:GridViewDataMemoColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="9">
             </dx:GridViewDataMemoColumn>
             <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="12" Width="80px">
                 <DataItemTemplate>
@@ -205,7 +205,7 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="DuyetDonHang" VisibleIndex="9" Width="150px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="DuyetDonHang" VisibleIndex="10" Width="120px" CellStyle-HorizontalAlign="Center">
                 <PropertiesComboBox>
                     <Items>
                         <dx:ListEditItem Text="Chưa xử lý" Value="0" />
@@ -215,6 +215,10 @@
                 </PropertiesComboBox>
 
 <CellStyle HorizontalAlign="Center"></CellStyle>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
+                </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
 
@@ -229,6 +233,11 @@
                 </dx:GridViewFormatConditionTopBottom>
         </FormatConditions>
     </dx:ASPxGridView>
+    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsTraHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang, STTDonHang, NgayDuyet FROM kPhieuTraHang WHERE (@Quyen &lt;&gt; 3) OR (NhanVienID = @NhanVienID) ORDER BY IDPhieuTraHang DESC">
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="Quyen" />

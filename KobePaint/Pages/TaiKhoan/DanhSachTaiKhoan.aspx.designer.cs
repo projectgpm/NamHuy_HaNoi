@@ -49,6 +49,15 @@ namespace KobePaint.Pages.TaiKhoan {
         protected global::DevExpress.Web.ASPxGridView gridKhachHang;
         
         /// <summary>
+        /// dsChiNhanh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsChiNhanh;
+        
+        /// <summary>
         /// dsNhanVien control.
         /// </summary>
         /// <remarks>

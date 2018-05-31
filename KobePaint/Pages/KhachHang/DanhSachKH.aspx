@@ -21,6 +21,7 @@
                 <CellStyle BackColor="LightPink" ForeColor="DarkRed">
                 </CellStyle>
             </dx:GridViewFormatConditionHighlight>
+<dx:GridViewFormatConditionHighlight Expression="[CongNo] &gt; [HanMucCongNo] &amp;&amp; [HanMucCongNo] != 0" FieldName="HanMucCongNo"></dx:GridViewFormatConditionHighlight>
         </FormatConditions>
         <Styles>
             <Header HorizontalAlign="Center">
@@ -75,74 +76,83 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="2" Width="100px">
+            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="3" Width="100px">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Họ tên" FieldName="HoTen" VisibleIndex="3" CellStyle-Font-Bold="true" Width="100%">
+            <dx:GridViewDataTextColumn Caption="Họ tên" FieldName="HoTen" VisibleIndex="4" CellStyle-Font-Bold="true" Width="100%">
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="DiaChi" VisibleIndex="5" Caption="Địa chỉ" Width="120px">
+            <dx:GridViewDataTextColumn FieldName="DiaChi" VisibleIndex="6" Caption="Địa chỉ" Width="120px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="4" Width="100px">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="5" Width="100px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption=" " ShowEditButton="True" VisibleIndex="15" Width="80px" ShowDeleteButton="True" Name="chucnang">
+            <dx:GridViewCommandColumn Caption=" " ShowEditButton="True" VisibleIndex="16" Width="80px" ShowDeleteButton="True" Name="chucnang">
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="8" Width="130px">
+            <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="9" Width="130px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yy H:mm" EditFormat="Custom" EditFormatString="dd/MM/yy H:mm:ss">
                 </PropertiesDateEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền hàng" FieldName="TongTienHang" VisibleIndex="9" Width="120px">
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền hàng" FieldName="TongTienHang" VisibleIndex="10" Width="120px">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tiền trả hàng" FieldName="TienTraHang" VisibleIndex="10" Visible="False" Width="120px">
+            <dx:GridViewDataSpinEditColumn Caption="Tiền trả hàng" FieldName="TienTraHang" VisibleIndex="11" Visible="False" Width="120px">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="12" CellStyle-Font-Bold="true" Width="120px" >
+            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="13" CellStyle-Font-Bold="true" Width="120px" >
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" Visible="False" VisibleIndex="14">
+            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" Visible="False" VisibleIndex="15">
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" Visible="False" VisibleIndex="13">
+            <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" Visible="False" VisibleIndex="14">
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại khách hàng" FieldName="LoaiKhachHangID" VisibleIndex="1" Width="120px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại khách hàng" FieldName="LoaiKhachHangID" VisibleIndex="2" Width="120px">
                 <PropertiesComboBox DataSourceID="dsLoaiKhachHang" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng thanh toán" FieldName="ThanhToan" VisibleIndex="11" Visible="False" Width="120px">
+            <dx:GridViewDataSpinEditColumn Caption="Tổng thanh toán" FieldName="ThanhToan" VisibleIndex="12" Visible="False" Width="120px">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Hạn mức công nợ" FieldName="HanMucCongNo" VisibleIndex="6" Width="120px">
+            <dx:GridViewDataSpinEditColumn Caption="Hạn mức công nợ" FieldName="HanMucCongNo" VisibleIndex="7" Width="120px">
                 <PropertiesSpinEdit DisplayFormatInEditMode="True" DisplayFormatString="N0" NumberFormat="Custom">
                     <ValidationSettings>
                         <RequiredField IsRequired="True" />
                     </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Thời hạn thanh toán" FieldName="ThoiHanThanhToan" VisibleIndex="7" Width="150px">
+            <dx:GridViewDataSpinEditColumn Caption="Thời hạn thanh toán" FieldName="ThoiHanThanhToan" VisibleIndex="8" Width="150px">
                 <PropertiesSpinEdit DisplayFormatInEditMode="True" DisplayFormatString="N0" NumberFormat="Custom">
                     <ValidationSettings>
                         <RequiredField IsRequired="True" />
                     </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
         </Columns>
         <FormatConditions>
             <dx:GridViewFormatConditionHighlight FieldName="HanMucCongNo" Expression="[CongNo] > [HanMucCongNo] && [HanMucCongNo] != 0" Format="LightRedFillWithDarkRedText" />                       
         </FormatConditions>
     </dx:ASPxGridView>
+    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsLoaiKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [TenLoaiKhachHang], [IDLoaiKhachHang] FROM [khLoaiKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([IDLoaiKhachHang] &lt;&gt; @IDLoaiKhachHang))">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />

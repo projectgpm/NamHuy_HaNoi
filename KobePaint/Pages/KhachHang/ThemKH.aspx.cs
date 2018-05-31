@@ -52,6 +52,7 @@ namespace KobePaint.Pages.KH_NCC
                 kh.LanCuoiMuaHang = DateTime.Now;
                 kh.TongTienHang = 0;
                 kh.TienTraHang = 0;
+                kh.ChiNhanhID = Formats.IDChiNhanh();
                 kh.CongNo = Convert.ToDouble(speCongNoBanDau.Number);
                 kh.DaXoa = 0;
                 kh.HanMucCongNo = Convert.ToDouble(speHanMucCongNo.Number);

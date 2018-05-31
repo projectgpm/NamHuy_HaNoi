@@ -177,33 +177,33 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="12" Width="100px">
+            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="13" Width="100px">
                  
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="1" Width="110px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="2" Width="110px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
 <CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày tạo" FieldName="NgayTao" VisibleIndex="4" Width="120px">
+            <dx:GridViewDataDateColumn Caption="Ngày tạo" FieldName="NgayTao" VisibleIndex="5" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" DisplayFormatInEditMode="True">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Người bán" FieldName="NhanVienID" VisibleIndex="5" Width="150px">
+            <dx:GridViewDataComboBoxColumn Caption="Người bán" FieldName="NhanVienID" VisibleIndex="6" Width="150px">
                 <PropertiesComboBox DataSourceID="dsNhanVien" TextField="HoTen" ValueField="IDNhanVien">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="6" Width="50px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="7" Width="50px" CellStyle-HorizontalAlign="Center">
                 <PropertiesSpinEdit DisplayFormatString="N0">
                 </PropertiesSpinEdit>
 
 <CellStyle HorizontalAlign="Center"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTien" VisibleIndex="7" CellStyle-Font-Bold="true" Width="100px"> 
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTien" VisibleIndex="8" CellStyle-Font-Bold="true" Width="100px"> 
                 <PropertiesSpinEdit DisplayFormatString="N0" >
                 </PropertiesSpinEdit>
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="TrangThai" VisibleIndex="11" Width="100px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="TrangThai" VisibleIndex="12" Width="100px" CellStyle-HorizontalAlign="Center">
                 <PropertiesComboBox>
                     <Items>
                         <dx:ListEditItem Text="Đã đặt" Value="0" />
@@ -215,23 +215,23 @@
 
 <CellStyle HorizontalAlign="Center"></CellStyle>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="KhachHangID" VisibleIndex="2" Width="150px">
+            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="KhachHangID" VisibleIndex="3" Width="150px">
                 <PropertiesComboBox DataSourceID="dsKhachHang" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="14" Visible="False">
+            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="15" Visible="False">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày giao" FieldName="NgayGiao" VisibleIndex="10" Width="120px">
+            <dx:GridViewDataDateColumn Caption="Ngày giao" FieldName="NgayGiao" VisibleIndex="11" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataMemoColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" VisibleIndex="9" Width="100%">
+            <dx:GridViewDataMemoColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" VisibleIndex="10" Width="100%">
             </dx:GridViewDataMemoColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3" Width="100px">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="4" Width="100px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="15">
+            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="16">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="13" Width="80px">
+            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="14" Width="80px">
                 <DataItemTemplate>
                     <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
                         <Image IconID="print_print_16x16">
@@ -241,10 +241,14 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giảm giá" FieldName="GiamGia" VisibleIndex="8" Width="100px">
+            <dx:GridViewDataSpinEditColumn Caption="Giảm giá" FieldName="GiamGia" VisibleIndex="9" Width="100px">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
         </Columns>
 
         <TotalSummary>
@@ -257,6 +261,11 @@
             <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 2" Format="LightRedFillWithDarkRedText" />
         </FormatConditions>
     </dx:ASPxGridView>
+     <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
+         <SelectParameters>
+             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+         </SelectParameters>
+    </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
          SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID <> 2 ORDER BY [IDKhachHang] DESC ">
 

@@ -241,6 +241,7 @@ namespace KobePaint.Pages.GiaoHang
                         giaohang.TrangThai = 0;// chưa duyệt, 1 đã duyệt
                         giaohang.TongSoLuong = TongSoLuong;
                         giaohang.DienThoai = KH.DienThoai;
+                        giaohang.ChiNhanhID = Formats.IDChiNhanh();
                         giaohang.TongTien = TongTien;
                         giaohang.ThanhToan = Convert.ToDouble(spKhachHangThoan.Number);
                         giaohang.GiamGia = Convert.ToDouble(spGiamGia.Number);
@@ -250,7 +251,7 @@ namespace KobePaint.Pages.GiaoHang
                         DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                         DBDataProvider.DB.SubmitChanges();
 
-                        int IDPhieuGiaoHang = giaohang.IDPhieuGiaoHang;
+                        int IDPhieuGiaoHang =  Convert.ToInt32(giaohang.IDPhieuGiaoHang);
                         hiddenFields["IDPhieuMoi"] = IDPhieuGiaoHang;
                         foreach (var prod in listReceiptProducts)
                         {
@@ -268,7 +269,7 @@ namespace KobePaint.Pages.GiaoHang
                             var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             if (TonKhoBanDau != null && TonKhoBanDau.LoaiHHID == 1)
                             {
-                                TonKhoBanDau.TonKho -= prod.SoLuong;
+                                TonKhoBanDau.hhTonKhos.Where(tk => tk.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong -= prod.SoLuong;
                                 // ghi thẻ kho
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
@@ -279,6 +280,7 @@ namespace KobePaint.Pages.GiaoHang
                                 thekho.GiaThoiDiem = prod.GiaBan;
                                 thekho.Ton = prod.TonKho - prod.SoLuong;
                                 thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
+                                thekho.ChiNhanhID = Formats.IDChiNhanh();
                                 thekho.NhanVienID = Formats.IDUser();
                                 DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                                 #endregion
@@ -470,7 +472,7 @@ namespace KobePaint.Pages.GiaoHang
                         tblHangHoa.MaHang,
                         tblHangHoa.TenHangHoa,
                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                        Convert.ToInt32(tblHangHoa.TonKho),
+                       Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                         1,
                         GiaBan,
                         Convert.ToDouble(tblHangHoa.GiaVon),
@@ -654,7 +656,7 @@ namespace KobePaint.Pages.GiaoHang
                                         tblHangHoa.MaHang,
                                         tblHangHoa.TenHangHoa,
                                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                                       Convert.ToInt32(tblHangHoa.TonKho),
+                                      Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
                                         SoLuong,
                                        GiaBan,
                                        Convert.ToDouble(tblHangHoa.GiaVon),

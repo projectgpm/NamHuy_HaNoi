@@ -63,7 +63,7 @@ namespace KobePaint.Pages.Kho
                                     nhatky.ThanhToan = 0;
                                     nhatky.NhanVienID = Formats.IDUser();
                                     nhatky.SoPhieu = NhapKho.MaPhieu;
-                                    nhatky.IDKhachHang = NhapKho.NCCID;
+                                    nhatky.IDKhachHang = Convert.ToInt32(NhapKho.NCCID);
                                     DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
                                     DBDataProvider.DB.SubmitChanges();
                                 #endregion
@@ -97,8 +97,9 @@ namespace KobePaint.Pages.Kho
                                         thekho.DienGiai = "Xóa phiếu nhập hàng #" + NhapKho.MaPhieu;
                                         thekho.Nhap = 0;
                                         thekho.GiaThoiDiem = 0;// kiê
+                                        thekho.ChiNhanhID = Formats.IDChiNhanh();
                                         thekho.Xuat = SoLuong;
-                                        thekho.Ton = HangHoa.TonKho -= SoLuong; // trừ tồn kho luôn
+                                        thekho.Ton = HangHoa.hhTonKhos.Where(tk => tk.ChiNhanhID == Formats.IDChiNhanh()).FirstOrDefault().SoLuong -= SoLuong; // trừ tồn kho luôn
                                         thekho.HangHoaID = IDHangHoa;
                                         thekho.NhanVienID = Formats.IDUser();
                                         DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);

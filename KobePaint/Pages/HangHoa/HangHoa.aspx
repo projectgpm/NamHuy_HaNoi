@@ -256,13 +256,6 @@
                 </PropertiesComboBox>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TonKho" VisibleIndex="4" ReadOnly="True" Width="80px">
-                <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
-                </PropertiesSpinEdit>
-                <EditFormSettings Visible="False" />
-                <CellStyle HorizontalAlign="Center">
-                </CellStyle>
-            </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataTextColumn Caption="Hàng hóa" FieldName="TenHangHoa" VisibleIndex="1" Width="100%" Name="hanghoa">
                  <DataItemTemplate>
                      <a target="_blank" href="CapNhat.aspx?id=<%# Container.KeyValue %>" > <%# Eval("TenHangHoa") %></a>
@@ -273,10 +266,6 @@
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
-        <FormatConditions>
-            <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
-            <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />                                
-        </FormatConditions>
     </dx:ASPxGridView>
       <asp:SqlDataSource ID="dsLoaiHangHoa" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDLoaiHangHoa], [TenLoai] FROM [hhLoaiHangHoa]"></asp:SqlDataSource>
       <asp:SqlDataSource ID="dsDVT" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDDonViTinh], [TenDonViTinh] FROM [hhDonViTinh] WHERE ([DaXoa] = @DaXoa)">

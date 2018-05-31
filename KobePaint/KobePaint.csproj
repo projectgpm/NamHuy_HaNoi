@@ -172,7 +172,6 @@
     <Content Include="Pages\KhachHang\DanhSachKH.aspx" />
     <Content Include="Pages\KhachHang\DanhSachNCC.aspx" />
     <Content Include="Pages\KhachHang\ThemKH.aspx" />
-    <Content Include="Pages\Kho\CapNhat.aspx" />
     <Content Include="Pages\Kho\DanhSachKiemKho.aspx" />
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
     <Content Include="Pages\Kho\DanhSachXuatKhac.aspx" />
@@ -190,7 +189,6 @@
     <Content Include="Pages\ThanhToan\LapThanhToanNCC.aspx" />
     <Content Include="Pages\ThuChi\DanhSachThuChi.aspx" />
     <Content Include="Pages\ThuChi\LapPhieuThuChi.aspx" />
-    <Content Include="Pages\TongQuan\TongQuan.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHang.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHangNCC.aspx" />
     <Content Include="Pages\TraHang\LapPhieu.aspx" />
@@ -512,13 +510,6 @@
     <Compile Include="Pages\KhachHang\ThemKH.aspx.designer.cs">
       <DependentUpon>ThemKH.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Kho\CapNhat.aspx.cs">
-      <DependentUpon>CapNhat.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Kho\CapNhat.aspx.designer.cs">
-      <DependentUpon>CapNhat.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Kho\DanhSachKiemKho.aspx.cs">
       <DependentUpon>DanhSachKiemKho.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -637,13 +628,6 @@
     </Compile>
     <Compile Include="Pages\ThuChi\LapPhieuThuChi.aspx.designer.cs">
       <DependentUpon>LapPhieuThuChi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\TongQuan\TongQuan.aspx.cs">
-      <DependentUpon>TongQuan.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\TongQuan\TongQuan.aspx.designer.cs">
-      <DependentUpon>TongQuan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TraHang\DanhSachTraHang.aspx.cs">
       <DependentUpon>DanhSachTraHang.aspx</DependentUpon>

@@ -43,7 +43,7 @@ namespace KobePaint.Pages.Kho
                             {
                                 int IDHangHoa = Convert.ToInt32(xk.HangHoaID);
                                 int SoLuong = Convert.ToInt32(xk.SoLuong);
-                                var HangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == IDHangHoa).FirstOrDefault();
+                                var HangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == IDHangHoa ).FirstOrDefault();
                                 if (HangHoa != null)
                                 {
                                     #region ghi thẻ kho
@@ -52,10 +52,11 @@ namespace KobePaint.Pages.Kho
                                         thekho.DienGiai = "Xóa phiếu xuất khác #" + XuatKho.MaPhieuXuat;
                                         thekho.Nhap = SoLuong;
                                         thekho.Xuat = 0;
-                                        thekho.Ton = HangHoa.TonKho += SoLuong; // cộng tồn kho luôn
+                                        thekho.Ton = HangHoa.hhTonKhos.Where(tk => tk.ChiNhanhID == XuatKho.ChiNhanhID).FirstOrDefault().SoLuong += SoLuong; // cộng tồn kho luôn
                                         thekho.HangHoaID = IDHangHoa;
                                         thekho.GiaThoiDiem = 0;
                                         thekho.NhanVienID = Formats.IDUser();
+                                        thekho.ChiNhanhID = Formats.IDChiNhanh();
                                         DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                                     #endregion
                                 }

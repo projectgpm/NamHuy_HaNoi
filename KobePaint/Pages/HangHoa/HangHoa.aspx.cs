@@ -163,11 +163,19 @@ namespace KobePaint.Pages.HangHoa
                                 hanghoa.DonViTinhID = KT_DonViTinh(DonViTinh);
                                 hanghoa.GiaBan = GiaBan;
                                 hanghoa.GiaVon = GiaVon;
-                                hanghoa.TonKho = TonKho;
                                 hanghoa.DaXoa = 0;
                                 DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
                                 DBDataProvider.DB.SubmitChanges();
                                 int IDHangHoa = hanghoa.IDHangHoa;
+
+                                // them hang hoa tonkho cho chi nhanh tong
+                                hhTonKho tk = new hhTonKho();
+                                tk.ChiNhanhID = Formats.IDChiNhanh();
+                                tk.HangHoaID = IDHangHoa;
+                                tk.SoLuong = TonKho;
+                                tk.NgayCapNhat = DateTime.Now;
+                                DBDataProvider.DB.hhTonKhos.InsertOnSubmit(tk);
+
                                 if (TonKho > 0)
                                 {
                                     // ghi thẻ kho
@@ -178,6 +186,7 @@ namespace KobePaint.Pages.HangHoa
                                     thekho.Nhap = TonKho;
                                     thekho.Xuat = 0;
                                     thekho.Ton = TonKho;
+                                    thekho.ChiNhanhID = Formats.IDChiNhanh();
                                     thekho.GiaThoiDiem = GiaVon;
                                     thekho.NhanVienID = Formats.IDUser();
                                     thekho.HangHoaID = IDHangHoa;

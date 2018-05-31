@@ -156,7 +156,7 @@ namespace KobePaint.Pages.ThanhToan
 
                     DBDataProvider.DB.kPhieuThanhToanNCCs.InsertOnSubmit(thanhtoan);
                     DBDataProvider.DB.SubmitChanges();
-                    int IDPhieuThu = thanhtoan.IDPhieuThu;
+                    int IDPhieuThu =  Convert.ToInt32(thanhtoan.IDPhieuThu);
 
                     if (rdlHinhThuc.SelectedIndex == 0)
                     {

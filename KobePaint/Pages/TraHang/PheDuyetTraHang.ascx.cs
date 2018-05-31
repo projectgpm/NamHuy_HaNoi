@@ -81,7 +81,7 @@ namespace KobePaint.Pages.TraHang
                             foreach (var prod in PhieuTraHangChiTiet)
                             {
                                 var HH = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.HangHoaID).FirstOrDefault();
-                                HH.TonKho += prod.SoLuong;
+                                HH.hhTonKhos.Where(tk => tk.ChiNhanhID == PhieuTraHang.ChiNhanhID).FirstOrDefault().SoLuong += prod.SoLuong;
                                 // ghi thẻ kho
                                 #region ghi thẻ kho
                                 kTheKho thekho = new kTheKho();
@@ -89,6 +89,7 @@ namespace KobePaint.Pages.TraHang
                                 thekho.DienGiai = "Trả hàng #" + PhieuTraHang.MaPhieu;
                                 thekho.Nhap = prod.SoLuong;
                                 thekho.Xuat = 0;
+                                thekho.ChiNhanhID = PhieuTraHang.ChiNhanhID;
                                 thekho.GiaThoiDiem = prod.TienTra;
                                 thekho.Ton = prod.SoLuong + prod.TonKho;
                                 thekho.HangHoaID = HH.IDHangHoa;
