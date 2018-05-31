@@ -29,6 +29,21 @@
             alert('Vui lòng nhập tên khách hàng !!');
             return false;
         }
+        if (speHanMucCongNo.GetNumber() == null) {
+            speHanMucCongNo.Focus();
+            alert('Vui lòng nhập hạn mức công nợ !!');
+            return false;
+        } 
+        if (speThoiHanThanhToan.GetNumber() == null) {
+            speThoiHanThanhToan.Focus();
+            alert('Vui lòng nhập thời hạn thanh toán !!');
+            return false;
+        }
+        if (speCongNoBanDau.GetNumber() == null) {
+            speCongNoBanDau.Focus();
+            alert('Vui lòng nhập công nợ ban đầu !!');
+            return false;
+        }
         return true;
     }
    
@@ -56,11 +71,20 @@
                                             <dx:ASPxComboBox ID="ccbLoaiKH" runat="server" Width="100%" DataSourceID="dsLoaiKH" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang" SelectedIndex="1">
                                                 <ClientSideEvents SelectedIndexChanged="function(s, e) {
 	                                                if(s.GetSelectedIndex() == 1)
-                                                    {                                        
+                                                    {            
+                                                        formThemKH.GetItemByName('LayoutHanMucCongNo').SetVisible(true);
+                                                        formThemKH.GetItemByName('LayoutThoiHanThanhToan').SetVisible(true);                            
                                                         formThemKH.GetItemByName('layoutitemMaST').SetVisible(false);
                                                     }
+                                                    else if(s.GetSelectedIndex() == 2)
+                                                    {
+                                                         formThemKH.GetItemByName('LayoutHanMucCongNo').SetVisible(false);
+                                                        formThemKH.GetItemByName('LayoutThoiHanThanhToan').SetVisible(false);
+                                                    }
                                                     else
-                                                    {                                            
+                                                    {     
+                                                         formThemKH.GetItemByName('LayoutHanMucCongNo').SetVisible(true);
+                                                        formThemKH.GetItemByName('LayoutThoiHanThanhToan').SetVisible(true);              
                                                         formThemKH.GetItemByName('layoutitemMaST').SetVisible(true);
                                                     }
                                                 }" />
@@ -115,6 +139,39 @@
                                             </dx:ASPxTextBox>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
+                                </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Hạn mức công nợ" Name="LayoutHanMucCongNo" HelpText="(Đvt: đồng)" >
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutHanMucCongNo" runat="server">
+                                            <dx:ASPxSpinEdit ID="speHanMucCongNo" ClientInstanceName="speHanMucCongNo" runat="server" Width="100%" Number="0" DecimalPlaces="2" DisplayFormatString="N0" Increment="100000" >
+                                            </dx:ASPxSpinEdit>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                    <HelpTextSettings Position="Right" VerticalAlign="Middle" />
+                                    <HelpTextStyle ForeColor="#00CC00" Wrap="False">
+                                    </HelpTextStyle>
+                                </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Thời hạn thanh toán" Name="LayoutThoiHanThanhToan" HelpText="(Đvt: ngày)">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutThoiHanThanhToan" runat="server">
+                                            <dx:ASPxSpinEdit ID="speThoiHanThanhToan" ClientInstanceName="speThoiHanThanhToan" runat="server" Width="100%" Number="0" Increment="5">
+                                            </dx:ASPxSpinEdit>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                    <HelpTextSettings Position="Right" VerticalAlign="Middle" />
+                                    <HelpTextStyle ForeColor="#00CC00" Wrap="False">
+                                    </HelpTextStyle>
+                                </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Công nợ ban đầu" HelpText="(Đvt: đồng)">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
+                                            <dx:ASPxSpinEdit ID="speCongNoBanDau" ClientInstanceName="speCongNoBanDau" runat="server" Number="0" Width="100%" DecimalPlaces="2" DisplayFormatString="N0" Increment="1000" NullText="0">
+                                            </dx:ASPxSpinEdit>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                    <HelpTextSettings Position="Right" VerticalAlign="Middle" />
+                                    <HelpTextStyle ForeColor="#00CC00" Wrap="False">
+                                    </HelpTextStyle>
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Thông tin khác" ColSpan="2" Width="100%">
                                     <LayoutItemNestedControlCollection>

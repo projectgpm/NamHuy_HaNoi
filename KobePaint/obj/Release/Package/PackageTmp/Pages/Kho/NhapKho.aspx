@@ -441,11 +441,11 @@
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
                                                 </td>
-                                                <td style="padding-left: 10px">
+                                               <%-- <td style="padding-left: 10px">
                                                     <dx:ASPxButton ID="btnLuuTiepTuc" runat="server" Text="Lưu và tiếp tục" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveNextClick" />
                                                     </dx:ASPxButton>
-                                                </td>
+                                                </td>--%>
                                                 <td style="padding-left: 10px;">
                                                     <dx:ASPxButton ID="btnTroVe"  ClientInstanceName="btnTroVe" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="false"  UseSubmitBehavior="false">
                                                     <ClientSideEvents Click=" function(){ if(confirm('Xác nhận tao tác ?')){ cbpInfoImport.PerformCallback('redirect'); } }" />

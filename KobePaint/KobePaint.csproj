@@ -216,6 +216,7 @@
     <Content Include="BieuMau\xuatkho.xls" />
     <Content Include="BieuMau\banggia.xls" />
     <Content Include="BieuMau\them_hang_hoa.xls" />
+    <Content Include="BieuMau\chuyenkho.xls" />
     <None Include="Properties\PublishProfiles\KobePaint.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

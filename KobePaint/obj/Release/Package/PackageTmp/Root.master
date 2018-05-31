@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
-    <title></title>
+    <title>GPM.VN - Hệ thống quản lý bán hàng</title>
     <link rel="stylesheet" type="text/css" href="Content/Site.css" />
     <script type="text/javascript"  src="/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/Scripts/jquery-ui.min.js"></script>
@@ -97,7 +97,7 @@
                             <div class="logo" style="margin-top:10px;">
                                 <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Content/Images/logo.png" CssClass="imglogo" />
                             </div>
-                            <div class="templateTitle" style="margin-top:20px;">
+                            <div class="templateTitle" style="margin-top:15px;">
                                 <a id="TitleLink" href="~/" runat="server">QUẢN LÝ BÁN HÀNG</a>
                             </div>                           
                         </div>

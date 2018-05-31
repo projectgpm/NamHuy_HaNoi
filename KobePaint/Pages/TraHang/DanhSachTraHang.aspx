@@ -238,7 +238,9 @@
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsTraHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang, STTDonHang, NgayDuyet FROM kPhieuTraHang WHERE (@Quyen &lt;&gt; 3) OR (NhanVienID = @NhanVienID) ORDER BY IDPhieuTraHang DESC">
+    <asp:SqlDataSource ID="dsTraHang" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT ChiNhanhID,IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang, STTDonHang, NgayDuyet FROM kPhieuTraHang WHERE (@Quyen &lt;&gt; 3) OR (NhanVienID = @NhanVienID) ORDER BY IDPhieuTraHang DESC">
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="Quyen" />
             <asp:Parameter DefaultValue="1" Name="NhanVienID" />

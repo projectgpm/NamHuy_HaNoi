@@ -73,21 +73,21 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="2" Width="120px">
+            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="3" Width="120px">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Họ tên" FieldName="HoTen" VisibleIndex="3">
+            <dx:GridViewDataTextColumn Caption="Họ tên" FieldName="HoTen" VisibleIndex="4">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="DiaChi" VisibleIndex="5" Caption="Địa chỉ">
+            <dx:GridViewDataTextColumn FieldName="DiaChi" VisibleIndex="6" Caption="Địa chỉ">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="4">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="5">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="6">
+            <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="7">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yy H:mm:ss" EditFormat="Custom" EditFormatString="dd/MM/yy H:mm:ss">
                 </PropertiesDateEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền hàng" FieldName="TongTienHang" VisibleIndex="7">
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền hàng" FieldName="TongTienHang" VisibleIndex="8">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
@@ -110,14 +110,19 @@
             <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" Visible="False" VisibleIndex="12">
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại khách hàng" FieldName="LoaiKhachHangID" VisibleIndex="1" Width="150px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại khách" FieldName="LoaiKhachHangID" VisibleIndex="2" Width="150px">
                 <PropertiesComboBox DataSourceID="dsLoaiKhachHang" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="150px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
 
 
     </dx:ASPxGridView>
+      <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] ORDER BY [TenChiNhanh]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="dsLoaiKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
         SelectCommand="SELECT [TenLoaiKhachHang], [IDLoaiKhachHang] FROM [khLoaiKhachHang] WHERE (([DaXoa] = @DaXoa) )">
         <SelectParameters>

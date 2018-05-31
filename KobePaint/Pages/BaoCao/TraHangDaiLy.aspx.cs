@@ -111,5 +111,10 @@ namespace KobePaint.Pages.BaoCao
                 oReturnNodeReport.listProduct.Add(prod);
             }
         }
+
+        protected void fromDay_Init(object sender, EventArgs e)
+        {
+            Formats.InitDateEditControl_AddDay(sender, e, -1);
+        }
     }
 }

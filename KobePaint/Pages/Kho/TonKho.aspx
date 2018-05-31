@@ -122,9 +122,10 @@
                                                                     </TitlePanel>
                                                                 </Styles>
                                                             </dx:ASPxGridView>
-                                                            <asp:SqlDataSource ID="dsTheKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT NgayNhap, DienGiai, Nhap, Xuat, Ton, IDTheKho FROM kTheKho WHERE (HangHoaID = @HangHoaID) ORDER BY IDTheKho DESC">
+                                                            <asp:SqlDataSource ID="dsTheKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT NgayNhap, DienGiai, Nhap, Xuat, Ton, IDTheKho FROM kTheKho WHERE (HangHoaID = @HangHoaID) AND (ChiNhanhID = @ChiNhanhID) ORDER BY IDTheKho DESC">
                                                                   <SelectParameters>
                                                                     <asp:SessionParameter Name="HangHoaID" SessionField="IDHangHoa" Type="Int32" />
+                                                                      <asp:ControlParameter ControlID="ccbChiNhanh" Name="ChiNhanhID" PropertyName="Value" />
                                                                 </SelectParameters>
                                                             </asp:SqlDataSource>
                                                         </div>
@@ -137,7 +138,7 @@
                                             <SettingsEditing Mode="Inline">
                                             </SettingsEditing>
                                             <Settings ShowFilterRow="True" VerticalScrollableHeight="50" VerticalScrollBarMode="Visible" />
-                                            <SettingsBehavior ConfirmDelete="True" AllowSelectByRowClick="True" />
+                                            <SettingsBehavior ConfirmDelete="True"/>
                                             <SettingsCommandButton>
                                                 <ShowAdaptiveDetailButton ButtonType="Image">
                                                 </ShowAdaptiveDetailButton>

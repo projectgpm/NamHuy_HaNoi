@@ -178,17 +178,12 @@
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataTextColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" Width="150px" VisibleIndex="11" ReadOnly="true">
+            <dx:GridViewDataTextColumn Caption="Địa chỉ giao hàng" Visible="false" FieldName="DiaChiGiaoHang" Width="150px" VisibleIndex="11" ReadOnly="true">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="TrangThai" VisibleIndex="12" Width="150px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
-               <%-- <DataItemTemplate>
-                    <dx:ASPxComboBox runat="server" ID="TrangThai"
-                        Value='<%# Eval("TrangThai")%>' ValueType="System.Int32" Width="100%">
-                    </dx:ASPxComboBox >
-                </DataItemTemplate>--%>
-
-<CellStyle HorizontalAlign="Center" Font-Bold="True">
-<Paddings Padding="2px"></Paddings>
+            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="TrangThai" VisibleIndex="12" Width="100px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
+             
+                <CellStyle HorizontalAlign="Center" Font-Bold="True">
+                <Paddings Padding="2px"></Paddings>
                 </CellStyle>
                 <PropertiesComboBox EnableFocusedStyle="False">
                     <Items>
@@ -222,7 +217,7 @@
         </SelectParameters>
 </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsDonHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT IDPhieuGiaoHang, NgayTao, MaPhieu, NhanVienID, GhiChuGiaoHang, KhachHangID, NgayGiao, NguoiGiao, DiaChiGiaoHang, DaXoa, TrangThai, TongSoLuong, TongTien, DienThoai, SoHoaDon, TTThanhToan, ThanhToan, ConLai, GiamGia FROM ghPhieuGiaoHang WHERE (TrangThai = 0)" 
+        SelectCommand="SELECT ChiNhanhID,IDPhieuGiaoHang, NgayTao, MaPhieu, NhanVienID, GhiChuGiaoHang, KhachHangID, NgayGiao, NguoiGiao, DiaChiGiaoHang, DaXoa, TrangThai, TongSoLuong, TongTien, DienThoai, SoHoaDon, TTThanhToan, ThanhToan, ConLai, GiamGia FROM ghPhieuGiaoHang WHERE (TrangThai = 0)" 
         UpdateCommand="UPDATE gPhieuGiaoHang SET NgayDatHang = @NgayDatHang, NgayXuatHang = @NgayXuatHang, XeID = @XeID, TaiXeID = @TaiXeID, PheDuyet = @PheDuyet,  NgayDuyet = getdate() WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
         <UpdateParameters>
             <asp:Parameter Name="NgayDatHang" Type="DateTime" />

@@ -300,7 +300,7 @@ namespace KobePaint.Pages.TraHang
                          tblHangHoa.MaHang,
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
-                         Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                         Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                          SoLuong, SoLuong * Convert.ToDouble(tblHangHoa.GiaBan), Convert.ToDouble(tblHangHoa.GiaBan),
                          tblHangHoa.hhDonViTinh.TenDonViTinh
                          );

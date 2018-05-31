@@ -43,5 +43,10 @@ namespace KobePaint.Pages.BaoCao
             if (TRANGTHAI == 2)
                 e.Row.BackColor = System.Drawing.Color.AliceBlue;
         }
+
+        protected void fromDay_Init(object sender, EventArgs e)
+        {
+            Formats.InitDateEditControl_AddDay(sender, e, -1);
+        }
     }
 }

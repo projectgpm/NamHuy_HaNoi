@@ -402,6 +402,32 @@ namespace KobePaint.App_Code
     #endregion
 
 
+    #region ChuyenKho
+    [Serializable]
 
+
+    public class oImportProduct_ChiTietChuyenKho
+    {
+        public int STT { get; set; }
+        public int IDHangHoa { get; set; }
+        public string MaHang { get; set; }
+        public string TenHangHoa { get; set; }
+        public string DVT { get; set; }
+        public int TonChuyen { get; set; }
+        public int SoLuong { get; set; }
+        public int TonNhan { get; set; }
+        public oImportProduct_ChiTietChuyenKho(int iDHangHoa, string maHang, string tenHangHoa, string dvt, int tonchuyen, int soLuong, int tonnhan)
+        {
+            // TODO: Complete member initialization
+            this.IDHangHoa = iDHangHoa;
+            this.MaHang = maHang;
+            this.TenHangHoa = tenHangHoa;
+            this.DVT = dvt;
+            this.TonChuyen = tonchuyen;
+            this.SoLuong = soLuong;
+            this.TonNhan = tonnhan;
+        }
+    }
+    #endregion
 }
    

@@ -6,23 +6,9 @@
              var hInfoLayout = flayoutInfosImport.GetHeight();
              gridImportPro.SetHeight(hInfoPanel - hInfoLayout);
          }
-
-         function GetPrice() {
-             //if (ccbNhaCungCap.GetSelectedIndex() == -1) {
-             //    alert('Vui lòng chọn nhà cung cấp trước');
-             //    ccbBarcode.SetSelectedIndex(-1);
-             //    ccbNhaCungCap.Focus();
-             //}
-             //else {
-             //    cbpInfoImport.PerformCallback('price');
-             //    //if (ccbBarcode.GetSelectedIndex() != -1) {
-             //    //    cbpInfoImport.PerformCallback('price');
-             //    //}
-             //}
-         }
          function ImportProduct() {
-             cbpInfoImport.PerformCallback("import");
-             cbpInfo.PerformCallback('refresh');
+             if (checkInput())
+                 cbpInfoImport.PerformCallback("import");
          }
 
 
@@ -30,9 +16,6 @@
              if (checkInput() && confirm('Xác nhận thao tác ?')) {
                  cbpInfoImport.PerformCallback('Save');
                  cbpInfoImport.PerformCallback('redirect');
-                 cbpInfo.PerformCallback('resetinfo');
-                 cbpInfoImport.PerformCallback('resetinfo_pro');
-
              }
          }
 
@@ -41,41 +24,29 @@
          }
         
          function checkInput() {
-             //if (ccbNhaCungCap.GetSelectedIndex() == -1) {
-             //    ccbBarcode.SetSelectedIndex(-1);
-             //    ccbNhaCungCap.Focus();
-             //    alert('Vui lòng chọn nhà cung cấp');
-             //    return false;
-             //}
-             //if (spThanhToan.GetValue() == null) {
-             //    spThanhToan.Focus();
-             //    alert('Vui lòng nhập số tiền thanh toán');
-             //    return false;
-             //};
-             //if (spThanhToan.GetValue() > spTongTien.GetValue()) {
-             //    spThanhToan.Focus();
-             //    alert('Vui lòng nhập số tiền thanh toán nhỏ hơn hoặc bằng tổng tiền.');
-             //    return false;
-             //};
-             //if (spThanhToan.GetValue() < 0) {
-             //    spThanhToan.Focus();
-             //    alert('Tiền thanh toán phải lớn hơn hoặc bằng 0.');
-             //    return false;
-             //};
-
+             if (ccbChiNhanhChuyen.GetSelectedIndex() == -1) {
+                 ccbBarcode.SetSelectedIndex(-1);
+                 ccbChiNhanhChuyen.Focus();
+                 alert('Vui lòng chọn chi nhánh chuyển !!');
+                 return false;
+             }
+             if (ccbChiNhanhNhan.GetSelectedIndex() == -1) {
+                 ccbBarcode.SetSelectedIndex(-1);
+                 ccbChiNhanhNhan.Focus();
+                 alert('Vui lòng chọn chi nhánh nhận !!');
+                 return false;
+             }
              return true;
          }
 
          function onFileUploadComplete() {
-             //cbpInfoImport.PerformCallback('importexcel');
-             //cbpInfo.PerformCallback('refresh');
-             //popupViewExcel.Hide();
+             cbpInfoImport.PerformCallback('importexcel');
+             popupViewExcel.Hide();
          }
 
          ///////////////////////////////////
          function onUnitReturnChanged(key) {
-             //cbpInfoImport.PerformCallback('UnitChange|' + key);
-             //cbpInfo.PerformCallback('refresh');
+             cbpInfoImport.PerformCallback('UnitChange|' + key);
          }
 
          function endCallBackProduct(s, e) {
@@ -97,7 +68,7 @@
              cbpInfo.PerformCallback('ChiNhanhChuyen');
          }
          function ccbChiNhanhNhanSelectChange() {
-             cbpInfoImport.PerformCallback('price');
+             cbpInfoImport.PerformCallback('LamMoi');
          }
     </script>
 
@@ -263,7 +234,7 @@
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                         </dx:LayoutItem>
-                                                                        <dx:LayoutItem Caption="Excel" ShowCaption="False">
+                                                                        <dx:LayoutItem Caption="Excel" ShowCaption="False" Visible="false">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
                                                                                     <dx:ASPxButton ID="btnExcel" runat="server" AutoPostBack="False" ClientInstanceName="btnExcel" Text="Nhập Excel">
@@ -295,20 +266,17 @@
                                                             </SettingsCommandButton>
                                                             <SettingsText EmptyDataRow="Chưa có dữ liệu" />
                                                             <Columns>
+                                                                <dx:GridViewCommandColumn Caption="Xóa" ShowDeleteButton="True" ShowInCustomizationForm="True" VisibleIndex="7" Width="50px">
+                                                                </dx:GridViewCommandColumn>
                                                                 <dx:GridViewDataTextColumn Caption="STT" FieldName="STT" ShowInCustomizationForm="True" VisibleIndex="0" Width="50px">
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Tên hàng hóa" FieldName="TenHangHoa" ShowInCustomizationForm="True" VisibleIndex="2" Width="100%">
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataTextColumn Caption="Mã HH" FieldName="MaHang" ShowInCustomizationForm="True" VisibleIndex="1" Width="100px">
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataButtonEditColumn Caption="Xóa" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
-                                                                 
-                                                                    <CellStyle HorizontalAlign="Center">
-                                                                    </CellStyle>
-                                                                </dx:GridViewDataButtonEditColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Tồn nhận" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px" ToolTip="Tồn chi nhánh nhận">
+                                                                <dx:GridViewDataTextColumn Caption="Tồn nhận" FieldName="TonNhan" CellStyle-HorizontalAlign="Center"  ShowInCustomizationForm="True" VisibleIndex="5" Width="100px" ToolTip="Tồn chi nhánh nhận">
                                                                 </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
+                                                                <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
                                                                     <PropertiesSpinEdit DisplayFormatString="g">
                                                                     </PropertiesSpinEdit>
                                                                     <DataItemTemplate>
@@ -319,15 +287,14 @@
                                                                         <Paddings Padding="2px" />
                                                                     </CellStyle>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Tồn chuyển" ShowInCustomizationForm="True" ToolTip="Tồn chi nhánh chuyển" VisibleIndex="3" Width="100px">
+                                                                <dx:GridViewDataTextColumn Caption="Tồn chuyển" ShowInCustomizationForm="True" CellStyle-HorizontalAlign="Center" ToolTip="Tồn chi nhánh chuyển" VisibleIndex="4" Width="100px" FieldName="TonChuyen">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="ĐVT" FieldName="DVT" ShowInCustomizationForm="True" VisibleIndex="3" Width="100px">
                                                                 </dx:GridViewDataTextColumn>
                                                             </Columns>
                                                             <FormatConditions>
-                                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
-                                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
-                                                                <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText" CellStyle-HorizontalAlign="Center">
-                                                                    <CellStyle HorizontalAlign="Center"></CellStyle>
-                                                                </dx:GridViewFormatConditionTopBottom>
+                                                                <dx:GridViewFormatConditionHighlight FieldName="TonChuyen" Expression="[TonChuyen] < 1" Format="LightRedFillWithDarkRedText" />
+                                                                <dx:GridViewFormatConditionHighlight FieldName="TonChuyen" Expression="[TonChuyen] > 0" Format="GreenFillWithDarkGreenText" />
                                                             </FormatConditions>
                                                             <TotalSummary>
                                                                 <dx:ASPxSummaryItem DisplayFormat="Tổng mặt hàng: {0:N0}" FieldName="MaHang" ShowInColumn="Mã HH" SummaryType="Count" />
@@ -359,7 +326,7 @@
                                         <table style="margin: 0 auto;">
                                             <tr>
                                                 <td>
-                                                    <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu kho" AutoPostBack="false" UseSubmitBehavior="false">
+                                                    <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Chuyển kho" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
                                                 </td>
@@ -400,7 +367,7 @@
                             <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Tải file mẫu:"></dx:ASPxLabel>
                         </td>
                         <td style="float: left; padding-left: 3px;">
-                            <dx:ASPxHyperLink ID="linkNhapKho" runat="server" Text="NhapKho.xls" NavigateUrl="~/BieuMau/nhapkho.xls">
+                            <dx:ASPxHyperLink ID="linkNhapKho" runat="server" Text="ChuyenKho.xls" NavigateUrl="~/BieuMau/chuyenkho.xls">
                             </dx:ASPxHyperLink>
                         </td>
                     </tr>

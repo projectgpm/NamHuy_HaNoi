@@ -106,8 +106,12 @@
             </DetailRow>
         </Templates>
         <Columns>
-            <dx:GridViewDataTextColumn FieldName="IDPhieuTraHang" ReadOnly="True" VisibleIndex="0" Caption="STT"  >
+            <dx:GridViewDataTextColumn FieldName="IDPhieuTraHang" ReadOnly="True" VisibleIndex="0" Caption="STT" Width="40px" >
+               <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
+                <HeaderStyle HorizontalAlign="Center" />
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="MaPhieu" VisibleIndex="2" Caption="Mã phiếu" ReadOnly="true" >
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
@@ -154,7 +158,7 @@
                 </PropertiesComboBox>
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="DuyetDonHang" VisibleIndex="9" Width="150px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
+            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="DuyetDonHang" VisibleIndex="9" Width="100px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
                 <PropertiesComboBox EnableFocusedStyle="False">
                     <Items>
                         <dx:ListEditItem Text="Đang xử lý" Value="0" />
@@ -180,7 +184,9 @@
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
         </SelectParameters>
 </asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsTraHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang FROM kPhieuTraHang WHERE (DuyetDonHang = 0)" 
+    <asp:SqlDataSource ID="dsTraHang" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT ChiNhanhID,IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang FROM kPhieuTraHang WHERE (DuyetDonHang = 0)" 
         UpdateCommand="UPDATE gPhieuTraHang SET NgayLuuKho = @NgayLuuKho, GhiChu = @GhiChu, PheDuyet = @PheDuyet, NhanVienLapID = @NhanVienLapID WHERE IDPhieuTraHang = @IDPhieuTraHang">
         <UpdateParameters>
             <asp:Parameter Name="NgayLuuKho" />

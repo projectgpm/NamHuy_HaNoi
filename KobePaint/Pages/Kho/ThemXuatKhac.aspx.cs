@@ -130,7 +130,7 @@ namespace KobePaint.Pages.Kho
                         tblHangHoa.MaHang,
                         tblHangHoa.TenHangHoa,
                         Convert.ToDouble(tblHangHoa.GiaVon),
-                       Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                         1,
                         Convert.ToDouble(tblHangHoa.GiaVon),
                         3
@@ -327,7 +327,7 @@ namespace KobePaint.Pages.Kho
                                            tblHangHoa.MaHang,
                                            tblHangHoa.TenHangHoa,
                                            GiaVon,
-                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                                            SoLuong,
                                            ThanhTien,
                                            3

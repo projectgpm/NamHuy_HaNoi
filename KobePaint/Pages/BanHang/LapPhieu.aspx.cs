@@ -561,7 +561,7 @@ namespace KobePaint.Pages.BanHang
                         tblHangHoa.MaHang,
                         tblHangHoa.TenHangHoa,
                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s=>s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                         1,
                         GiaBan,
                         Convert.ToDouble(tblHangHoa.GiaVon),
@@ -767,13 +767,12 @@ namespace KobePaint.Pages.BanHang
                                         tblHangHoa.MaHang,
                                         tblHangHoa.TenHangHoa,
                                         tblHangHoa.hhDonViTinh.TenDonViTinh,
-                                      Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                                        Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                                         SoLuong,
-                                       GiaBan,
-                                       Convert.ToDouble(tblHangHoa.GiaVon),
-                                       SoLuong * GiaBan
-                                       , 0, GiaBan
-                                        );
+                                        GiaBan,
+                                        Convert.ToDouble(tblHangHoa.GiaVon),
+                                        SoLuong * GiaBan
+                                        , 0, GiaBan);
 
                                     listReceiptProducts.Add(cthd);
                                 }

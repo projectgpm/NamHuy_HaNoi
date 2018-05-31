@@ -74,7 +74,7 @@
     <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridHangHoa" Width="100%" DataSourceID="dsHangHoa" KeyFieldName="IDHangHoa" OnCustomColumnDisplayText="grid_CustomColumnDisplayText">
         
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True"/>
-        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
+        <SettingsDetail ShowDetailRow="false" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <div style="width: 100%; text-align:center;">

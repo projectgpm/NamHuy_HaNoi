@@ -68,7 +68,7 @@
                     <dx:LayoutItem Caption="Từ ngày">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                <dx:ASPxDateEdit ID="fromDay" ClientInstanceName="fromDay" runat="server" OnInit="dateEditControl_Init" Width="100%">
+                                <dx:ASPxDateEdit ID="fromDay" ClientInstanceName="fromDay" runat="server" OnInit="fromDay_Init" Width="100%">
                                 </dx:ASPxDateEdit>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
@@ -178,7 +178,7 @@
     </dx:ASPxGridView>
      <asp:SqlDataSource ID="dsChiTiet" runat="server" 
         ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT ghPhieuDaiLyThanhToan.IDPhieuThu, ghPhieuDaiLyThanhToan.STTPhieuThu, ghPhieuDaiLyThanhToan.SoHoaDon, ghPhieuDaiLyThanhToan.KhachHangID, ghPhieuDaiLyThanhToan.SoTienThu, ghPhieuDaiLyThanhToan.NoiDung, ghPhieuDaiLyThanhToan.NgayThu, ghPhieuDaiLyThanhToan.NhanVienThuID, ghPhieuDaiLyThanhToan.HinhThucTTID, ghPhieuDaiLyThanhToan.CongNoCu, ghPhieuDaiLyThanhToan.NgayLap, nvNhanVien.HoTen AS HoTenNV, khKhachHang.MaKhachHang, khKhachHang.HoTen AS HoTenKH, khKhachHang.DienThoai FROM ghPhieuDaiLyThanhToan INNER JOIN khKhachHang ON ghPhieuDaiLyThanhToan.KhachHangID = khKhachHang.IDKhachHang INNER JOIN nvNhanVien ON ghPhieuDaiLyThanhToan.NhanVienThuID = nvNhanVien.IDNhanVien WHERE (ghPhieuDaiLyThanhToan.NgayThu &lt;= DATEADD(day, 1, @DenNgay)) AND (ghPhieuDaiLyThanhToan.NgayThu &gt;= @TuNgay) AND (khKhachHang.LoaiKhachHangID &lt;&gt; 2) AND (@IDKhachHang = 0) OR (ghPhieuDaiLyThanhToan.NgayThu &lt;= DATEADD(day, 1, @DenNgay)) AND (ghPhieuDaiLyThanhToan.NgayThu &gt;= @TuNgay) AND (khKhachHang.LoaiKhachHangID &lt;&gt; 2) AND (khKhachHang.IDKhachHang = @IDKhachHang)" 
+        SelectCommand="SELECT ghPhieuDaiLyThanhToan.IDPhieuThu, ghPhieuDaiLyThanhToan.STTPhieuThu, ghPhieuDaiLyThanhToan.SoHoaDon, ghPhieuDaiLyThanhToan.KhachHangID, ghPhieuDaiLyThanhToan.SoTienThu, ghPhieuDaiLyThanhToan.NoiDung, ghPhieuDaiLyThanhToan.NgayThu, ghPhieuDaiLyThanhToan.NhanVienThuID, ghPhieuDaiLyThanhToan.HinhThucTTID, ghPhieuDaiLyThanhToan.CongNoCu, ghPhieuDaiLyThanhToan.NgayLap, nvNhanVien.HoTen AS HoTenNV, khKhachHang.MaKhachHang, khKhachHang.HoTen AS HoTenKH, khKhachHang.DienThoai FROM ghPhieuDaiLyThanhToan INNER JOIN khKhachHang ON ghPhieuDaiLyThanhToan.KhachHangID = khKhachHang.IDKhachHang INNER JOIN nvNhanVien ON ghPhieuDaiLyThanhToan.NhanVienThuID = nvNhanVien.IDNhanVien WHERE (ghPhieuDaiLyThanhToan.NgayThu BETWEEN @TuNgay AND DATEADD(day, 1, @DenNgay)) AND (khKhachHang.LoaiKhachHangID &lt;&gt; 2) AND (@IDKhachHang = 0) OR (ghPhieuDaiLyThanhToan.NgayThu BETWEEN @TuNgay AND DATEADD(day, 1, @DenNgay)) AND (khKhachHang.LoaiKhachHangID &lt;&gt; 2) AND (khKhachHang.IDKhachHang = @IDKhachHang)" 
         CancelSelectOnNullParameter="False">
         <SelectParameters>
             <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" PropertyName="Value" ConvertEmptyStringToNull="true" DefaultValue=""  />

@@ -106,22 +106,26 @@
             </DetailRow>
         </Templates>
         <Columns>
-            <dx:GridViewDataTextColumn FieldName="IDPhieuTraHang" ReadOnly="True" VisibleIndex="0" Caption="STT"  >
+            <dx:GridViewDataTextColumn FieldName="IDPhieuTraHang" ReadOnly="True" VisibleIndex="0" Caption="STT" Width="40px" >
+               <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
+                <HeaderStyle HorizontalAlign="Center" />
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="MaPhieu" VisibleIndex="1" Caption="Mã phiếu" ReadOnly="true" >
+            <dx:GridViewDataTextColumn FieldName="MaPhieu" VisibleIndex="2" Caption="Mã phiếu" ReadOnly="true" >
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn FieldName="DaiLyID" VisibleIndex="2" Caption="Khách hàng" ReadOnly="true">
+            <dx:GridViewDataComboBoxColumn FieldName="DaiLyID" VisibleIndex="3" Caption="Khách hàng" ReadOnly="true">
                 <PropertiesComboBox DataSourceID="dsKhachHang" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataDateColumn FieldName="NgayTra" VisibleIndex="3" Caption="Ngày trả" ReadOnly="true">
+            <dx:GridViewDataDateColumn FieldName="NgayTra" VisibleIndex="4" Caption="Ngày trả" ReadOnly="true">
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" EditFormat="Custom" EditFormatString="dd/MM/yyyy">
@@ -135,26 +139,26 @@
 </PropertiesDateEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="GhiChu" VisibleIndex="6" Caption="Ghi chú" ReadOnly="true">
+            <dx:GridViewDataTextColumn FieldName="GhiChu" VisibleIndex="7" Caption="Ghi chú" ReadOnly="true">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="TongTienHang" VisibleIndex="5" Caption="Tổng tiền" ReadOnly="true" CellStyle-Font-Bold="true">
+            <dx:GridViewDataTextColumn FieldName="TongTienHang" VisibleIndex="6" Caption="Tổng tiền" ReadOnly="true" CellStyle-Font-Bold="true">
                 <PropertiesTextEdit DisplayFormatString="N0">
                 </PropertiesTextEdit>
                 <EditFormSettings Visible="True" />
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="TongSoLuong" VisibleIndex="4" Caption="Số lượng" ReadOnly="true">
+            <dx:GridViewDataTextColumn FieldName="TongSoLuong" VisibleIndex="5" Caption="Số lượng" ReadOnly="true">
                 <PropertiesTextEdit DisplayFormatString="N0">
                 </PropertiesTextEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Nhân viên" FieldName="NhanVienID" VisibleIndex="7" ReadOnly="true">
+            <dx:GridViewDataComboBoxColumn Caption="Nhân viên" FieldName="NhanVienID" VisibleIndex="8" ReadOnly="true">
                 <PropertiesComboBox DataSourceID="dsNhanVien" TextField="HoTen" ValueField="IDNhanVien">
                 </PropertiesComboBox>
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="DuyetDonHang" VisibleIndex="8" Width="150px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
+            <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="DuyetDonHang" VisibleIndex="9" Width="100px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
                 <PropertiesComboBox EnableFocusedStyle="False">
                     <Items>
                         <dx:ListEditItem Text="Đang xử lý" Value="0" />
@@ -166,12 +170,23 @@
 
 <CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
         </Columns>
         <FormatConditions>
             <dx:GridViewFormatConditionTopBottom FieldName="DuyetDonHang" Rule="TopPercent" Threshold="20" Format="YellowFillWithDarkYellowText" />
         </FormatConditions>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="dsTraHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang FROM kPhieuTraHang WHERE (DuyetDonHang = 0)" 
+    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+        </SelectParameters>
+</asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsTraHang" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT ChiNhanhID,IDPhieuTraHang, MaPhieu, DaiLyID, SoPhieuTra, NgayTra, NgayNhap, NhanVienID, GhiChu, CongNoCu, TongSoLuong, HinhThucTT, ThanhToan, ConLai, TongTienHang, DuyetDonHang FROM kPhieuTraHang WHERE (DuyetDonHang = 0)" 
         UpdateCommand="UPDATE gPhieuTraHang SET NgayLuuKho = @NgayLuuKho, GhiChu = @GhiChu, PheDuyet = @PheDuyet, NhanVienLapID = @NhanVienLapID WHERE IDPhieuTraHang = @IDPhieuTraHang">
         <UpdateParameters>
             <asp:Parameter Name="NgayLuuKho" />

@@ -52,33 +52,36 @@
         <SettingsSearchPanel Visible="True" />
         <SettingsText ConfirmDelete="Xóa dữ liệu ??" EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
         <Columns>
-            <dx:GridViewCommandColumn ShowClearFilterButton="True" ShowInCustomizationForm="True" Visible="False" VisibleIndex="0">
-            </dx:GridViewCommandColumn>
-            <dx:GridViewDataTextColumn Caption="STT" FieldName="IDKhachHang" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="1" Width="60px">
+            <dx:GridViewDataTextColumn Caption="STT" FieldName="IDKhachHang" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="0" Width="60px">
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
                 <HeaderStyle HorizontalAlign="Center" />
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Mã khách hàng" FieldName="MaKhachHang" ShowInCustomizationForm="True" VisibleIndex="3"  Width="120px">
+            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Mã khách hàng" FieldName="MaKhachHang" ShowInCustomizationForm="True" VisibleIndex="4"  Width="120px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn ReadOnly="true" CellStyle-Font-Bold="true" Caption="Tên khách hàng" FieldName="HoTen" ShowInCustomizationForm="True" VisibleIndex="4">
+            <dx:GridViewDataTextColumn ReadOnly="true" CellStyle-Font-Bold="true" Caption="Tên khách hàng" FieldName="HoTen" ShowInCustomizationForm="True" VisibleIndex="5">
+<CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Điện thoại" FieldName="DienThoai" ShowInCustomizationForm="True" VisibleIndex="5">
+            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Điện thoại" FieldName="DienThoai" ShowInCustomizationForm="True" VisibleIndex="6">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Địa chỉ" FieldName="DiaChi" ShowInCustomizationForm="True" VisibleIndex="6">
+            <dx:GridViewDataTextColumn ReadOnly="true" Caption="Địa chỉ" FieldName="DiaChi" ShowInCustomizationForm="True" VisibleIndex="7">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn ReadOnly="true" Caption="Tổng tiền hàng" FieldName="TongTienHang" ShowInCustomizationForm="True" VisibleIndex="7">
+            <dx:GridViewDataSpinEditColumn ReadOnly="true" Caption="Tổng tiền hàng" FieldName="TongTienHang" ShowInCustomizationForm="True" VisibleIndex="8">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Bảng giá" FieldName="IDBangGia" ShowInCustomizationForm="True" VisibleIndex="8">
+            <dx:GridViewDataComboBoxColumn Caption="Bảng giá" FieldName="IDBangGia" ShowInCustomizationForm="True" VisibleIndex="9">
                 <PropertiesComboBox DataSourceID="dsBangGia" TextField="TenBangGia" ValueField="IDBangGia">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn ReadOnly="true" Caption="Loại khách hàng" FieldName="LoaiKhachHangID" ShowInCustomizationForm="True" VisibleIndex="2">
+            <dx:GridViewDataComboBoxColumn ReadOnly="true" Caption="Loại khách hàng" FieldName="LoaiKhachHangID" ShowInCustomizationForm="True" VisibleIndex="3">
                 <PropertiesComboBox DataSourceID="dsLoaiKhachHang" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang">
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="2" Width="100px">
+                <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
@@ -107,6 +110,12 @@
         <Border BorderWidth="0px" />
         <BorderBottom BorderWidth="1px" />
     </dx:ASPxGridView>
+
+      <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
+          <SelectParameters>
+              <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+          </SelectParameters>
+      </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="dsLoaiKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDLoaiKhachHang], [TenLoaiKhachHang] FROM [khLoaiKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([IDLoaiKhachHang] &lt;&gt; @IDLoaiKhachHang))">
         <SelectParameters>

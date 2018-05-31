@@ -125,10 +125,11 @@
                                                                             </Columns>
                                                                         </dx:ASPxComboBox>
                                                                         <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-                                                                            SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([LoaiKhachHangID] <> @LoaiKhachHangID)) ORDER BY [HoTen]">
+                                                                            SelectCommand="SELECT IDKhachHang, MaKhachHang, HoTen FROM khKhachHang WHERE (DaXoa = @DaXoa) AND (LoaiKhachHangID &lt;&gt; @LoaiKhachHangID) AND (ChiNhanhID = @ChiNhanhID) ORDER BY HoTen">
                                                                             <SelectParameters>
                                                                                 <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                                                                                 <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
+                                                                                <asp:Parameter DefaultValue="1" Name="ChiNhanhID" Type="Int32" />
                                                                             </SelectParameters>
                                                                               
                                                                         </asp:SqlDataSource>

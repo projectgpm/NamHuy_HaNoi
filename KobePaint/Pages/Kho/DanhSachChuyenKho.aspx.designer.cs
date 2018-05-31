@@ -22,22 +22,22 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxGridView gridNhaphang;
         
         /// <summary>
-        /// dsNhapKho control.
+        /// dsChiNhanh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsNhapKho;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsChiNhanh;
         
         /// <summary>
-        /// dsNhaCC control.
+        /// dsChuyenKho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsNhaCC;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsChuyenKho;
         
         /// <summary>
         /// dsNhanVien control.

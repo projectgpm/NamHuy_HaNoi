@@ -2,6 +2,7 @@
 
 <%@ Register src="Pages/GiaoHang/PheDuyetGiaoHang.ascx" tagname="PheDuyetGiaoHang" tagprefix="uc1" %>
 <%@ Register src="Pages/TraHang/PheDuyetTraHang.ascx" tagname="PheDuyetTraHang" tagprefix="uc2" %>
+<%@ Register src="Pages/HeThong/CanhBaoCongNo.ascx" tagname="CanhBaoCongNo" tagprefix="uc3" %>
 
 
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
@@ -49,6 +50,13 @@
                 <ContentCollection>
                     <dx:ContentControl ID="ContentControl2" runat="server">
                         <uc2:PheDuyetTraHang ID="PheDuyetTraHang1" runat="server" />
+                    </dx:ContentControl>
+                </ContentCollection>
+            </dx:TabPage>
+            <dx:TabPage Text="CẢNH BÁO CÔNG NỢ" Name="tCanhBaoCongNo">
+                <ContentCollection>
+                    <dx:ContentControl ID="ContentControl3" runat="server">
+                        <uc3:CanhBaoCongNo ID="CanhBaoCongNo1" runat="server" />
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>

@@ -224,9 +224,9 @@ namespace KobePaint.Pages.Kho
                             tblHangHoa.IDHangHoa,
                             tblHangHoa.MaHang,
                             tblHangHoa.TenHangHoa,
-                            Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                            Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                             0,
-                            -Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                            -Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                             0,
                             ""
                         );
@@ -420,9 +420,9 @@ namespace KobePaint.Pages.Kho
                                            tblHangHoa.IDHangHoa,
                                            tblHangHoa.MaHang,
                                            tblHangHoa.TenHangHoa,
-                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                                           Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                                            TonKhoThucTe,
-                                            TonKhoThucTe - Convert.ToInt32(tblHangHoa.hhTonKhos.Where(tk => Convert.ToInt32(tk.chChiNhanh) == Formats.IDChiNhanh()).FirstOrDefault().SoLuong),
+                                            TonKhoThucTe - Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                                            1,
                                            DienGiai
                                        );

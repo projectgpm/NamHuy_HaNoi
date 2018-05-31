@@ -177,7 +177,7 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="13" Width="100px">
+            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="13" Width="70px">
                  
             </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="2" Width="110px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
@@ -227,11 +227,11 @@
             </dx:GridViewDataDateColumn>
             <dx:GridViewDataMemoColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" VisibleIndex="10" Width="100%">
             </dx:GridViewDataMemoColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="4" Width="100px">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" Visible="false" VisibleIndex="4" Width="100px">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="16">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="14" Width="80px">
+            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="14" Width="70px">
                 <DataItemTemplate>
                     <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
                         <Image IconID="print_print_16x16">
@@ -271,7 +271,7 @@
 
      </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-         SelectCommand="SELECT IDPhieuGiaoHang, NgayTao, MaPhieu, NhanVienID, GhiChuGiaoHang, KhachHangID, NgayGiao, NguoiGiao, DiaChiGiaoHang, DaXoa, TrangThai, TongSoLuong, TongTien, DienThoai, SoHoaDon, TTThanhToan, ThanhToan, ConLai, STTDonHang, SoDonHangTrongNam, CongNoHienTai, NgayDuyet, GiamGia FROM ghPhieuGiaoHang WHERE (@Quyen &lt;&gt; 3) OR (NhanVienID = @NhanVienID) ORDER BY IDPhieuGiaoHang DESC" 
+         SelectCommand="SELECT IDPhieuGiaoHang, NgayTao,ChiNhanhID, MaPhieu, NhanVienID, GhiChuGiaoHang, KhachHangID, NgayGiao, NguoiGiao, DiaChiGiaoHang, DaXoa, TrangThai, TongSoLuong, TongTien, DienThoai, SoHoaDon, TTThanhToan, ThanhToan, ConLai, STTDonHang, SoDonHangTrongNam, CongNoHienTai, NgayDuyet, GiamGia FROM ghPhieuGiaoHang WHERE (@Quyen &lt;&gt; 3) OR (NhanVienID = @NhanVienID) ORDER BY IDPhieuGiaoHang DESC" 
          UpdateCommand="UPDATE ghPhieuGiaoHang SET   SoHoaDon = @SoHoaDon,DienThoai = @DienThoai,NgayGiao = @NgayGiao, DiaChiGiaoHang = @DiaChiGiaoHang, GhiChuGiaoHang = @GhiChuGiaoHang WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
          <SelectParameters>
              <asp:Parameter DefaultValue="3" Name="Quyen" />
