@@ -166,12 +166,15 @@
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
     <Content Include="Pages\HangHoa\ThemHangHoa.aspx" />
     <Content Include="Pages\HeThong\CanhBaoCongNo.ascx" />
+    <Content Include="Pages\HeThong\ChiNhanh.aspx" />
     <Content Include="Pages\HeThong\LyDoXuat.aspx" />
     <Content Include="Pages\HeThong\ThongTinCuaHang.aspx" />
     <Content Include="Pages\KhachHang\DanhSachDaiLy.aspx" />
     <Content Include="Pages\KhachHang\DanhSachKH.aspx" />
     <Content Include="Pages\KhachHang\DanhSachNCC.aspx" />
     <Content Include="Pages\KhachHang\ThemKH.aspx" />
+    <Content Include="Pages\Kho\ChuyenKho.aspx" />
+    <Content Include="Pages\Kho\DanhSachChuyenKho.aspx" />
     <Content Include="Pages\Kho\DanhSachKiemKho.aspx" />
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
     <Content Include="Pages\Kho\DanhSachXuatKhac.aspx" />
@@ -468,6 +471,13 @@
     <Compile Include="Pages\HeThong\CanhBaoCongNo.ascx.designer.cs">
       <DependentUpon>CanhBaoCongNo.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HeThong\ChiNhanh.aspx.cs">
+      <DependentUpon>ChiNhanh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HeThong\ChiNhanh.aspx.designer.cs">
+      <DependentUpon>ChiNhanh.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HeThong\LyDoXuat.aspx.cs">
       <DependentUpon>LyDoXuat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -509,6 +519,20 @@
     </Compile>
     <Compile Include="Pages\KhachHang\ThemKH.aspx.designer.cs">
       <DependentUpon>ThemKH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kho\ChuyenKho.aspx.cs">
+      <DependentUpon>ChuyenKho.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\ChuyenKho.aspx.designer.cs">
+      <DependentUpon>ChuyenKho.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kho\DanhSachChuyenKho.aspx.cs">
+      <DependentUpon>DanhSachChuyenKho.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\DanhSachChuyenKho.aspx.designer.cs">
+      <DependentUpon>DanhSachChuyenKho.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Kho\DanhSachKiemKho.aspx.cs">
       <DependentUpon>DanhSachKiemKho.aspx</DependentUpon>

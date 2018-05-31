@@ -7,28 +7,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KobePaint.Pages.HeThong {
+namespace KobePaint.Pages.Kho {
     
     
-    public partial class ChiNhanh {
+    public partial class DanhSachChuyenKho {
         
         /// <summary>
-        /// gridDanhSach control.
+        /// gridNhaphang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridDanhSach;
+        protected global::DevExpress.Web.ASPxGridView gridNhaphang;
         
         /// <summary>
-        /// dsChiNhanh control.
+        /// dsNhapKho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsChiNhanh;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhapKho;
+        
+        /// <summary>
+        /// dsNhaCC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhaCC;
+        
+        /// <summary>
+        /// dsNhanVien control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhanVien;
         
         /// <summary>
         /// globalEventGrid control.

@@ -19,10 +19,15 @@ namespace KobePaint.Pages.Kho
             {
                 Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
             }
+            else
+            {
+                if (!IsPostBack)
+                    ccbChiNhanh.Value = Formats.IDChiNhanh().ToString();
+            }
         }
         protected void btnXuatExcel_Click(object sender, EventArgs e)
         {
-            exproter.FileName = "Danh_Sach_Ton_Kho" + "_" + DateTime.Now.ToString("yy-MM-dd");
+            exproter.FileName = "Danh_Sach_Ton_Kho" + "_" + ccbChiNhanh.Text + "_" + DateTime.Now.ToString("yy-MM-dd");
             exproter.WriteXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
         }
 

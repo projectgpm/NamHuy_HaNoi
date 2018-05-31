@@ -17,10 +17,12 @@
     <item Text="1. Tồn kho" NavigateUrl="~/Pages/Kho/TonKho.aspx" />
     <item Text="2. Nhập kho" NavigateUrl="~/Pages/Kho/NhapKho.aspx" />
     <item Text="3. Danh sách nhập kho" NavigateUrl="~/Pages/Kho/DanhSachNhapKho.aspx" />
-    <item Text="4. Thêm phiếu xuất khác" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
-    <item Text="5. Danh sách xuất khác" NavigateUrl="~/Pages/Kho/DanhSachXuatKhac.aspx" />
-    <item Text="6. Thêm phiếu kiểm kê" NavigateUrl="~/Pages/Kho/ThemKiemKho.aspx" />
-    <item Text="7. Danh sách kiểm kê" NavigateUrl="~/Pages/Kho/DanhSachKiemKho.aspx" />
+    <item Text="4. Thêm phiếu chuyển kho" NavigateUrl="~/Pages/Kho/ChuyenKho.aspx" />
+    <item Text="5. Danh sách chuyển kho" NavigateUrl="~/Pages/Kho/DanhSachChuyenKho.aspx" />
+    <item Text="6. Thêm phiếu xuất khác" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
+    <item Text="7. Danh sách xuất khác" NavigateUrl="~/Pages/Kho/DanhSachXuatKhac.aspx" />
+    <item Text="8. Thêm phiếu kiểm kê" NavigateUrl="~/Pages/Kho/ThemKiemKho.aspx" />
+    <item Text="9. Danh sách kiểm kê" NavigateUrl="~/Pages/Kho/DanhSachKiemKho.aspx" />
   </item>
   <item Text="Giao dịch" ImageUrl="~/Menu/cart.png">
     <item Text="1. Bán hàng" NavigateUrl="~/Pages/BanHang/LapPhieu.aspx" />

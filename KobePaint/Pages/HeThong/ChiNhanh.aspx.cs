@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KobePaint.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,11 @@ namespace KobePaint.Pages.HeThong
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gridDanhSachKH_CustomColumnDisplayText(object sender, DevExpress.Web.ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+            Formats.InitDisplayIndexColumn(e);
         }
     }
 }

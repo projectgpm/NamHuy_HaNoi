@@ -279,7 +279,7 @@
           </SelectParameters>
       </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsHangHoa" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT [IDHangHoa], [MaHang],[LoaiHHID], [TenHangHoa], [NhomHHID], [DonViTinhID], [TonKho], [GiaBan] FROM [hhHangHoa] WHERE ([DaXoa] = @DaXoa)
+        SelectCommand="SELECT [IDHangHoa], [MaHang],[LoaiHHID], [TenHangHoa], [NhomHHID], [DonViTinhID], [GiaBan] FROM [hhHangHoa] WHERE ([DaXoa] = @DaXoa)
 ORDER BY [NhomHHID], [IDHangHoa] ASC"
         UpdateCommand="UPDATE [hhHangHoa] SET [TenHangHoa] = @TenHangHoa,[GiaBan] = @GiaBan WHERE  [IDHangHoa] = @IDHangHoa"
         DeleteCommand="UPDATE hhHangHoa SET DaXoa = CASE WHEN DaXoa = 1 THEN 0 ELSE 1 END WHERE (IDHangHoa = @IDHangHoa)"

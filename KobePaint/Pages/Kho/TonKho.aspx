@@ -31,6 +31,17 @@
                                                         <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }" />
                                                     </dx:ASPxComboBox>    
                                                 </td>
+                                                <td style="padding-left:10px">
+                                                    <dx:ASPxComboBox ID="ccbChiNhanh" runat="server" ValueType="System.String" Caption="Chọn chi nhánh" ClientInstanceName="ccbChiNhanh" DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
+                                                        <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }"/>
+                                                    </dx:ASPxComboBox>
+                                                    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDChiNhanh, TenChiNhanh FROM chChiNhanh WHERE (DaXoa = @DaXoa)">
+                                                        <SelectParameters>
+                                                            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
+                                                        </SelectParameters>
+                                                        
+                                                    </asp:SqlDataSource>
+                                                </td>
                                             </tr>
                                         </table>
                                       
@@ -173,7 +184,7 @@
                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                     </PropertiesSpinEdit>
                                                 </dx:GridViewDataSpinEditColumn>
-                                                <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="SL" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
+                                                <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="SL" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                     </PropertiesSpinEdit>
                                                     <CellStyle HorizontalAlign="Center"></CellStyle>
@@ -188,8 +199,8 @@
                                                 </dx:GridViewDataComboBoxColumn>
                                             </Columns>
                                             <FormatConditions>
-                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
-                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
+                                                <dx:GridViewFormatConditionHighlight FieldName="SoLuong" Expression="[SoLuong] < 1" Format="LightRedFillWithDarkRedText" />
+                                                <dx:GridViewFormatConditionHighlight FieldName="SoLuong" Expression="[SoLuong] > 0" Format="GreenFillWithDarkGreenText" />
                                                 
                                             </FormatConditions>
                                             <Styles>
@@ -219,7 +230,7 @@
                                             >
                                             <SelectParameters>
                                                  <asp:ControlParameter ControlID="formThongTin$ccbLoaiTonKho" Name="LoaiTonKho" DefaultValue="0"  PropertyName="Value" />
-
+                                                 <asp:ControlParameter ControlID="formThongTin$ccbChiNhanh" Name="IDChiNhanh" DefaultValue="1"  PropertyName="Value" />
                                             </SelectParameters>
                                         </asp:SqlDataSource>
                                         <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
