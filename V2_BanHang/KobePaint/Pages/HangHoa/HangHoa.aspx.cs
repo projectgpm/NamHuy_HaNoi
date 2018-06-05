@@ -29,8 +29,8 @@ namespace KobePaint.Pages.HangHoa
                 int Permiss = Formats.PermissionUser();
                 if (Permiss == 3)
                 {
-                    btnThemHangHoa.Enabled = false;
-                    btnNhapExcel.Enabled = false;
+                    //btnThemHangHoa.Enabled = false;
+                    //btnNhapExcel.Enabled = false;
                     gridHangHoa.Columns["chucnang"].Visible = false;
                 }
 

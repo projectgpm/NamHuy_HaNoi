@@ -31,17 +31,7 @@
                                                         <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }" />
                                                     </dx:ASPxComboBox>    
                                                 </td>
-                                                <td style="padding-left:10px">
-                                                    <dx:ASPxComboBox ID="ccbChiNhanh" runat="server" ValueType="System.String" Caption="Chọn chi nhánh" ClientInstanceName="ccbChiNhanh" DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
-                                                        <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }"/>
-                                                    </dx:ASPxComboBox>
-                                                    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDChiNhanh, TenChiNhanh FROM chChiNhanh WHERE (DaXoa = @DaXoa)">
-                                                        <SelectParameters>
-                                                            <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-                                                        </SelectParameters>
-                                                        
-                                                    </asp:SqlDataSource>
-                                                </td>
+                                                
                                             </tr>
                                         </table>
                                       
@@ -181,16 +171,16 @@
                                                 </dx:GridViewDataTextColumn>
                                                 <dx:GridViewDataTextColumn Caption="Tên hàng hóa" FieldName="TenHangHoa" ShowInCustomizationForm="True" VisibleIndex="3" Width="100%">
                                                 </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataSpinEditColumn Caption="Đơn giá" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="6" Width="120px">
+                                                <dx:GridViewDataSpinEditColumn Caption="Đơn giá" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="6" Width="120px" Visible="False">
                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                     </PropertiesSpinEdit>
                                                 </dx:GridViewDataSpinEditColumn>
-                                                <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="SL" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
+                                                <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="Số lượng" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                     </PropertiesSpinEdit>
                                                     <CellStyle HorizontalAlign="Center"></CellStyle>
                                                 </dx:GridViewDataSpinEditColumn>
-                                                <dx:GridViewDataSpinEditColumn Caption="Giá trị tồn kho" FieldName="GiaTriTonKho" ShowInCustomizationForm="True" VisibleIndex="7" Width="120px">
+                                                <dx:GridViewDataSpinEditColumn Caption="Giá trị tồn kho" FieldName="GiaTriTonKho" ShowInCustomizationForm="True" VisibleIndex="7" Width="120px" Visible="False">
                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                     </PropertiesSpinEdit>
                                                 </dx:GridViewDataSpinEditColumn>
@@ -231,7 +221,7 @@
                                             >
                                             <SelectParameters>
                                                  <asp:ControlParameter ControlID="formThongTin$ccbLoaiTonKho" Name="LoaiTonKho" DefaultValue="0"  PropertyName="Value" />
-                                                 <asp:ControlParameter ControlID="formThongTin$ccbChiNhanh" Name="IDChiNhanh" DefaultValue="1"  PropertyName="Value" />
+                                                 <asp:Parameter DefaultValue="" Name="IDChiNhanh" />
                                             </SelectParameters>
                                         </asp:SqlDataSource>
                                         <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">

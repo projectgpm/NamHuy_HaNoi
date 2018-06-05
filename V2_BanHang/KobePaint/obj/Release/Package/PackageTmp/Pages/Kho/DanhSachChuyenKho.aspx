@@ -1,5 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachChuyenKho.aspx.cs" Inherits="KobePaint.Pages.Kho.DanhSachChuyenKho" %>
+<%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        function onPrintClick(idPhieu) {
+            popupViewReport.Show();
+            cbpViewReport.PerformCallback(idPhieu);
+        }
+        function onEndCallBackViewRp() {
+            hdfViewReport.Set('view', '1');
+            reportViewer.GetViewer().Refresh();
+        }
+    </script>
      <dx:ASPxGridView ID="gridNhaphang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridNhaphang" Width="100%" DataSourceID="dsChuyenKho" KeyFieldName="IDPhieuChuyen" OnCustomColumnDisplayText="gridNhaphang_CustomColumnDisplayText" OnRowDeleting="gridNhaphang_RowDeleting">
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
@@ -158,6 +169,16 @@
                 <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="14" Width="70px">
+                <DataItemTemplate>
+                    <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
+                        <Image IconID="print_print_16x16">
+                        </Image>
+                    </dx:ASPxButton>
+                </DataItemTemplate>
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
+            </dx:GridViewDataTextColumn>
         </Columns>
 
         <FormatConditions>
@@ -174,7 +195,7 @@
      <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
          SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] ORDER BY [TenChiNhanh]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="dsChuyenKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT IDPhieuChuyen, ChiNhanhChuyenID, ChiNhanhNhanID, MaPhieu, NgayChuyen, NguoiNhapID, TongSoLuong, GhiChu, NgayTao, DaXoa FROM kChuyenKho WHERE (DaXoa = 0)" >
+        SelectCommand="SELECT IDPhieuChuyen, ChiNhanhChuyenID, ChiNhanhNhanID, MaPhieu, NgayChuyen, NguoiNhapID, TongSoLuong, GhiChu, NgayTao, DaXoa FROM kChuyenKho WHERE (DaXoa = 0) ORDER BY IDPhieuChuyen DESC" >
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsNhanVien" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
         SelectCommand="SELECT [IDNhanVien], [HoTen] FROM [nvNhanVien] WHERE IDNhanVien > 1"></asp:SqlDataSource>
@@ -185,4 +206,21 @@
 	        UpdateControlHeight(gridNhaphang);
         }" />
     </dx:ASPxGlobalEvents>
+     <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="850px" Height="600px" ScrollBars="Auto" PopupVerticalAlign="WindowCenter" ShowHeader="false" PopupHorizontalAlign="WindowCenter" >
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
+                    <PanelCollection>
+                        <dx:PanelContent>
+                            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
+                            </dx:ASPxDocumentViewer>
+                            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                            </dx:ASPxHiddenField>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                    <ClientSideEvents EndCallback="onEndCallBackViewRp" />
+                </dx:ASPxCallbackPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>

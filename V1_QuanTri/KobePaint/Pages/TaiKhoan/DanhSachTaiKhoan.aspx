@@ -18,7 +18,7 @@
                                 <dx:ASPxGridViewExporter ID="exproter" runat="server" ExportedRowType="All" GridViewID="gridKhachHang">
                                 </dx:ASPxGridViewExporter>
                                 <dx:ASPxGridView ID="gridKhachHang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridKhachHang" DataSourceID="dsNhanVien" KeyFieldName="IDNhanVien" Width="100%" OnCustomColumnDisplayText="gridKhachHang_CustomColumnDisplayText" OnRowValidating="gridKhachHang_RowValidating">
-                                    <Settings ShowFilterRowMenu="True" ShowFooter="True" ShowHeaderFilterButton="true" ShowGroupedColumns="True"/>
+                                    <Settings ShowFilterRowMenu="True" ShowHeaderFilterButton="true" ShowGroupedColumns="True"/>
                                     <SettingsBehavior ColumnResizeMode="Control" AutoExpandAllGroups="True" ConfirmDelete="True" />
                                     <SettingsCommandButton>
                                         <ShowAdaptiveDetailButton ButtonType="Image">
@@ -102,7 +102,7 @@
                                                 </ValidationSettings>
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>
-                                        <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="IDChiNhanh" ShowInCustomizationForm="True" VisibleIndex="1">
+                                        <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" CellStyle-Font-Bold="true" FieldName="IDChiNhanh" ShowInCustomizationForm="True" VisibleIndex="1" Width="150px">
                                             <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                                               <ValidationSettings Display="Dynamic" ErrorTextPosition="Bottom" SetFocusOnError="True">
                                                     <RequiredField ErrorText="Chưa chọn chi nhánh" IsRequired="True" />
@@ -110,31 +110,25 @@
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>
                                     </Columns>
-                                    <TotalSummary>
-                                        <dx:ASPxSummaryItem DisplayFormat="N0" FieldName="TongCongNo" ShowInColumn="Tổng công nợ" SummaryType="Sum" />
-                                        <dx:ASPxSummaryItem DisplayFormat="N0" FieldName="DaThanhToan" ShowInColumn="Đã thanh toán" SummaryType="Sum" />
-                                        <dx:ASPxSummaryItem DisplayFormat="N0" FieldName="TienTTConLai" ShowInColumn="Công nợ hiện tại" SummaryType="Sum" />
-                                    </TotalSummary>
+                                 
                                     <Styles>
                                         <Header Wrap="True">
                                         </Header>
                                     </Styles>
                                 </dx:ASPxGridView>
-                                <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenChiNhanh]">
-                                    <SelectParameters>
-                                        <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-                                    </SelectParameters>
+                                <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDChiNhanh], [TenChiNhanh] FROM [chChiNhanh] ORDER BY [TenChiNhanh]">
                                 </asp:SqlDataSource>
                                 <asp:SqlDataSource ID="dsNhanVien" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
                                     SelectCommand="SELECT [IDNhanVien], [TenDangNhap], [MatKhau], [HoTen], [DienThoai], [DiaChi], [GhiChu], [NhomID], [DaXoa], [IDChiNhanh],[NgayTao] FROM [nvNhanVien] WHERE IDNhanVien != 1" 
                                     DeleteCommand="UPDATE [nvNhanVien] SET DaXoa = 1 WHERE [IDNhanVien] = @IDNhanVien" 
-                                    InsertCommand="INSERT INTO [nvNhanVien] ([TenDangNhap], [MatKhau], [HoTen], [DienThoai], [DiaChi], [GhiChu], [NhomID], [DaXoa], [NgayTao]) VALUES (@TenDangNhap, @MatKhau, @HoTen, @DienThoai, @DiaChi, @GhiChu, @NhomID, 0, GetDate())" 
-                                    UpdateCommand="UPDATE [nvNhanVien] SET [TenDangNhap] = @TenDangNhap, [MatKhau] = @MatKhau, [HoTen] = @HoTen, [DienThoai] = @DienThoai, [DiaChi] = @DiaChi, [GhiChu] = @GhiChu, [NhomID] = @NhomID, [DaXoa] = @DaXoa WHERE [IDNhanVien] = @IDNhanVien">
+                                    InsertCommand="INSERT INTO [nvNhanVien] ([TenDangNhap], [MatKhau], [HoTen], [DienThoai], [DiaChi], [GhiChu], [NhomID], [DaXoa], [NgayTao],[IDChiNhanh]) VALUES (@TenDangNhap, @MatKhau, @HoTen, @DienThoai, @DiaChi, @GhiChu, @NhomID, 0, GetDate(),@IDChiNhanh)" 
+                                    UpdateCommand="UPDATE [nvNhanVien] SET [IDChiNhanh] = @IDChiNhanh,[TenDangNhap] = @TenDangNhap, [MatKhau] = @MatKhau, [HoTen] = @HoTen, [DienThoai] = @DienThoai, [DiaChi] = @DiaChi, [GhiChu] = @GhiChu, [NhomID] = @NhomID, [DaXoa] = @DaXoa WHERE [IDNhanVien] = @IDNhanVien">
                                   
                                     <DeleteParameters>
                                         <asp:Parameter Name="IDNhanVien" Type="Int32" />
                                     </DeleteParameters>
                                     <InsertParameters>
+                                        <asp:Parameter Name="IDChiNhanh" Type="Int32" />
                                         <asp:Parameter Name="TenDangNhap" Type="String" />
                                         <asp:Parameter Name="MatKhau" Type="String" />
                                         <asp:Parameter Name="HoTen" Type="String" />
@@ -144,6 +138,7 @@
                                         <asp:Parameter Name="NhomID" Type="Int32" />
                                     </InsertParameters>
                                     <UpdateParameters>
+                                        <asp:Parameter Name="IDChiNhanh" Type="Int32" />
                                         <asp:Parameter Name="TenDangNhap" Type="String" />
                                         <asp:Parameter Name="MatKhau" Type="String" />
                                         <asp:Parameter Name="HoTen" Type="String" />

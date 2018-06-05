@@ -22,7 +22,7 @@
         <SettingsEditing Mode="Batch">
         </SettingsEditing>
         <Settings ShowFilterRow="True" VerticalScrollableHeight="50" VerticalScrollBarMode="Visible" />
-        <SettingsBehavior ConfirmDelete="True" AllowSelectByRowClick="True" />
+        <SettingsBehavior ConfirmDelete="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>
@@ -52,7 +52,7 @@
         <SettingsSearchPanel Visible="True" />
         <SettingsText ConfirmDelete="Xóa dữ liệu ??" EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
         <Columns>
-            <dx:GridViewDataTextColumn Caption="STT" FieldName="IDKhachHang" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="0" Width="60px">
+            <dx:GridViewDataTextColumn Caption="STT" FieldName="IDKhachHang" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="0" Width="40px">
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
                 <HeaderStyle HorizontalAlign="Center" />
@@ -80,7 +80,7 @@
                 <PropertiesComboBox DataSourceID="dsLoaiKhachHang" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="2" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="2" Width="150px">
                 <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -123,7 +123,9 @@
             <asp:Parameter DefaultValue="2" Name="IDLoaiKhachHang" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT MaKhachHang, LoaiKhachHangID,HoTen, DienThoai, DiaChi, IDBangGia, TongTienHang, IDKhachHang FROM khKhachHang WHERE (DaXoa = @DaXoa) AND (LoaiKhachHangID &lt;&gt; @LoaiKhachHangID)" UpdateCommand="UPDATE khKhachHang SET IDBangGia = @IDBangGia WHERE (IDKhachHang = @IDKhachHang)">
+    <asp:SqlDataSource ID="dsKhachHang" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT MaKhachHang, ChiNhanhID,LoaiKhachHangID,HoTen, DienThoai, DiaChi, IDBangGia, TongTienHang, IDKhachHang FROM khKhachHang WHERE (DaXoa = @DaXoa) AND (LoaiKhachHangID &lt;&gt; @LoaiKhachHangID)" UpdateCommand="UPDATE khKhachHang SET IDBangGia = @IDBangGia WHERE (IDKhachHang = @IDKhachHang)">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
             <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
@@ -133,7 +135,8 @@
             <asp:Parameter DefaultValue="IDKhachHang" Name="IDKhachHang" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsBangGia" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDBangGia], [MaBangGia], [TenBangGia] FROM [bgBangGia] WHERE ([DaXoa] = @DaXoa)">
+    <asp:SqlDataSource ID="dsBangGia" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT [IDBangGia], [MaBangGia], [TenBangGia] FROM [bgBangGia] WHERE ([DaXoa] = @DaXoa)">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
         </SelectParameters>

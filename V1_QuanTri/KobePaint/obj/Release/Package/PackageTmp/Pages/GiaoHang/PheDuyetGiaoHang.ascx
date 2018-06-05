@@ -187,8 +187,8 @@
                 </CellStyle>
                 <PropertiesComboBox EnableFocusedStyle="False">
                     <Items>
-                        <dx:ListEditItem Text="Đã đặt" Value="0" />
-                        <dx:ListEditItem Text="Giao hàng" Value="1" />
+                        <dx:ListEditItem Text="Chờ duyệt" Value="0" />
+                        <dx:ListEditItem Text="Duyệt" Value="1" />
                         <dx:ListEditItem Text="Hủy đơn hàng" Value="2" />
                     </Items>
                 </PropertiesComboBox>

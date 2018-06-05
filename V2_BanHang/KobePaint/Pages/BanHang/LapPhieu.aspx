@@ -149,26 +149,10 @@
                 cbpInfo.PerformCallback('renew');
             }
             function spKhachHangThoanNumberChange() {
-                if (checkKhachThanhToan())
-                    cbpInfo.PerformCallback('khachthanhtoan');
+                cbpInfo.PerformCallback('khachthanhtoan');
             }
-            function checkKhachThanhToan() {
-                if (spKhachHangThoan.GetValue() > spThanhToan.GetValue()) {
-                    alert('Khách thanh toán phải nhỏ hơn hoặc bằng khách cần trả');
-                    spKhachHangThoan.Focus();
-                    return false;
-                }
-                if (spKhachHangThoan.GetValue() < 0) {
-                    alert('Khách thanh toán phải lớn hơn hoặc bằng 0');
-                    spKhachHangThoan.Focus();
-                    return false;
-                }
-                return true;
-            }
-
             function onXoaHangChanged(key) {
                 cbpInfoImport.PerformCallback('xoahang|' + key);
-                //cbpInfo.PerformCallback('refresh');
                 cbpInfo.PerformCallback('giamgia');
             }
     </script>
@@ -228,9 +212,10 @@
                                                                                                         <dx:ListBoxColumn FieldName="HoTen" Width="150px" Caption="Tên khách hàng" />
                                                                                                     </Columns>
                                                                                                 </dx:ASPxComboBox>
-                                                                                                <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE ([LoaiKhachHangID] <> @LoaiKhachHangID) AND DaXoa = 0 ORDER BY IDKhachHang DESC">
+                                                                                                <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDKhachHang, MaKhachHang, HoTen FROM khKhachHang WHERE (LoaiKhachHangID &lt;&gt; @LoaiKhachHangID) AND (DaXoa = 0) AND (IDKhachHang = 1) OR (LoaiKhachHangID &lt;&gt; @LoaiKhachHangID) AND (DaXoa = 0) AND (ChiNhanhID = @ChiNhanhID) ORDER BY IDKhachHang DESC">
                                                                                                     <SelectParameters>
                                                                                                         <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
+                                                                                                        <asp:Parameter Name="ChiNhanhID" />
                                                                                                     </SelectParameters>
                                                                                                 </asp:SqlDataSource>
                                                                                             </td>
@@ -244,17 +229,18 @@
                                                                             </LayoutItemNestedControlCollection>
                                                                            
                                                                         </dx:LayoutItem>
-                                                                        <dx:LayoutItem Caption="Công nợ">
+                                                                        
+                                                                        <dx:LayoutItem Caption="Điểm tích lũy" ShowCaption="True">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer runat="server">
-                                                                                    
-                                                                                    <dx:ASPxTextBox ID="txtNo" NullText="0" ClientInstanceName="txtNo" DisplayFormatString="N0" Font-Bold="true" HorizontalAlign="Right"  Width="100%" ForeColor="Red" ReadOnly="true" runat="server">
-                                                                                    </dx:ASPxTextBox>
-                                                                                    
+                                                                                    <dx:ASPxSpinEdit Number="0" ID="speDiemTichLuy" ReadOnly="true" ClientInstanceName="speDiemTichLuy" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                        <SpinButtons ShowIncrementButtons="false"></SpinButtons>
+                                                                                    </dx:ASPxSpinEdit>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                             <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
+                                                                        
                                                                         <dx:LayoutItem Caption="Bảng giá">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer runat="server">
@@ -280,6 +266,7 @@
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer13" runat="server">
                                                                                     <dx:ASPxSpinEdit Number="0" ID="spTongTien" ReadOnly="true" ClientInstanceName="spTongTien" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                     <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                                                     </dx:ASPxSpinEdit>
 
                                                                                 </dx:LayoutItemNestedControlContainer>
@@ -292,8 +279,9 @@
                                                                                     <table>
                                                                                         <tr>
                                                                                             <td style="width: 90%">
-                                                                                                <dx:ASPxSpinEdit ID="spGiamGia" Number="0"  DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Red" ReadOnly="true" ClientInstanceName="spGiamGia">
-                                                                                                 </dx:ASPxSpinEdit>
+                                                                                                <dx:ASPxSpinEdit ID="spGiamGia" AllowNull="false" MinValue="0" MaxValue ="1000000"  DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Red" ReadOnly="true" ClientInstanceName="spGiamGia">
+                                                                                                    <SpinButtons ShowIncrementButtons="false"></SpinButtons>
+                                                                                                </dx:ASPxSpinEdit>
                                                                                             </td>
                                                                                             <td style="width: 10%; padding-left: 10px;">
                                                                                                 <dx:ASPxButton ID="btnGiamGia" runat="server" ClientInstanceName="btnGiamGia" AutoPostBack="false" RenderMode="Link">
@@ -313,8 +301,8 @@
                                                                       <dx:LayoutItem Caption="Khách cần trả" FieldName="ThanhToan">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer12" runat="server">
-                                                                                    <dx:ASPxSpinEdit Number="0" ReadOnly="true" ID="spThanhToan" ClientInstanceName="spThanhToan" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
-                                                                                   
+                                                                                    <dx:ASPxSpinEdit MinValue="0" MaxValue="100000000" AllowNull="false" Number="0" ReadOnly="true" ID="spThanhToan" ClientInstanceName="spThanhToan" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                   <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                                                     </dx:ASPxSpinEdit>
 
                                                                                 </dx:LayoutItemNestedControlContainer>
@@ -324,8 +312,9 @@
                                                                         <dx:LayoutItem Caption="Khách thanh toán">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
-                                                                                    <dx:ASPxSpinEdit ID="spKhachHangThoan" Number="0"  ClientInstanceName="spKhachHangThoan" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                    <dx:ASPxSpinEdit MinValue="0" MaxValue ="100000000" AllowNull="false" ID="spKhachHangThoan" Number="0"  ClientInstanceName="spKhachHangThoan" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
                                                                                         <ClientSideEvents NumberChanged="spKhachHangThoanNumberChange" />
+                                                                                        <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                                                     </dx:ASPxSpinEdit>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
@@ -334,19 +323,14 @@
                                                                         <dx:LayoutItem Caption="Tiền trả khách">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer runat="server">
-                                                                                    <dx:ASPxSpinEdit ID="spTienTraKhach" Number="0" ReadOnly="true" ClientInstanceName="spTienTraKhach" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                    <dx:ASPxSpinEdit MinValue="0" MaxValue="100000000" AllowNull="false" ID="spTienTraKhach" Number="0" ReadOnly="true" ClientInstanceName="spTienTraKhach" DisplayFormatString="N0" Increment="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue">
+                                                                                     <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                                                     </dx:ASPxSpinEdit>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                             <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
-                                                                          <dx:LayoutItem Caption="Ghi chú">
-                                                                            <LayoutItemNestedControlCollection>
-                                                                                <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                                                                    <dx:ASPxMemo ID="memoGhiChu"  ClientInstanceName="memoGhiChu" runat="server" Rows="3" Width="100%"></dx:ASPxMemo>
-                                                                                </dx:LayoutItemNestedControlContainer>
-                                                                            </LayoutItemNestedControlCollection>
-                                                                        </dx:LayoutItem>
+                                                                          
                                                                     </Items>
                                                                 </dx:LayoutGroup>
                                                             </Items>
@@ -395,6 +379,17 @@
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                         </dx:LayoutItem>
+                                                                        <dx:LayoutItem Caption="Số lượng" CaptionStyle-Font-Bold="true">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
+                                                                                    <dx:ASPxSpinEdit ID="speSoLuong" ClientInstanceName="speSoLuong" Number="1" MinValue="1" MaxValue="10000000" AllowNull="false" runat="server">
+                                                                                    </dx:ASPxSpinEdit>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
+
+<CaptionStyle Font-Bold="True"></CaptionStyle>
+                                                                        </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="" ShowCaption="False">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
@@ -402,15 +397,6 @@
                                                                                         <ClientSideEvents Click="ImportProduct" />
                                                                                     </dx:ASPxButton>
                                                                                     <dx:ASPxHiddenField ID="hiddenFields" runat="server"></dx:ASPxHiddenField>
-                                                                                </dx:LayoutItemNestedControlContainer>
-                                                                            </LayoutItemNestedControlCollection>
-                                                                        </dx:LayoutItem>
-                                                                        <dx:LayoutItem Caption="Excel" ShowCaption="False">
-                                                                            <LayoutItemNestedControlCollection>
-                                                                                <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
-                                                                                    <dx:ASPxButton ID="btnExcel" runat="server" AutoPostBack="False" ClientInstanceName="btnExcel" Text="Nhập Excel">
-                                                                                        <ClientSideEvents Click="onExcelClick" />
-                                                                                    </dx:ASPxButton>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                         </dx:LayoutItem>
@@ -449,15 +435,11 @@
                                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                                     </PropertiesSpinEdit>
                                                                 </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px" Name="giavon">
-                                                                    <PropertiesSpinEdit DisplayFormatString="N0" SpinButtons-ShowIncrementButtons="false"></PropertiesSpinEdit>
-
-                                                                </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
                                                                     <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spUnitReturn" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spUnitReturn_Init" HorizontalAlign="Center">
-                                                                        </dx:ASPxSpinEdit>
+                                                                        <dx:ASPxSpinEdit ID="spUnitReturn" MinValue="1" MaxValue ="100000000" AllowNull="false" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spUnitReturn_Init" HorizontalAlign="Center">
+                                                                        </dx:ASPxSpinEdit> 
                                                                     </DataItemTemplate>
                                                                     <CellStyle>
                                                                         <Paddings Padding="2px" />
@@ -465,15 +447,9 @@
                                                                 </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBan" ShowInCustomizationForm="True" VisibleIndex="7" Width="100px" Name="giaban">
                                                                     <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spGiaBanReturn" ClientInstanceName="spGiaBanReturn" runat="server" Number='<%# Convert.ToDouble(Eval("GiaBan")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spGiaBanReturn_Init" Increment="5000" HorizontalAlign="Right">
-                                                                            <SpinButtons ShowIncrementButtons="false"></SpinButtons>
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
                                                                     <CellStyle>
                                                                         <Paddings Padding="2px" />
                                                                     </CellStyle>
-
                                                                 </dx:GridViewDataSpinEditColumn>
                                                                 <dx:GridViewDataButtonEditColumn Caption="Xóa" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
                                                                      <DataItemTemplate>
@@ -486,18 +462,6 @@
                                                                     <CellStyle HorizontalAlign="Center">
                                                                     </CellStyle>
                                                                 </dx:GridViewDataButtonEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Giảm giá" FieldName="GiamGia" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px">
-                                                                    <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
-                                                                    </PropertiesSpinEdit>
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spGiamGiaReturn" ClientInstanceName="spGiamGiaReturn" runat="server" Number='<%# Convert.ToDouble(Eval("GiamGia")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spGiamGiaReturn_Init" Increment="1" HorizontalAlign="Right">
-                                                                            <SpinButtons ShowIncrementButtons="false"></SpinButtons>
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                    <CellStyle>
-                                                                        <Paddings Padding="2px" />
-                                                                    </CellStyle>
-                                                                </dx:GridViewDataSpinEditColumn>
                                                             </Columns>
                                                             <FormatConditions>
                                                                 <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
@@ -561,67 +525,9 @@
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />
     </dx:ASPxGlobalEvents>
 
-
-    <dx:ASPxPopupControl ID="popupViewExcel" runat="server" ClientInstanceName="popupViewExcel" HeaderText="Nhập hàng hóa từ Excel" Width="800px" Height="200px" PopupHorizontalAlign="WindowCenter">
-        <ContentCollection>
-            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
-                <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
-                </dx:ASPxHiddenField>
-                <table>
-                    <tr>
-                        <td>
-                            <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Tải file mẫu:"></dx:ASPxLabel>
-                        </td>
-                        <td style="float: left; padding-left: 3px;">
-                            <dx:ASPxHyperLink ID="linkNhapKho" runat="server" Text="PhieuGiaoHang.xls" NavigateUrl="~/BieuMau/phieugiaohang.xls">
-                            </dx:ASPxHyperLink>
-                        </td>
-                    </tr>
-
-                </table>
-                <table>
-                    <tr style="padding-top: 20px">
-                        <td>
-                            <dx:ASPxLabel ID="ASPxLabel2" runat="server" Font-Italic="true" Text="Lưu ý: Hệ thống chỉ hỗ trợ tối đa 500 hàng hóa cho mỗi lần nhập dữ liệu từ file."></dx:ASPxLabel>
-                        </td>
-
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <dx:ASPxUploadControl ID="UploadControl" runat="server" ClientInstanceName="UploadControl" Width="500px"
-                                NullText="Chọn file excel nhập hàng..." UploadMode="Advanced" ShowUploadButton="True" ShowProgressPanel="True"
-                                OnFileUploadComplete="UploadControl_FileUploadComplete">
-                                <BrowseButton Text="Chọn file excel...">
-                                    <Image IconID="actions_open_32x32office2013">
-                                    </Image>
-                                </BrowseButton>
-                                <RemoveButton Text="Xóa">
-                                    <Image IconID="actions_cancel_32x32office2013">
-                                    </Image>
-                                </RemoveButton>
-                                <UploadButton Text="Tải lên">
-                                    <Image IconID="miscellaneous_publish_32x32office2013">
-                                    </Image>
-                                </UploadButton>
-                                <CancelButton Text="Hủy">
-                                    <Image IconID="actions_cancel_32x32office2013">
-                                    </Image>
-                                </CancelButton>
-                                <AdvancedModeSettings EnableMultiSelect="True" EnableDragAndDrop="True" />
-                                <ValidationSettings MaxFileSize="4194304" AllowedFileExtensions=".xlt, .xls" NotAllowedFileExtensionErrorText="Vui lòng chọn đúng định dạng .xlt .xls">
-                                </ValidationSettings>
-                                <ClearFileSelectionImage IconID="actions_cancel_32x32office2013" ToolTip="Xóa file">
-                                </ClearFileSelectionImage>
-                                <ClientSideEvents FileUploadComplete="onFileUploadComplete" />
-                            </dx:ASPxUploadControl>
-                        </td>
-                    </tr>
-                </table>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
-    </dx:ASPxPopupControl>
+      <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+      </dx:ASPxHiddenField>
+   
      <dx:ASPxPopupControl ID="popGiamGia"  runat="server" Width="320" CloseAction="CloseButton" CloseOnEscape="true" Modal="True"
         PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ClientInstanceName="popGiamGia"
         HeaderText="Áp giảm giá" ShowHeader="false" AllowDragging="True" PopupAnimationType="None" EnableViewState="False" AutoUpdatePosition="true">
@@ -637,7 +543,8 @@
                                     <dx:LayoutItem Caption="Giảm giá">
                                         <LayoutItemNestedControlCollection>
                                             <dx:LayoutItemNestedControlContainer>
-                                                <dx:ASPxSpinEdit ID="spTienGiamGia" DisplayFormatString="N0" HorizontalAlign="Right"  ForeColor="Blue" Increment="5000" Number="0" runat="server" ClientInstanceName="spTienGiamGia" Width="100%">
+                                                <dx:ASPxSpinEdit ID="spTienGiamGia" MinValue="0" MaxValue ="10000000" AllowNull="false" DisplayFormatString="N0" HorizontalAlign="Right"  ForeColor="Blue" Increment="5000" Number="0" runat="server" ClientInstanceName="spTienGiamGia" Width="100%">
+                                                    <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                 </dx:ASPxSpinEdit>
                                                 <dx:ASPxHiddenField ID="hiddenTienGiamGia" ClientInstanceName="hiddenTienGiamGia" runat="server"></dx:ASPxHiddenField>
                                             </dx:LayoutItemNestedControlContainer>

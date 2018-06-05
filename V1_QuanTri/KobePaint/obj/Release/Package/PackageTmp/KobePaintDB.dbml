@@ -77,6 +77,8 @@
       <Column Name="Logo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="TinhThanh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="chChiNhanh_hhTonKho" Member="hhTonKhos" ThisKey="IDChiNhanh" OtherKey="ChiNhanhID" Type="hhTonKho" />
+      <Association Name="chChiNhanh_kChuyenKho" Member="kChuyenKhos" ThisKey="IDChiNhanh" OtherKey="ChiNhanhChuyenID" Type="kChuyenKho" />
+      <Association Name="chChiNhanh_kChuyenKho1" Member="kChuyenKhos1" ThisKey="IDChiNhanh" OtherKey="ChiNhanhNhanID" Type="kChuyenKho" />
       <Association Name="chChiNhanh_nvNhanVien" Member="nvNhanViens" ThisKey="IDChiNhanh" OtherKey="IDChiNhanh" Type="nvNhanVien" />
     </Type>
   </Table>
@@ -201,6 +203,7 @@
       <Association Name="hhHangHoa_bgChiTietBangGia" Member="bgChiTietBangGias" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="bgChiTietBangGia" />
       <Association Name="hhHangHoa_ghPhieuGiaoHangChiTiet" Member="ghPhieuGiaoHangChiTiets" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="ghPhieuGiaoHangChiTiet" />
       <Association Name="hhHangHoa_hhTonKho" Member="hhTonKhos" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="hhTonKho" />
+      <Association Name="hhHangHoa_kChuyenKhoChiTiet" Member="kChuyenKhoChiTiets" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="kChuyenKhoChiTiet" />
       <Association Name="hhHangHoa_kNhapKhoChiTiet" Member="kNhapKhoChiTiets" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="kNhapKhoChiTiet" />
       <Association Name="hhHangHoa_kPhieuTraHangChiTiet" Member="kPhieuTraHangChiTiets" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="kPhieuTraHangChiTiet" />
       <Association Name="hhHangHoa_kPhieuTraHangNCCChiTiet" Member="kPhieuTraHangNCCChiTiets" ThisKey="IDHangHoa" OtherKey="HangHoaID" Type="kPhieuTraHangNCCChiTiet" />
@@ -245,16 +248,22 @@
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
       <Column Name="DaXoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="kChuyenKho_kChuyenKhoChiTiet" Member="kChuyenKhoChiTiets" ThisKey="IDPhieuChuyen" OtherKey="ChuyenKhoID" Type="kChuyenKhoChiTiet" />
+      <Association Name="chChiNhanh_kChuyenKho" Member="chChiNhanh" ThisKey="ChiNhanhChuyenID" OtherKey="IDChiNhanh" Type="chChiNhanh" IsForeignKey="true" />
+      <Association Name="chChiNhanh_kChuyenKho1" Member="chChiNhanh1" ThisKey="ChiNhanhNhanID" OtherKey="IDChiNhanh" Type="chChiNhanh" IsForeignKey="true" />
+      <Association Name="nvNhanVien_kChuyenKho" Member="nvNhanVien" ThisKey="NguoiNhapID" OtherKey="IDNhanVien" Type="nvNhanVien" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.kChuyenKhoChiTiet" Member="kChuyenKhoChiTiets">
     <Type Name="kChuyenKhoChiTiet">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ChuyenKhoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChuyenKhoID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="HangHoaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TonKhoNhan" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TonKhoChuyen" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="hhHangHoa_kChuyenKhoChiTiet" Member="hhHangHoa" ThisKey="HangHoaID" OtherKey="IDHangHoa" Type="hhHangHoa" IsForeignKey="true" />
+      <Association Name="kChuyenKho_kChuyenKhoChiTiet" Member="kChuyenKho" ThisKey="ChuyenKhoID" OtherKey="IDPhieuChuyen" Type="kChuyenKho" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.khKhachHang" Member="khKhachHangs">
@@ -538,6 +547,7 @@
       <Column Name="IDChiNhanh" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="nvNhanVien_ghPhieuGiaoHang" Member="ghPhieuGiaoHangs" ThisKey="IDNhanVien" OtherKey="NhanVienID" Type="ghPhieuGiaoHang" />
       <Association Name="nvNhanVien_gPhieuThu" Member="gPhieuThus" ThisKey="IDNhanVien" OtherKey="NhanVienThuID" Type="gPhieuThu" />
+      <Association Name="nvNhanVien_kChuyenKho" Member="kChuyenKhos" ThisKey="IDNhanVien" OtherKey="NguoiNhapID" Type="kChuyenKho" />
       <Association Name="nvNhanVien_kKiemKe" Member="kKiemKes" ThisKey="IDNhanVien" OtherKey="IDNhanVien" Type="kKiemKe" />
       <Association Name="nvNhanVien_kNhapKho" Member="kNhapKhos" ThisKey="IDNhanVien" OtherKey="NguoiNhapID" Type="kNhapKho" />
       <Association Name="nvNhanVien_kPhieuThanhToanNCC" Member="kPhieuThanhToanNCCs" ThisKey="IDNhanVien" OtherKey="NhanVienThuID" Type="kPhieuThanhToanNCC" />
@@ -568,17 +578,18 @@
       <Column Name="GiaNhapTrungBinh" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spCapNhatBangGia" Method="spCapNhatBangGia">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="GiaMoi" Parameter="giaMoi" Type="System.Double" DbType="Float" />
+    <Parameter Name="IDBangGia" Parameter="iDBangGia" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.pr_Insert_NhapXuatTon" Method="pr_Insert_NhapXuatTon">
     <Parameter Name="IDHangHoa" Parameter="iDHangHoa" Type="System.Int64" DbType="BigInt" />
     <Parameter Name="IDNhanVien" Parameter="iDNhanVien" Type="System.Int64" DbType="BigInt" />
     <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="SmallDateTime" />
     <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="SmallDateTime" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.spCapNhatBangGia" Method="spCapNhatBangGia">
-    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
-    <Parameter Name="GiaMoi" Parameter="giaMoi" Type="System.Double" DbType="Float" />
-    <Parameter Name="IDBangGia" Parameter="iDBangGia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDChiNhanh" Parameter="iDChiNhanh" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

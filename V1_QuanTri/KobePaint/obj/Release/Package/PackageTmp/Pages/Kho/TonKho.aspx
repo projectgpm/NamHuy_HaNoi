@@ -35,7 +35,7 @@
                                                     <dx:ASPxComboBox ID="ccbChiNhanh" runat="server" ValueType="System.String" Caption="Chọn chi nhánh" ClientInstanceName="ccbChiNhanh" DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                                                         <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }"/>
                                                     </dx:ASPxComboBox>
-                                                    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT IDChiNhanh, TenChiNhanh FROM chChiNhanh WHERE (DaXoa = @DaXoa)">
+                                                    <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT 0 AS IDChiNhanh, N'Tất cả' AS TenChiNhanh UNION ALL  SELECT IDChiNhanh, TenChiNhanh FROM chChiNhanh WHERE (DaXoa = @DaXoa)">
                                                         <SelectParameters>
                                                             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                                                         </SelectParameters>

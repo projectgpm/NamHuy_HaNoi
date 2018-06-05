@@ -196,7 +196,9 @@
         </PanelCollection>
         <ClientSideEvents EndCallback="endCallBackProduct" />
     </dx:ASPxCallbackPanel>
-    <asp:SqlDataSource ID="dsNhapXuatTon" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT bc_NhapXuatTon.* FROM bc_NhapXuatTon">
+    <asp:SqlDataSource ID="dsNhapXuatTon" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT bc_NhapXuatTon.* FROM bc_NhapXuatTon">
     </asp:SqlDataSource>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />

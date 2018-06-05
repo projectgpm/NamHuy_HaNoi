@@ -112,13 +112,13 @@ namespace KobePaint.Pages.BanHang {
         protected global::DevExpress.Web.ASPxHyperLink hpThemNCC;
         
         /// <summary>
-        /// txtNo control.
+        /// speDiemTichLuy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtNo;
+        protected global::DevExpress.Web.ASPxSpinEdit speDiemTichLuy;
         
         /// <summary>
         /// txtTenBangGia control.
@@ -229,24 +229,6 @@ namespace KobePaint.Pages.BanHang {
         protected global::DevExpress.Web.ASPxSpinEdit spTienTraKhach;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
-        
-        /// <summary>
-        /// memoGhiChu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxMemo memoGhiChu;
-        
-        /// <summary>
         /// SplitterContentControl2 control.
         /// </summary>
         /// <remarks>
@@ -310,6 +292,24 @@ namespace KobePaint.Pages.BanHang {
         protected global::System.Web.UI.WebControls.SqlDataSource dsHangHoa;
         
         /// <summary>
+        /// LayoutItemNestedControlContainer10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer10;
+        
+        /// <summary>
+        /// speSoLuong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speSoLuong;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer9 control.
         /// </summary>
         /// <remarks>
@@ -335,24 +335,6 @@ namespace KobePaint.Pages.BanHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxHiddenField hiddenFields;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer10;
-        
-        /// <summary>
-        /// btnExcel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnExcel;
         
         /// <summary>
         /// gridImportPro control.
@@ -409,24 +391,6 @@ namespace KobePaint.Pages.BanHang {
         protected global::DevExpress.Web.ASPxGlobalEvents globalEventGrid;
         
         /// <summary>
-        /// popupViewExcel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl popupViewExcel;
-        
-        /// <summary>
-        /// PopupControlContentControl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.PopupControlContentControl PopupControlContentControl2;
-        
-        /// <summary>
         /// hdfViewReport control.
         /// </summary>
         /// <remarks>
@@ -434,42 +398,6 @@ namespace KobePaint.Pages.BanHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxHiddenField hdfViewReport;
-        
-        /// <summary>
-        /// ASPxLabel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel1;
-        
-        /// <summary>
-        /// linkNhapKho control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxHyperLink linkNhapKho;
-        
-        /// <summary>
-        /// ASPxLabel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel ASPxLabel2;
-        
-        /// <summary>
-        /// UploadControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxUploadControl UploadControl;
         
         /// <summary>
         /// popGiamGia control.

@@ -106,7 +106,9 @@
     </Content>
     <Content Include="App_Data\UploadTemp\TextFile1.txt" />
     <Content Include="Content\DragAndDrop.css" />
+    <Content Include="Content\Images\0434_CH_fullGPM.png" />
     <Content Include="Content\Images\0435_CH_full.png" />
+    <Content Include="Content\Images\0903_SA_full.png" />
     <Content Include="Content\Images\AquaHeader.jpg" />
     <Content Include="Content\Images\BlackGlassHeader.jpg" />
     <Content Include="Content\Images\GlassHeader.jpg" />
@@ -166,6 +168,7 @@
     <Content Include="Pages\HangHoa\LienKetBangGia.aspx" />
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
     <Content Include="Pages\HangHoa\ThemHangHoa.aspx" />
+    <Content Include="Pages\HeThong\CaiDatTichDiem.aspx" />
     <Content Include="Pages\HeThong\CanhBaoCongNo.ascx" />
     <Content Include="Pages\HeThong\ChiNhanh.aspx" />
     <Content Include="Pages\HeThong\LyDoXuat.aspx" />
@@ -472,6 +475,13 @@
     </Compile>
     <Compile Include="Pages\HangHoa\ThemHangHoa.aspx.designer.cs">
       <DependentUpon>ThemHangHoa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HeThong\CaiDatTichDiem.aspx.cs">
+      <DependentUpon>CaiDatTichDiem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HeThong\CaiDatTichDiem.aspx.designer.cs">
+      <DependentUpon>CaiDatTichDiem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HeThong\CanhBaoCongNo.ascx.cs">
       <DependentUpon>CanhBaoCongNo.ascx</DependentUpon>

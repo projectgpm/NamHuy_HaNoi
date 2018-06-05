@@ -21,7 +21,8 @@ namespace KobePaint.App_Code
         public double ThanhTien { get; set; }
         public double GiaBanMoi { get; set; }
         public double GiaBanCu { get; set; }
-        public oImportProduct_ChiTietNhapHang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien, double giaBanMoi, double giaBanCu)
+        public double GiaNgoaiTe { get; set; }
+        public oImportProduct_ChiTietNhapHang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien, double giaBanMoi, double giaBanCu,double giangoaite)
         {
             // TODO: Complete member initialization
             this.IDHangHoa = iDHangHoa;
@@ -33,6 +34,7 @@ namespace KobePaint.App_Code
             this.ThanhTien = thanhTien;
             this.GiaBanMoi = giaBanMoi;
             this.GiaBanCu = giaBanCu;
+            this.GiaNgoaiTe = giangoaite;
         }
     }
     #endregion

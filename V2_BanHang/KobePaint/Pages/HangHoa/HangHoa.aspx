@@ -24,31 +24,6 @@
       <dx:ASPxFormLayout ID="formThongTin" ClientInstanceName="formThongTin" runat="server" Width="100%" ColCount="4">
         <Items>
             
-                    <dx:LayoutItem Caption="">
-                        <LayoutItemNestedControlCollection>
-                            <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxButton ID="btnThemHangHoa" runat="server" ImagePosition="Right" Text="Thêm hàng hóa" PostBackUrl="~/Pages/HangHoa/ThemHangHoa.aspx">
-                                </dx:ASPxButton>
-                            </dx:LayoutItemNestedControlContainer>
-                        </LayoutItemNestedControlCollection>
-                    </dx:LayoutItem>
-                    <dx:LayoutItem Caption="">
-                        <LayoutItemNestedControlCollection>
-                            <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxButton ID="btnNhapExcel" runat="server" AutoPostBack="false" Text="Nhập Excel" ClientInstanceName="btnNhapExcel">
-                                    <ClientSideEvents Click="onExcelClick" />
-                                </dx:ASPxButton>
-                            </dx:LayoutItemNestedControlContainer>
-                        </LayoutItemNestedControlCollection>
-                    </dx:LayoutItem>
-                    <dx:LayoutItem ShowCaption="False">
-                        <LayoutItemNestedControlCollection>
-                            <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
-                                </dx:ASPxButton>
-                            </dx:LayoutItemNestedControlContainer>
-                        </LayoutItemNestedControlCollection>
-                    </dx:LayoutItem>
                     <dx:LayoutItem Caption="Tình trạng hàng hóa" Width="100%">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
@@ -250,21 +225,21 @@
                 <EditFormSettings Visible="False" />
                
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBan" VisibleIndex="4" Width="100px">
+            <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBan" VisibleIndex="4" Width="100px" Visible="False">
                 <PropertiesSpinEdit DecimalPlaces="2" DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True" Increment="5000">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="ĐVT" FieldName="DonViTinhID" VisibleIndex="3" ReadOnly="True" Width="50px">
+            <dx:GridViewDataComboBoxColumn Caption="ĐVT" FieldName="DonViTinhID" VisibleIndex="3" ReadOnly="True" Width="100px">
                 <PropertiesComboBox DataSourceID="dsDVT" DisplayFormatString="g" TextField="TenDonViTinh" ValueField="IDDonViTinh">
                 </PropertiesComboBox>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Hàng hóa" FieldName="TenHangHoa" VisibleIndex="1" Width="100%" Name="hanghoa">
-                 <DataItemTemplate>
+                <%-- <DataItemTemplate>
                      <a target="_blank" href="CapNhat.aspx?id=<%# Container.KeyValue %>" > <%# Eval("TenHangHoa") %></a>
-                </DataItemTemplate>
+                </DataItemTemplate>--%>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại hàng hóa" FieldName="LoaiHHID" VisibleIndex="7" Width="150px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại hàng hóa" FieldName="LoaiHHID" VisibleIndex="7" Width="200px">
                 <PropertiesComboBox DataSourceID="dsLoaiHangHoa" TextField="TenLoai" ValueField="IDLoaiHangHoa">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>

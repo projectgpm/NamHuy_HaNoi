@@ -18,6 +18,7 @@ namespace KobePaint.Pages.BaoCao
             {
                 if (!IsPostBack)
                 {
+                    dsNhapXuatTon.SelectParameters["NhanVienID"].DefaultValue = Formats.IDUser().ToString();
                     XoaDuLieuBaoCao();
                 }
             }

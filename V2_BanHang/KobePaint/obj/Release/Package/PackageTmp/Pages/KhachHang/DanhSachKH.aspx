@@ -139,7 +139,7 @@
                     </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px" Visible="false">
                 <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -160,11 +160,11 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT * FROM [khKhachHang] WHERE [DaXoa] = 0 AND [LoaiKhachHangID] <> 2;" 
+        SelectCommand="SELECT IDKhachHang, LoaiKhachHangID, MaKhachHang, HoTen, DienThoai, DiaChi, GhiChu, Email, LanCuoiMuaHang, TongTienHang, MaSoThue, TienTraHang, CongNo, DaXoa, NgayTao, ThanhToan, IDBangGia, HanMucCongNo, ThoiHanThanhToan, ChiNhanhID FROM khKhachHang WHERE (DaXoa = 0) AND (LoaiKhachHangID &lt;&gt; 2) AND (ChiNhanhID = @ChiNhanhID)" 
         DeleteCommand="DELETE FROM khKhachHang WHERE (IDKhachHang = @IDKhachHang)" 
         UpdateCommand="UPDATE khKhachHang SET HoTen = @HoTen, DiaChi = @DiaChi, Email = @Email, DienThoai = @DienThoai, GhiChu = @GhiChu, HanMucCongNo = @HanMucCongNo, ThoiHanThanhToan = @ThoiHanThanhToan WHERE (IDKhachHang = @IDKhachHang)">
         <SelectParameters>
-            <%--<asp:Parameter Name="DaXoa" Type="Int32" />--%>
+            <asp:Parameter Name="ChiNhanhID" />
         </SelectParameters>
         <DeleteParameters>
             <asp:Parameter Name="IDKhachHang" Type="Int32" />

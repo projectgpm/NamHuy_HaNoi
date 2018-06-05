@@ -72,7 +72,8 @@
     <item Text="3. Danh sách tài khoản" NavigateUrl="~/Pages/TaiKhoan/DanhSachTaiKhoan.aspx" />
     <item Text="4. Lý do xuất khác" NavigateUrl="~/Pages/HeThong/LyDoXuat.aspx" />
     <item Text="5. Thông tin cửa hàng" NavigateUrl="~/Pages/HeThong/ThongTinCuaHang.aspx" />
-    <item Text="6. Đăng xuất"  NavigateUrl="~/Pages/TaiKhoan/DangXuat.aspx" />
-    <item Text="7. Trợ giúp"  NavigateUrl="https://gpm.vn/" Target="_blank" />
+    <item Text="6. Cài đặt tích điểm" NavigateUrl="~/Pages/HeThong/CaiDatTichDiem.aspx" />
+    <item Text="7. Đăng xuất"  NavigateUrl="~/Pages/TaiKhoan/DangXuat.aspx" />
+    <item Text="8. Trợ giúp"  NavigateUrl="https://gpm.vn/" Target="_blank" />
   </item>
 </items>

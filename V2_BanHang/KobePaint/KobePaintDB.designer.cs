@@ -1863,6 +1863,8 @@ namespace KobePaint
 		
 		private string _TinhThanh;
 		
+		private EntitySet<ghPhieuGiaoHang> _ghPhieuGiaoHangs;
+		
 		private EntitySet<hhTonKho> _hhTonKhos;
 		
 		private EntitySet<kChuyenKho> _kChuyenKhos;
@@ -1899,6 +1901,7 @@ namespace KobePaint
 		
 		public chChiNhanh()
 		{
+			this._ghPhieuGiaoHangs = new EntitySet<ghPhieuGiaoHang>(new Action<ghPhieuGiaoHang>(this.attach_ghPhieuGiaoHangs), new Action<ghPhieuGiaoHang>(this.detach_ghPhieuGiaoHangs));
 			this._hhTonKhos = new EntitySet<hhTonKho>(new Action<hhTonKho>(this.attach_hhTonKhos), new Action<hhTonKho>(this.detach_hhTonKhos));
 			this._kChuyenKhos = new EntitySet<kChuyenKho>(new Action<kChuyenKho>(this.attach_kChuyenKhos), new Action<kChuyenKho>(this.detach_kChuyenKhos));
 			this._kChuyenKhos1 = new EntitySet<kChuyenKho>(new Action<kChuyenKho>(this.attach_kChuyenKhos1), new Action<kChuyenKho>(this.detach_kChuyenKhos1));
@@ -2106,6 +2109,19 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chChiNhanh_ghPhieuGiaoHang", Storage="_ghPhieuGiaoHangs", ThisKey="IDChiNhanh", OtherKey="ChiNhanhID")]
+		public EntitySet<ghPhieuGiaoHang> ghPhieuGiaoHangs
+		{
+			get
+			{
+				return this._ghPhieuGiaoHangs;
+			}
+			set
+			{
+				this._ghPhieuGiaoHangs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chChiNhanh_hhTonKho", Storage="_hhTonKhos", ThisKey="IDChiNhanh", OtherKey="ChiNhanhID")]
 		public EntitySet<hhTonKho> hhTonKhos
 		{
@@ -2176,6 +2192,18 @@ namespace KobePaint
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ghPhieuGiaoHangs(ghPhieuGiaoHang entity)
+		{
+			this.SendPropertyChanging();
+			entity.chChiNhanh = this;
+		}
+		
+		private void detach_ghPhieuGiaoHangs(ghPhieuGiaoHang entity)
+		{
+			this.SendPropertyChanging();
+			entity.chChiNhanh = null;
 		}
 		
 		private void attach_hhTonKhos(hhTonKho entity)
@@ -2650,6 +2678,8 @@ namespace KobePaint
 		
 		private EntitySet<ghPhieuGiaoHangChiTiet> _ghPhieuGiaoHangChiTiets;
 		
+		private EntityRef<chChiNhanh> _chChiNhanh;
+		
 		private EntityRef<khKhachHang> _khKhachHang;
 		
 		private EntityRef<nvNhanVien> _nvNhanVien;
@@ -2711,6 +2741,7 @@ namespace KobePaint
 		public ghPhieuGiaoHang()
 		{
 			this._ghPhieuGiaoHangChiTiets = new EntitySet<ghPhieuGiaoHangChiTiet>(new Action<ghPhieuGiaoHangChiTiet>(this.attach_ghPhieuGiaoHangChiTiets), new Action<ghPhieuGiaoHangChiTiet>(this.detach_ghPhieuGiaoHangChiTiets));
+			this._chChiNhanh = default(EntityRef<chChiNhanh>);
 			this._khKhachHang = default(EntityRef<khKhachHang>);
 			this._nvNhanVien = default(EntityRef<nvNhanVien>);
 			OnCreated();
@@ -3195,6 +3226,10 @@ namespace KobePaint
 			{
 				if ((this._ChiNhanhID != value))
 				{
+					if (this._chChiNhanh.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnChiNhanhIDChanging(value);
 					this.SendPropertyChanging();
 					this._ChiNhanhID = value;
@@ -3214,6 +3249,40 @@ namespace KobePaint
 			set
 			{
 				this._ghPhieuGiaoHangChiTiets.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chChiNhanh_ghPhieuGiaoHang", Storage="_chChiNhanh", ThisKey="ChiNhanhID", OtherKey="IDChiNhanh", IsForeignKey=true)]
+		public chChiNhanh chChiNhanh
+		{
+			get
+			{
+				return this._chChiNhanh.Entity;
+			}
+			set
+			{
+				chChiNhanh previousValue = this._chChiNhanh.Entity;
+				if (((previousValue != value) 
+							|| (this._chChiNhanh.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._chChiNhanh.Entity = null;
+						previousValue.ghPhieuGiaoHangs.Remove(this);
+					}
+					this._chChiNhanh.Entity = value;
+					if ((value != null))
+					{
+						value.ghPhieuGiaoHangs.Add(this);
+						this._ChiNhanhID = value.IDChiNhanh;
+					}
+					else
+					{
+						this._ChiNhanhID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("chChiNhanh");
+				}
 			}
 		}
 		
@@ -6234,6 +6303,8 @@ namespace KobePaint
 		
 		private System.Nullable<int> _ChiNhanhID;
 		
+		private System.Nullable<double> _DiemTichLuy;
+		
 		private EntitySet<ghPhieuDaiLyThanhToan> _ghPhieuDaiLyThanhToans;
 		
 		private EntitySet<ghPhieuGiaoHang> _ghPhieuGiaoHangs;
@@ -6296,6 +6367,8 @@ namespace KobePaint
     partial void OnThoiHanThanhToanChanged();
     partial void OnChiNhanhIDChanging(System.Nullable<int> value);
     partial void OnChiNhanhIDChanged();
+    partial void OnDiemTichLuyChanging(System.Nullable<double> value);
+    partial void OnDiemTichLuyChanged();
     #endregion
 		
 		public khKhachHang()
@@ -6716,6 +6789,26 @@ namespace KobePaint
 					this._ChiNhanhID = value;
 					this.SendPropertyChanged("ChiNhanhID");
 					this.OnChiNhanhIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiemTichLuy", DbType="Float")]
+		public System.Nullable<double> DiemTichLuy
+		{
+			get
+			{
+				return this._DiemTichLuy;
+			}
+			set
+			{
+				if ((this._DiemTichLuy != value))
+				{
+					this.OnDiemTichLuyChanging(value);
+					this.SendPropertyChanging();
+					this._DiemTichLuy = value;
+					this.SendPropertyChanged("DiemTichLuy");
+					this.OnDiemTichLuyChanged();
 				}
 			}
 		}
@@ -8197,6 +8290,12 @@ namespace KobePaint
 		
 		private System.Nullable<int> _TTThanhToan;
 		
+		private System.Nullable<double> _TyGiaNgoaiTe;
+		
+		private System.Nullable<double> _ChiPhiVanChuyen;
+		
+		private System.Nullable<double> _ChiPhiKhac;
+		
 		private EntitySet<kNhapKhoChiTiet> _kNhapKhoChiTiets;
 		
 		private EntityRef<khKhachHang> _khKhachHang;
@@ -8243,6 +8342,12 @@ namespace KobePaint
     partial void OnUrlChanged();
     partial void OnTTThanhToanChanging(System.Nullable<int> value);
     partial void OnTTThanhToanChanged();
+    partial void OnTyGiaNgoaiTeChanging(System.Nullable<double> value);
+    partial void OnTyGiaNgoaiTeChanged();
+    partial void OnChiPhiVanChuyenChanging(System.Nullable<double> value);
+    partial void OnChiPhiVanChuyenChanged();
+    partial void OnChiPhiKhacChanging(System.Nullable<double> value);
+    partial void OnChiPhiKhacChanged();
     #endregion
 		
 		public kNhapKho()
@@ -8621,6 +8726,66 @@ namespace KobePaint
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TyGiaNgoaiTe", DbType="Float")]
+		public System.Nullable<double> TyGiaNgoaiTe
+		{
+			get
+			{
+				return this._TyGiaNgoaiTe;
+			}
+			set
+			{
+				if ((this._TyGiaNgoaiTe != value))
+				{
+					this.OnTyGiaNgoaiTeChanging(value);
+					this.SendPropertyChanging();
+					this._TyGiaNgoaiTe = value;
+					this.SendPropertyChanged("TyGiaNgoaiTe");
+					this.OnTyGiaNgoaiTeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiPhiVanChuyen", DbType="Float")]
+		public System.Nullable<double> ChiPhiVanChuyen
+		{
+			get
+			{
+				return this._ChiPhiVanChuyen;
+			}
+			set
+			{
+				if ((this._ChiPhiVanChuyen != value))
+				{
+					this.OnChiPhiVanChuyenChanging(value);
+					this.SendPropertyChanging();
+					this._ChiPhiVanChuyen = value;
+					this.SendPropertyChanged("ChiPhiVanChuyen");
+					this.OnChiPhiVanChuyenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiPhiKhac", DbType="Float")]
+		public System.Nullable<double> ChiPhiKhac
+		{
+			get
+			{
+				return this._ChiPhiKhac;
+			}
+			set
+			{
+				if ((this._ChiPhiKhac != value))
+				{
+					this.OnChiPhiKhacChanging(value);
+					this.SendPropertyChanging();
+					this._ChiPhiKhac = value;
+					this.SendPropertyChanged("ChiPhiKhac");
+					this.OnChiPhiKhacChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="kNhapKho_kNhapKhoChiTiet", Storage="_kNhapKhoChiTiets", ThisKey="IDNhapKho", OtherKey="NhapKhoID")]
 		public EntitySet<kNhapKhoChiTiet> kNhapKhoChiTiets
 		{
@@ -8757,6 +8922,8 @@ namespace KobePaint
 		
 		private System.Nullable<double> _GiaBan;
 		
+		private System.Nullable<double> _GiaNgoaiTe;
+		
 		private EntityRef<hhHangHoa> _hhHangHoa;
 		
 		private EntityRef<kNhapKho> _kNhapKho;
@@ -8781,6 +8948,8 @@ namespace KobePaint
     partial void OnTonKhoChanged();
     partial void OnGiaBanChanging(System.Nullable<double> value);
     partial void OnGiaBanChanged();
+    partial void OnGiaNgoaiTeChanging(System.Nullable<double> value);
+    partial void OnGiaNgoaiTeChanged();
     #endregion
 		
 		public kNhapKhoChiTiet()
@@ -8954,6 +9123,26 @@ namespace KobePaint
 					this._GiaBan = value;
 					this.SendPropertyChanged("GiaBan");
 					this.OnGiaBanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaNgoaiTe", DbType="Float")]
+		public System.Nullable<double> GiaNgoaiTe
+		{
+			get
+			{
+				return this._GiaNgoaiTe;
+			}
+			set
+			{
+				if ((this._GiaNgoaiTe != value))
+				{
+					this.OnGiaNgoaiTeChanging(value);
+					this.SendPropertyChanging();
+					this._GiaNgoaiTe = value;
+					this.SendPropertyChanged("GiaNgoaiTe");
+					this.OnGiaNgoaiTeChanged();
 				}
 			}
 		}

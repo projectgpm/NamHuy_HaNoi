@@ -13,6 +13,24 @@ namespace KobePaint.Pages.BaoCao {
     public partial class LoiNhuanBanHang {
         
         /// <summary>
+        /// cbpInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfo;
+        
+        /// <summary>
+        /// PanelContent3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent3;
+        
+        /// <summary>
         /// formThongTin control.
         /// </summary>
         /// <remarks>
@@ -76,31 +94,121 @@ namespace KobePaint.Pages.BaoCao {
         protected global::DevExpress.Web.ASPxButton btnXemBaoCao;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer4 control.
+        /// fromBaoCao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer4;
+        protected global::DevExpress.Web.ASPxFormLayout fromBaoCao;
         
         /// <summary>
-        /// btnXuatExcel control.
+        /// speDoanhThuBanHang control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnXuatExcel;
+        protected global::DevExpress.Web.ASPxSpinEdit speDoanhThuBanHang;
         
         /// <summary>
-        /// VerLoiNhuan control.
+        /// speGiamTruDoanhThu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxVerticalGrid VerLoiNhuan;
+        protected global::DevExpress.Web.ASPxSpinEdit speGiamTruDoanhThu;
+        
+        /// <summary>
+        /// speChietKhauHoaDon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speChietKhauHoaDon;
+        
+        /// <summary>
+        /// speBanHangTraLai control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speBanHangTraLai;
+        
+        /// <summary>
+        /// speDoanhThuThuan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speDoanhThuThuan;
+        
+        /// <summary>
+        /// speGiaVonNhanBan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speGiaVonNhanBan;
+        
+        /// <summary>
+        /// speLoiNhuanGopHangBan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speLoiNhuanGopHangBan;
+        
+        /// <summary>
+        /// speChiPhi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speChiPhi;
+        
+        /// <summary>
+        /// speLoiNhuanKinhDoanh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speLoiNhuanKinhDoanh;
+        
+        /// <summary>
+        /// speThuNhapKhac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speThuNhapKhac;
+        
+        /// <summary>
+        /// speChiPhiKhac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speChiPhiKhac;
+        
+        /// <summary>
+        /// speLoiNhuanThuan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speLoiNhuanThuan;
         
         /// <summary>
         /// dsLoiNhuan control.

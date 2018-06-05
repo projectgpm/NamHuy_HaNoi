@@ -8,6 +8,9 @@
             popupViewExcel.Hide();
             gridHangHoa.Refresh();
         }
+        function ccbLoaiHangHoaSelectChange() {
+            gridHangHoa.Refresh();
+        }
     </script>
     <style>
         .dxflGroupCell_Material {
@@ -49,12 +52,12 @@
                     <dx:LayoutItem Caption="Tình trạng hàng hóa" Width="100%">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxComboBox ID="ccbLoaiHangHoa" runat="server" SelectedIndex="0">
+                                <dx:ASPxComboBox ID="ccbLoaiHangHoa"  ClientInstanceName="ccbLoaiHangHoa" runat="server" SelectedIndex="0">
                                     <Items>
                                         <dx:ListEditItem Selected="True" Text="Đang kinh doanh" Value="0" />
                                         <dx:ListEditItem Text="Ngừng kinh doanh" Value="1" />
                                     </Items>
-                                     <ClientSideEvents SelectedIndexChanged="function(s, e){ gridHangHoa.Refresh(); }" />
+                                     <ClientSideEvents SelectedIndexChanged="ccbLoaiHangHoaSelectChange" />
                                 </dx:ASPxComboBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
@@ -71,7 +74,7 @@
          </dx:ASPxFormLayout>
 
 
-    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridHangHoa" Width="100%" DataSourceID="dsHangHoa" KeyFieldName="IDHangHoa" OnCustomColumnDisplayText="grid_CustomColumnDisplayText">
+    <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridHangHoa" Width="100%" DataSourceID="dsHangHoa" KeyFieldName="IDHangHoa" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" OnAfterPerformCallback="gridHangHoa_AfterPerformCallback">
         
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True"/>
         <SettingsDetail ShowDetailRow="false" AllowOnlyOneMasterRowExpanded="True" />
@@ -239,7 +242,7 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Nhóm hàng" FieldName="NhomHHID" VisibleIndex="6" Width="150px" ReadOnly="True">
+            <dx:GridViewDataComboBoxColumn Caption="Nhóm hàng" FieldName="NhomHHID" VisibleIndex="5" Width="150px" ReadOnly="True">
                
                 <PropertiesComboBox DataSourceID="dsNhomHang" TextField="TenNhom" ValueField="IDNhomHH">
                 </PropertiesComboBox>
@@ -247,7 +250,7 @@
                 <EditFormSettings Visible="False" />
                
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBan" VisibleIndex="5" Width="100px">
+            <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBan" VisibleIndex="4" Width="100px">
                 <PropertiesSpinEdit DecimalPlaces="2" DisplayFormatString="N0" NumberFormat="Custom" DisplayFormatInEditMode="True" Increment="5000">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
@@ -261,7 +264,7 @@
                      <a target="_blank" href="CapNhat.aspx?id=<%# Container.KeyValue %>" > <%# Eval("TenHangHoa") %></a>
                 </DataItemTemplate>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại hàng hóa" FieldName="LoaiHHID" VisibleIndex="8" Width="150px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại hàng hóa" FieldName="LoaiHHID" VisibleIndex="7" Width="150px">
                 <PropertiesComboBox DataSourceID="dsLoaiHangHoa" TextField="TenLoai" ValueField="IDLoaiHangHoa">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -279,7 +282,7 @@
           </SelectParameters>
       </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsHangHoa" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT [IDHangHoa], [MaHang],[LoaiHHID], [TenHangHoa], [NhomHHID], [DonViTinhID], [GiaBan] FROM [hhHangHoa] WHERE ([DaXoa] = @DaXoa)
+        SelectCommand="SELECT [IDHangHoa], [MaHang],[LoaiHHID], [TenHangHoa], [NhomHHID], [DonViTinhID], [GiaBan],[DaXoa] FROM [hhHangHoa] WHERE ([DaXoa] = @DaXoa)
 ORDER BY [NhomHHID], [IDHangHoa] ASC"
         UpdateCommand="UPDATE [hhHangHoa] SET [TenHangHoa] = @TenHangHoa,[GiaBan] = @GiaBan WHERE  [IDHangHoa] = @IDHangHoa"
         DeleteCommand="UPDATE hhHangHoa SET DaXoa = CASE WHEN DaXoa = 1 THEN 0 ELSE 1 END WHERE (IDHangHoa = @IDHangHoa)"

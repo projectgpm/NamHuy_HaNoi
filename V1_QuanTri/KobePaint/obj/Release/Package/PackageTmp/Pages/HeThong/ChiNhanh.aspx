@@ -105,9 +105,9 @@
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="dsChiNhanh" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
         DeleteCommand="UPDATE chChiNhanh SET DaXoa = 1 WHERE (IDChiNhanh = @IDChiNhanh)" 
-        InsertCommand="INSERT INTO chChiNhanh(TenChiNhanh, DienThoai, DiaChi, MST, NgayDangKy, TinhThanh, DaXoa) VALUES (@TenChiNhanh, @DienThoai, @DiaChi, @MST, @NgayDangKy, @TinhThanh, @DaXoa)" 
+        InsertCommand="INSERT INTO chChiNhanh(TenChiNhanh, DienThoai, DiaChi, MST, NgayDangKy, TinhThanh, DaXoa,Logo,QuyThuChi) VALUES (@TenChiNhanh, @DienThoai, @DiaChi, @MST, @NgayDangKy, @TinhThanh, @DaXoa,@Logo,0)" 
         SelectCommand="SELECT *FROM chChiNhanh WHERE (IDChiNhanh &lt;&gt; 1)" 
-        UpdateCommand="UPDATE chChiNhanh SET TenChiNhanh = @TenChiNhanh, DienThoai = @DienThoai, DiaChi = @DiaChi, MST = @MST, NgayDangKy = @NgayDangKy, TinhThanh = @TinhThanh, DaXoa = @DaXoa WHERE (IDChiNhanh = @IDChiNhanh)" >
+        UpdateCommand="UPDATE chChiNhanh SET TenChiNhanh = @TenChiNhanh, DienThoai = @DienThoai, DiaChi = @DiaChi, MST = @MST, NgayDangKy = @NgayDangKy, TinhThanh = @TinhThanh, DaXoa = @DaXoa WHERE (IDChiNhanh = @IDChiNhanh) UPDATE nvNhanVien SET DaXoa = @DaXoa WHERE (IDChiNhanh = @IDChiNhanh)" >
         <DeleteParameters>
             <asp:Parameter Name="IDChiNhanh" Type="Int32" />
         </DeleteParameters>
@@ -119,6 +119,7 @@
             <asp:Parameter Name="NgayDangKy" />
             <asp:Parameter Name="TinhThanh" />
             <asp:Parameter Name="DaXoa" DefaultValue="0" />
+            <asp:Parameter Name="Logo" DefaultValue="~/Content/Images/0903_SA_full.png" />
         </InsertParameters>
         <UpdateParameters>
             <asp:Parameter Name="TenChiNhanh" />

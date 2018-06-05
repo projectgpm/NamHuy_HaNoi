@@ -76,17 +76,17 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="3" Width="100px">
+            <dx:GridViewDataTextColumn Caption="Mã KH" FieldName="MaKhachHang" VisibleIndex="3" Width="80px">
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Họ tên" FieldName="HoTen" VisibleIndex="4" CellStyle-Font-Bold="true" Width="100%">
-<CellStyle Font-Bold="True"></CellStyle>
+                <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="DiaChi" VisibleIndex="6" Caption="Địa chỉ" Width="120px">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="5" Width="100px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption=" " ShowEditButton="True" VisibleIndex="16" Width="80px" ShowDeleteButton="True" Name="chucnang">
+            <dx:GridViewCommandColumn Caption="Chức năng" ShowEditButton="True" VisibleIndex="16" Width="80px" ShowDeleteButton="True" Name="chucnang">
             </dx:GridViewCommandColumn>
             <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="9" Width="130px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yy H:mm" EditFormat="Custom" EditFormatString="dd/MM/yy H:mm:ss">
@@ -103,12 +103,11 @@
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="13" CellStyle-Font-Bold="true" Width="120px" >
+            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="13" CellStyle-Font-Bold="true" Width="80px" >
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
-
-<CellStyle Font-Bold="True"></CellStyle>
+                    <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" Visible="False" VisibleIndex="15">
                 <EditFormSettings Visible="True" />
@@ -116,7 +115,7 @@
             <dx:GridViewDataTextColumn Caption="Email" FieldName="Email" Visible="False" VisibleIndex="14">
                 <EditFormSettings Visible="True" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại khách hàng" FieldName="LoaiKhachHangID" VisibleIndex="2" Width="120px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại khách" FieldName="LoaiKhachHangID" VisibleIndex="2" Width="80px">
                 <PropertiesComboBox DataSourceID="dsLoaiKhachHang" TextField="TenLoaiKhachHang" ValueField="IDLoaiKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -139,7 +138,7 @@
                     </ValidationSettings>
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="150px">
                 <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>

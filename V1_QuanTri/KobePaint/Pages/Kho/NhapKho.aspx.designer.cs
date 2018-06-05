@@ -76,24 +76,6 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxFormLayout flayoutInfoNCC;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
-        
-        /// <summary>
-        /// txtMaPhieu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtMaPhieu;
-        
-        /// <summary>
         /// LayoutItemNestedControlContainer2 control.
         /// </summary>
         /// <remarks>
@@ -130,6 +112,33 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxHyperLink hpThemNCC;
         
         /// <summary>
+        /// speTyGia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit speTyGia;
+        
+        /// <summary>
+        /// spePhiVanChuyen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit spePhiVanChuyen;
+        
+        /// <summary>
+        /// spePhiKhac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit spePhiKhac;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer3 control.
         /// </summary>
         /// <remarks>
@@ -164,24 +173,6 @@ namespace KobePaint.Pages.Kho {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox txtSoHoaDon;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer5;
-        
-        /// <summary>
-        /// txtNguoiNhap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtNguoiNhap;
         
         /// <summary>
         /// LayoutItemNestedControlContainer13 control.

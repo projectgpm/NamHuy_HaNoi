@@ -40,6 +40,7 @@ namespace KobePaint.Pages.GiaoHang
             if (!IsPostBack)
             {
                 ccbNhaCungCap.Focus();
+                dsNhaCungCap.SelectParameters["ChiNhanhID"].DefaultValue = Formats.IDChiNhanh().ToString();
                 listReceiptProducts = new List<oChiTietHoaDon>();
                 hdfViewReport["view"] = 0;
                 int Permiss = Formats.PermissionUser();

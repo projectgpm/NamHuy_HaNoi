@@ -21,7 +21,7 @@ namespace KobePaint.Pages.TaiKhoan
         protected void btOK_Click(object sender, EventArgs e)
         {
             var user = from p in DBDataProvider.DB.nvNhanViens
-                       where p.TenDangNhap == tbLogin.Text.Trim() && p.MatKhau == tbPassword.Text.Trim() && p.DaXoa == false
+                       where p.TenDangNhap == tbLogin.Text.Trim() && p.MatKhau == tbPassword.Text.Trim() && p.DaXoa == false && p.NhomID < 3
                        select new
                        {
                            userID = p.IDNhanVien,

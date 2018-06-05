@@ -80,7 +80,7 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption=" " ShowEditButton="True" VisibleIndex="15" Width="80px" ShowDeleteButton="True">
+            <dx:GridViewCommandColumn Caption="Chức năng" ShowEditButton="True" VisibleIndex="15" Width="80px" ShowDeleteButton="True">
             </dx:GridViewCommandColumn>
             <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="5" Width="150px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yy H:mm:ss" EditFormat="Custom" EditFormatString="dd/MM/yy H:mm:ss">

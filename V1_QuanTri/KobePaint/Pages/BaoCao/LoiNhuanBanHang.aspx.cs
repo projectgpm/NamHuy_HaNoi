@@ -26,11 +26,20 @@ namespace KobePaint.Pages.BaoCao
             Formats.InitDisplayIndexColumn(e);
         }
 
-        protected void btnXuatExcel_Click(object sender, EventArgs e)
+      
+        protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-           
+            switch (e.Parameter)
+            {
+                case "refresh": BindGrid(); break;
+                default: break;
+            }
         }
 
+        private void BindGrid()
+        {
+            fromBaoCao.DataBind();
+        }
         protected void fromDay_Init(object sender, EventArgs e)
         {
             Formats.InitDateEditControl_AddDay(sender, e, -1);

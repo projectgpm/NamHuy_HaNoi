@@ -17,8 +17,12 @@
                 hdfViewReport.Set('view', '1');
                 reportViewer.GetViewer().Refresh();
             }
-            else {
+            else if (e.tab.name == 'KhongGia') {
                 hdfViewReport.Set('view', '2');
+                reportViewer.GetViewer().Refresh();
+            }
+            else {
+                hdfViewReport.Set('view', '3');
                 reportViewer.GetViewer().Refresh();
             }
         }
@@ -59,7 +63,7 @@
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                             </PropertiesSpinEdit>
                         </dx:GridViewDataSpinEditColumn>
-                        <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" VisibleIndex="4" Width="80px">
+                        <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" VisibleIndex="4" Width="80px" Visible="False">
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                             </PropertiesSpinEdit>
                         </dx:GridViewDataSpinEditColumn>
@@ -76,7 +80,10 @@
                     <FormatConditions>
                         <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
                         <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
-                        <dx:GridViewFormatConditionHighlight FieldName="TenHangHoa" Expression="[GiaVon] > [GiaBan]" Format="LightRedFillWithDarkRedText" CellStyle-Font-Italic="true" />
+                        <dx:GridViewFormatConditionHighlight FieldName="TenHangHoa" Expression="[GiaVon] > [GiaBan]" Format="LightRedFillWithDarkRedText" CellStyle-Font-Italic="true" >
+                            <CellStyle Font-Italic="True">
+                            </CellStyle>
+                        </dx:GridViewFormatConditionHighlight>
                         <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText"  CellStyle-HorizontalAlign="Center">
                             <CellStyle HorizontalAlign="Center"></CellStyle>
                         </dx:GridViewFormatConditionTopBottom>
@@ -245,7 +252,7 @@
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Chi nhánh" FieldName="ChiNhanhID" VisibleIndex="1" Width="100px" Visible="False">
                 <PropertiesComboBox DataSourceID="dsChiNhanh" TextField="TenChiNhanh" ValueField="IDChiNhanh">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -267,7 +274,10 @@
          </SelectParameters>
     </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-         SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID <> 2 ORDER BY [IDKhachHang] DESC ">
+         SelectCommand="SELECT IDKhachHang, HoTen FROM khKhachHang WHERE (LoaiKhachHangID &lt;&gt; 2) AND (ChiNhanhID = @ChiNhanhID) ORDER BY IDKhachHang DESC">
+         <SelectParameters>
+             <asp:Parameter Name="ChiNhanhID" />
+         </SelectParameters>
 
      </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
@@ -306,6 +316,8 @@
                                     <dx:Tab Text="Phiếu giao hàng" Name="CoGia">
                                     </dx:Tab>
                                     <dx:Tab Text="Phiếu giao hàng (không có giá bán)" Name="KhongGia">
+                                    </dx:Tab>
+                                     <dx:Tab Text="Phiếu bán hàng (80)" Name="Kho80">
                                     </dx:Tab>
                                 </tabs>
                                 <clientsideevents activetabchanged="onTabChanged" />

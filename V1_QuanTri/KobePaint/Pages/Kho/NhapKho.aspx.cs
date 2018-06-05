@@ -35,8 +35,6 @@ namespace KobePaint.Pages.Kho
                 if (!IsPostBack)
                 {
                     ccbNhaCungCap.Focus();
-                    string[] infoUser = Context.User.Identity.Name.Split('-');
-                    txtNguoiNhap.Text = infoUser[1];
                     listReceiptProducts = new List<oImportProduct_ChiTietNhapHang>();
                 }
             }
@@ -55,22 +53,34 @@ namespace KobePaint.Pages.Kho
             switch (para[0])
             {
                 case "price": GetPrice(); break;
-                case "UnitChange": Unitchange(para[1]); BindGrid(); break;
+                case "UnitChange": Unitchange(para[1]); break;
                 case "SaveTemp": SaveTemp(); break;
                 case "Save": Save(); BindGrid(); break;
                 case "Review": CreateReportReview(); break;
                 case "xoahang": XoaHangChange(para[1]); break;
                 case "importexcel": BindGrid(); break;
                 case "resetinfo_pro": Reset();break;
+                case "speTyGiaChange": TyGiaLoading();  break;
                 case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/Kho/DanhSachNhapKho.aspx"); break;
                 default: InsertIntoGrid(); BindGrid(); break;
             }
+        }
+
+        private void TyGiaLoading()
+        {
+            double TyGia = Convert.ToDouble(speTyGia.Number);
+            foreach (var prod in listReceiptProducts)
+            {
+                prod.GiaVon = TyGia == 0 ? prod.GiaNgoaiTe : TyGia * prod.GiaNgoaiTe;
+                prod.ThanhTien = prod.SoLuong * prod.GiaVon;
+            }
+            BindGrid();
         }
         protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             switch (e.Parameter)
             {
-                case "refresh": BindGrid(); break;
+                case "refresh": LoadLeft(); break;
                 case "resetinfo": Reset(); break;
                 default: break;
             }
@@ -189,16 +199,18 @@ namespace KobePaint.Pages.Kho
                 var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.IDHangHoa == ID);
                 if (exitProdInList == null)
                 {
-                   
+                    double TyGia = Convert.ToDouble(speTyGia.Number);
                     oImportProduct_ChiTietNhapHang newRecpPro = new oImportProduct_ChiTietNhapHang(
                          tblHangHoa.IDHangHoa,
                          tblHangHoa.MaHang,
                          tblHangHoa.TenHangHoa,
-                         Convert.ToDouble(tblHangHoa.GiaVon),
+                         TyGia == 0 ? Convert.ToDouble(tblHangHoa.GiaVon) : TyGia * 1,
                          Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
                          1, Convert.ToDouble(tblHangHoa.GiaVon),
                          Convert.ToDouble(tblHangHoa.GiaBan),
-                         Convert.ToDouble(tblHangHoa.GiaBan));
+                         Convert.ToDouble(tblHangHoa.GiaBan),
+                         TyGia == 0 ? Convert.ToDouble(tblHangHoa.GiaVon) : 1
+                         );
                     listReceiptProducts.Add(newRecpPro);
                 }
                 else
@@ -247,6 +259,9 @@ namespace KobePaint.Pages.Kho
             ccbNhaCungCap.Text = "";
             dateNgayNhap.Date = DateTime.Now;
             spThanhToan.Number = 0;
+            speTyGia.Number = 0;
+            spePhiVanChuyen.Number = 0;
+            spePhiKhac.Number = 0;
             spTongTien.Number = 0;
             txtSoHoaDon.Text = "";
             memoGhiChu.Text = "";
@@ -263,7 +278,6 @@ namespace KobePaint.Pages.Kho
             {
                 listReceiptProducts[i - 1].STT = i;
             }
-
         }
 
         protected void Save()
@@ -274,11 +288,10 @@ namespace KobePaint.Pages.Kho
                 {
                     if (listReceiptProducts.Count > 0)
                     {
-                        double TongTien = 0;
+                        double TongTien = Convert.ToDouble(spTongTien.Number);
                         int TongSoLuong = 0;
                         foreach (var prod in listReceiptProducts)
                         {
-                            TongTien += prod.ThanhTien;
                             TongSoLuong += prod.SoLuong;
                         }
 
@@ -306,7 +319,9 @@ namespace KobePaint.Pages.Kho
                         nhapKho.TrangThaiPhieu = 0;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
                         nhapKho.TongSoLuong = TongSoLuong;
                         nhapKho.GhiChu = memoGhiChu.Text;
-                       
+                        nhapKho.ChiPhiKhac = Convert.ToDouble(spePhiKhac.Number);
+                        nhapKho.ChiPhiVanChuyen = Convert.ToDouble(spePhiVanChuyen.Number);
+                        nhapKho.TyGiaNgoaiTe = Convert.ToDouble(speTyGia.Number);
                         nhapKho.NgayTao = DateTime.Now;
                         nhapKho.DaXoa = 0;
                         nhapKho.ThanhToan = ThanhToan;
@@ -328,6 +343,7 @@ namespace KobePaint.Pages.Kho
                             detailNhapKho.GiaVon = prod.GiaVon;
                             detailNhapKho.SoLuong = prod.SoLuong;
                             detailNhapKho.ThanhTien = prod.ThanhTien;
+                            detailNhapKho.GiaNgoaiTe = prod.GiaNgoaiTe;
                             detailNhapKho.GiaBan = prod.GiaBanMoi;
                             detailNhapKho.TonKho = prod.TonKho;
                             DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
@@ -490,14 +506,13 @@ namespace KobePaint.Pages.Kho
         private void Unitchange(string para)
         {
             int IDProduct = Convert.ToInt32(para);
-
             //sL
             ASPxSpinEdit SpinEdit = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Số lượng"], "spUnitReturn") as ASPxSpinEdit;
             int UnitProductNew = Convert.ToInt32(SpinEdit.Number);
 
             //Giá vốn
             ASPxSpinEdit SpinEdit_GiaVon = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Giá vốn"], "spGiaVonReturn") as ASPxSpinEdit;
-            double PriceProduct_GiaVon = Convert.ToDouble(SpinEdit_GiaVon.Number);
+            double PriceProduct_TyGia = Convert.ToDouble(SpinEdit_GiaVon.Number);
 
             //Giá bán 
             ASPxSpinEdit SpinEdit_GiaBan = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Giá bán"], "spGiaBanReturn") as ASPxSpinEdit;
@@ -507,26 +522,33 @@ namespace KobePaint.Pages.Kho
             var sourceRow = listReceiptProducts.Where(x => x.STT == IDProduct).SingleOrDefault();
             sourceRow.SoLuong = UnitProductNew;
             sourceRow.GiaBanMoi = PriceProduct_GiaBan;
-            sourceRow.GiaVon = PriceProduct_GiaVon;
-            sourceRow.ThanhTien = UnitProductNew * PriceProduct_GiaVon;
-           
-            //BindGrid();
+            sourceRow.GiaNgoaiTe = PriceProduct_TyGia;
+            sourceRow.GiaVon = speTyGia.Number == 0 ? PriceProduct_TyGia : PriceProduct_TyGia * Convert.ToDouble(speTyGia.Number);
+            sourceRow.ThanhTien = UnitProductNew * sourceRow.GiaVon;
+
+            BindGrid();
         }
         #endregion
 
         private void BindGrid()
         {
+            gridImportPro.DataSource = listReceiptProducts;
+            gridImportPro.DataBind();
+        }
+
+        private void LoadLeft()
+        {
+            double PhiVanChuyen = Convert.ToDouble(spePhiVanChuyen.Number);
+            double PhiKhac = Convert.ToDouble(spePhiKhac.Number);
             double TongTien = 0;
             foreach (var prod in listReceiptProducts)
             {
                 TongTien += prod.ThanhTien;
             }
+            TongTien += (PhiVanChuyen + PhiKhac);
             spTongTien.Text = TongTien.ToString();
-            gridImportPro.DataSource = listReceiptProducts;
-            gridImportPro.DataBind();
         }
 
-        
 
         protected void SaveTemp()
         {
@@ -656,7 +678,7 @@ namespace KobePaint.Pages.Kho
         private void Import_Temp(DataTable datatable)
         {
             int intRow = datatable.Rows.Count;
-            if (datatable.Columns.Contains("Mã hàng hóa") && datatable.Columns.Contains("Số lượng") && datatable.Columns.Contains("Giá vốn") && datatable.Columns.Contains("Giá bán"))
+            if (datatable.Columns.Contains("Mã hàng hóa") && datatable.Columns.Contains("Số lượng") && datatable.Columns.Contains("Giá vốn(Tỷ giá)") && datatable.Columns.Contains("Giá bán"))
             {
                 if (intRow != 0)
                 {
@@ -666,9 +688,10 @@ namespace KobePaint.Pages.Kho
                         string MaHang = dr["Mã hàng hóa"].ToString().Trim();
                         if (MaHang != "")
                         {
-                            double GiaVon = Convert.ToDouble(dr["Giá vốn"] == null ? "0" : dr["Giá vốn"].ToString().Trim());
-                            double GiaBan = Convert.ToDouble(dr["Giá bán"] == null ? "0" : dr["Giá bán"].ToString().Trim());
-                            int SoLuong = Convert.ToInt32(dr["Số lượng"] == null ? "0" : dr["Số lượng"].ToString().Trim());
+ 
+                            double GiaVon = Convert.ToDouble(dr["Giá vốn(Tỷ giá)"].ToString() == "" ? "0" : dr["Giá vốn(Tỷ giá)"].ToString().Trim());
+                            double GiaBan = Convert.ToDouble(dr["Giá bán"].ToString() == "" ? "0" : dr["Giá bán"].ToString().Trim());
+                            int SoLuong = Convert.ToInt32(dr["Số lượng"].ToString() == "" ? "0" : dr["Số lượng"].ToString().Trim());
                             int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).Count();
                             if (tblHangHoa_Count > 0)
                             {
@@ -682,8 +705,8 @@ namespace KobePaint.Pages.Kho
                                          tblHangHoa.MaHang,
                                          tblHangHoa.TenHangHoa,
                                          GiaVon,
-                                          Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
-                                         SoLuong, GiaVon * SoLuong, GiaBan, GiaBan);
+                                         Convert.ToInt32(tblHangHoa.hhTonKhos.Where(s => s.ChiNhanhID == Convert.ToInt32(Formats.IDChiNhanh())).FirstOrDefault().SoLuong),
+                                         SoLuong, GiaVon * SoLuong, GiaBan, GiaBan, GiaVon);
                                     listReceiptProducts.Add(newRecpPro);
                                 }
                                 

@@ -313,7 +313,7 @@
                                                     <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
                                                         <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                         <DataItemTemplate>
-                                                            <dx:ASPxSpinEdit ID="spSoLuongReturn" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spSoLuongReturn_Init" HorizontalAlign="Center">
+                                                            <dx:ASPxSpinEdit ID="spSoLuongReturn" AllowNull = "False" MinValue="1" MaxValue="10000000000" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spSoLuongReturn_Init" HorizontalAlign="Center">
                                                             </dx:ASPxSpinEdit>
                                                         </DataItemTemplate>
                                                         <CellStyle>
@@ -323,7 +323,7 @@
                                                     <dx:GridViewDataSpinEditColumn Caption="Tiền trả" FieldName="TienTra" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
                                                         <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                         <DataItemTemplate>
-                                                            <dx:ASPxSpinEdit ID="spTienTraReturn" runat="server" Number='<%# Convert.ToDouble(Eval("TienTra")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spTienTraReturn_Init" Increment="5000" HorizontalAlign="Right">
+                                                            <dx:ASPxSpinEdit ID="spTienTraReturn" runat="server" AllowNull = "False" MinValue="0" MaxValue="10000000000" Number='<%# Convert.ToDouble(Eval("TienTra")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spTienTraReturn_Init" Increment="5000" HorizontalAlign="Right">
                                                                 <SpinButtons ShowIncrementButtons="false"></SpinButtons>
                                                             </dx:ASPxSpinEdit>
                                                         </DataItemTemplate>

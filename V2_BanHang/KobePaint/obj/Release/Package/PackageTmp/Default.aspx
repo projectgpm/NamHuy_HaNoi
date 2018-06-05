@@ -53,13 +53,13 @@
                     </dx:ContentControl>
                 </ContentCollection>
             </dx:TabPage>
-            <dx:TabPage Text="CẢNH BÁO CÔNG NỢ" Name="tCanhBaoCongNo">
+            <%--<dx:TabPage Text="CẢNH BÁO CÔNG NỢ" Name="tCanhBaoCongNo">
                 <ContentCollection>
                     <dx:ContentControl ID="ContentControl3" runat="server">
                         <uc3:CanhBaoCongNo ID="CanhBaoCongNo1" runat="server" />
                     </dx:ContentControl>
                 </ContentCollection>
-            </dx:TabPage>
+            </dx:TabPage>--%>
         </TabPages>
         <ClientSideEvents TabClick="onTabClick" />
         <ActiveTabStyle Font-Bold="True" ForeColor="#1F77C0">

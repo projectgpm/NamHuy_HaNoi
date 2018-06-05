@@ -7,6 +7,10 @@
   <item Text="1. Thêm khách hàng" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" />
   <item Text="2. Danh sách khách hàng" NavigateUrl="~/Pages/KhachHang/DanhSachKH.aspx" />
 </item>
+  <item Text="Kho" ImageUrl="~/Menu/box.png">
+    <item Text="1. Tồn kho" NavigateUrl="~/Pages/Kho/TonKho.aspx" />
+    <!--<item Text="2. Danh sách chuyển kho" NavigateUrl="~/Pages/Kho/DanhSachChuyenKho.aspx" />-->
+  </item>
   <item Text="Giao dịch" ImageUrl="~/Menu/cart.png">
     <item Text="1. Bán hàng" NavigateUrl="~/Pages/BanHang/LapPhieu.aspx" />
     <item Text="2. Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
@@ -14,7 +18,9 @@
     <item Text="4. Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
     <item Text="5. Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
   </item>
-
+  <item Text="Báo cáo" ImageUrl="~/Menu/graph.png">
+    <item Text="1. Báo cáo doanh thu" NavigateUrl="~/Pages/BaoCao/DoanhThuDaiLy.aspx" />
+  </item>
   <item Text="Hệ thống" ImageUrl="~/Menu/safebox.png">
     <item Text="1. Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />
     <item Text="2. Đăng xuất"   NavigateUrl="~/Pages/TaiKhoan/DangXuat.aspx" />

@@ -81,11 +81,11 @@
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
-            this.odsPhieuGiaoHang = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.ChiTietHangBand = new DevExpress.XtraReports.UI.DetailReportBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.TongCongNo = new DevExpress.XtraReports.UI.CalculatedField();
+            this.odsPhieuGiaoHang = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.odsPhieuGiaoHang)).BeginInit();
@@ -120,7 +120,7 @@
             this.xrLabel14,
             this.xrTable2});
             this.Detail1.Dpi = 100F;
-            this.Detail1.HeightF = 300.8174F;
+            this.Detail1.HeightF = 291.3477F;
             this.Detail1.Name = "Detail1";
             // 
             // xrLabel5
@@ -451,11 +451,11 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Dpi = 100F;
             this.xrTable2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(10.37878F, 265.8174F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(10.75756F, 265.8174F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(606.6212F, 35F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(606.6212F, 25F);
             this.xrTable2.StylePriority.UseBackColor = false;
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseFont = false;
@@ -622,6 +622,8 @@
             // 
             // xrTableRow1
             // 
+            this.xrTableRow1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell2,
@@ -630,6 +632,7 @@
             this.xrTableCell5});
             this.xrTableRow1.Dpi = 100F;
             this.xrTableRow1.Name = "xrTableRow1";
+            this.xrTableRow1.StylePriority.UseBorders = false;
             this.xrTableRow1.Weight = 11.5D;
             // 
             // xrTableCell1
@@ -683,11 +686,6 @@
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
-            // odsPhieuGiaoHang
-            // 
-            this.odsPhieuGiaoHang.DataSource = typeof(KobePaint.App_Code.oReportGiaoHang);
-            this.odsPhieuGiaoHang.Name = "odsPhieuGiaoHang";
-            // 
             // Detail
             // 
             this.Detail.Dpi = 100F;
@@ -720,6 +718,11 @@
             this.TongCongNo.DataSource = this.odsPhieuGiaoHang;
             this.TongCongNo.Expression = "[CongNoHienTai] + [TongTien]";
             this.TongCongNo.Name = "TongCongNo";
+            // 
+            // odsPhieuGiaoHang
+            // 
+            this.odsPhieuGiaoHang.DataSource = typeof(KobePaint.App_Code.oReportGiaoHang);
+            this.odsPhieuGiaoHang.Name = "odsPhieuGiaoHang";
             // 
             // rpPhieuGiaoHangNoPrice
             // 

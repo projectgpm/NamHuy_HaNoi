@@ -478,7 +478,52 @@ namespace KobePaint.App_Code
     }
     #endregion
 
+    #region report bán hàng 80 BILL
+    [Serializable]
+    public class oReportBanHang80
+    {
+        public string TenChiNhanh { get; set; }
+        public string MaPhieu { get; set; }
+        public string DiaChiChiNhanh { get; set; }
+        public string DienThoai { get; set; }
+        public string NgayBan { get; set; }
+        public string ThuNgan { get; set; }
+        public string KhachHang { get; set; }
+        public double TongTien { get; set; }
+        public double GiamGia { get; set; }
+        public double KhachCanTra { get; set; }
+        public List<oChiTietBanHang80> listProduct { get; set; }
+    }
+    [Serializable]
+    public class oChiTietBanHang80
+    {
+        public string TenHangHoa { get; set; }
+        public int SoLuong { get; set; }
+        public double DonGia { get; set; }
+        public double ThanhTien { get; set; }
+        public oChiTietBanHang80(string tenHangHoa, int soluong,double dongia,double thanhtien)
+        {
+            // TODO: Complete member initialization
+            this.TenHangHoa = tenHangHoa;
+            this.SoLuong = soluong;
+            this.DonGia = dongia;
+            this.ThanhTien = thanhtien;
+        }
+        public oChiTietBanHang80()
+        {
+            // TODO: Complete member initialization
+        }
 
+        public oChiTietBanHang80(oChiTietBanHang80 x)
+        {
+            // TODO: Complete member initialization
+            this.TenHangHoa = x.TenHangHoa;
+            this.SoLuong = x.SoLuong;
+            this.DonGia = x.DonGia;
+            this.ThanhTien = x.ThanhTien;
+        }
+    }
+    #endregion
 
 
 

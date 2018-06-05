@@ -20,7 +20,10 @@ namespace KobePaint.Pages.KH_NCC
             if (!IsPostBack)
             {
                 if (Formats.PermissionUser() == 3)
+                {
                     gridDanhSachKH.Columns["chucnang"].Visible = false;
+                    dsKhachHang.SelectParameters["ChiNhanhID"].DefaultValue = Formats.IDChiNhanh().ToString();
+                }
             }
         }
 

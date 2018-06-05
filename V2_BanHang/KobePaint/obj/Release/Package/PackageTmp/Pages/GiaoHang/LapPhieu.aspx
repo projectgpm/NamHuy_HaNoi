@@ -238,9 +238,10 @@
                                                                                                         <dx:ListBoxColumn FieldName="HoTen" Width="150px" Caption="Tên khách hàng" />
                                                                                                     </Columns>
                                                                                                 </dx:ASPxComboBox>
-                                                                                                <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE ([LoaiKhachHangID] <> @LoaiKhachHangID) AND DaXoa = 0 ORDER BY IDKhachHang DESC">
+                                                                                                <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE ([LoaiKhachHangID] &lt;&gt; @LoaiKhachHangID) AND DaXoa = 0  AND ChiNhanhID = @ChiNhanhID ORDER BY IDKhachHang DESC">
                                                                                                     <SelectParameters>
                                                                                                         <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
+                                                                                                        <asp:Parameter Name="ChiNhanhID" />
                                                                                                     </SelectParameters>
                                                                                                 </asp:SqlDataSource>
                                                                                             </td>

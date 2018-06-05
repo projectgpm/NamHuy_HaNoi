@@ -20,6 +20,14 @@ namespace KobePaint.Pages.BaoCao
             {
                 Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
             }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    dsKhachHang.SelectParameters["ChiNhanhID"].DefaultValue = Formats.IDChiNhanh().ToString();
+                    dsChiTiet.SelectParameters["IDChiNhanh"].DefaultValue = Formats.IDChiNhanh().ToString();
+                }
+            }
         }
         protected void dateEditControl_Init(object sender, EventArgs e)
         {

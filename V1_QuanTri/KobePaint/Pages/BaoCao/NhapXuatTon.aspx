@@ -198,7 +198,10 @@
     </dx:ASPxCallbackPanel>
     <asp:SqlDataSource ID="dsNhapXuatTon" runat="server" 
         ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT bc_NhapXuatTon.* FROM bc_NhapXuatTon">
+        SelectCommand="SELECT ID, TenHangHoa, MaHang, TenDonViTinh, TonDauKy, TienDauKy, SLNhap, TienNhap, SLXuat, TienXuat, SLTon, TienTon, TonCuoiKy, TienCuoiKy, TonHienTai, TienHienTai, NhanVienID FROM bc_NhapXuatTon WHERE (NhanVienID = @NhanVienID)">
+        <SelectParameters>
+            <asp:Parameter Name="NhanVienID" />
+        </SelectParameters>
     </asp:SqlDataSource>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />

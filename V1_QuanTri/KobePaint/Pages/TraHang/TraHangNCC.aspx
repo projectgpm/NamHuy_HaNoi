@@ -275,82 +275,82 @@
                                             </dx:ASPxFormLayout>
 
                                             <dx:ASPxGridView ID="gridImportPro" ClientInstanceName="gridImportPro" runat="server" Width="100%" AutoGenerateColumns="False" KeyFieldName="STT" OnRowDeleting="gridImportPro_RowDeleting">
-                                                            <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFooter="True" />
-                                                            <SettingsPager Mode="ShowAllRecords">
-                                                            </SettingsPager>
-                                                            <SettingsBehavior AllowSort="False" />
-                                                            <SettingsCommandButton>
-                                                                <ShowAdaptiveDetailButton ButtonType="Image">
-                                                                </ShowAdaptiveDetailButton>
-                                                                <HideAdaptiveDetailButton ButtonType="Image">
-                                                                </HideAdaptiveDetailButton>
-                                                                <DeleteButton ButtonType="Image" RenderMode="Image">
-                                                                    <Image IconID="actions_cancel_16x16">
-                                                                    </Image>
-                                                                </DeleteButton>
-                                                            </SettingsCommandButton>
-                                                            <SettingsText EmptyDataRow="Chưa có dữ liệu" />
-                                                            <Columns>
-                                                                <dx:GridViewDataTextColumn Caption="STT" FieldName="STT" ShowInCustomizationForm="True" VisibleIndex="0" Width="50px">
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Tên hàng hóa" FieldName="TenHangHoa" ShowInCustomizationForm="True" VisibleIndex="2" Width="100%">
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Mã HH" FieldName="MaHang" ShowInCustomizationForm="True" VisibleIndex="1" Width="100px">
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewCommandColumn Caption="Xóa" ShowDeleteButton="True" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
-                                                                </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn Caption="Tồn" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
-                                                                </dx:GridViewDataTextColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="7" Width="100px">
-                                                                    <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
-                                                                    </PropertiesSpinEdit>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
-                                                                    <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
+                                                <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFooter="True" />
+                                                <SettingsPager Mode="ShowAllRecords">
+                                                </SettingsPager>
+                                                <SettingsBehavior AllowSort="False" />
+                                                <SettingsCommandButton>
+                                                    <ShowAdaptiveDetailButton ButtonType="Image">
+                                                    </ShowAdaptiveDetailButton>
+                                                    <HideAdaptiveDetailButton ButtonType="Image">
+                                                    </HideAdaptiveDetailButton>
+                                                    <DeleteButton ButtonType="Image" RenderMode="Image">
+                                                        <Image IconID="actions_cancel_16x16">
+                                                        </Image>
+                                                    </DeleteButton>
+                                                </SettingsCommandButton>
+                                                <SettingsText EmptyDataRow="Chưa có dữ liệu" />
+                                                <Columns>
+                                                    <dx:GridViewDataTextColumn Caption="STT" FieldName="STT" ShowInCustomizationForm="True" VisibleIndex="0" Width="50px">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Tên hàng hóa" FieldName="TenHangHoa" ShowInCustomizationForm="True" VisibleIndex="2" Width="100%">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Mã HH" FieldName="MaHang" ShowInCustomizationForm="True" VisibleIndex="1" Width="100px">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewCommandColumn Caption="Xóa" ShowDeleteButton="True" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
+                                                    </dx:GridViewCommandColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Tồn" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="7" Width="100px">
+                                                        <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                                                        </PropertiesSpinEdit>
+                                                    </dx:GridViewDataSpinEditColumn>
+                                                    <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
+                                                        <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
                                                                     
-                                                                    <CellStyle>
-                                                                        <Paddings Padding="2px" />
-                                                                    </CellStyle>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spSoLuongReturn" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spSoLuongReturn_Init" HorizontalAlign="Center">
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                    <CellStyle>
-                                                                        <Paddings Padding="2px" />
-                                                                    </CellStyle>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                                <dx:GridViewDataSpinEditColumn Caption="Tiền trả" FieldName="TienTra" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
-                                                                    <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
-                                                                    <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spTienTraReturn" runat="server" Number='<%# Convert.ToDouble(Eval("TienTra")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spTienTraReturn_Init" Increment="5000" HorizontalAlign="Right">
-                                                                             <SpinButtons ShowIncrementButtons="false"></SpinButtons>
-                                                                        </dx:ASPxSpinEdit>
-                                                                    </DataItemTemplate>
-                                                                    <CellStyle>
-                                                                        <Paddings Padding="2px" />
-                                                                    </CellStyle>
-                                                                </dx:GridViewDataSpinEditColumn>
-                                                            </Columns>
-                                                            <FormatConditions>
-                                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
-                                                                <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
-                                                                <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText" CellStyle-HorizontalAlign="Center">
-                                                                    <CellStyle HorizontalAlign="Center"></CellStyle>
-                                                                </dx:GridViewFormatConditionTopBottom>
-                                                            </FormatConditions>
-                                                            <TotalSummary>
-                                                                <dx:ASPxSummaryItem DisplayFormat="Tổng mặt hàng: {0:N0}" FieldName="MaHang" ShowInColumn="Mã HH" SummaryType="Count" />
-                                                                <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="ThanhTien" ShowInColumn="Thành tiền" SummaryType="Sum" />
-                                                                <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="SoLuong" ShowInColumn="Số lượng" SummaryType="Sum" />
-                                                            </TotalSummary>
-                                                            <Styles>
-                                                                <Footer Font-Bold="True">
-                                                                </Footer>
-                                                            </Styles>
-                                                        </dx:ASPxGridView>
+                                                        <CellStyle>
+                                                            <Paddings Padding="2px" />
+                                                        </CellStyle>
+                                                    </dx:GridViewDataSpinEditColumn>
+                                                    <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px">
+                                                        <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                        <DataItemTemplate>
+                                                            <dx:ASPxSpinEdit ID="spSoLuongReturn" AllowNull = "False" MinValue="1" MaxValue="10000000000" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spSoLuongReturn_Init" HorizontalAlign="Center">
+                                                            </dx:ASPxSpinEdit>
+                                                        </DataItemTemplate>
+                                                        <CellStyle>
+                                                            <Paddings Padding="2px" />
+                                                        </CellStyle>
+                                                    </dx:GridViewDataSpinEditColumn>
+                                                    <dx:GridViewDataSpinEditColumn Caption="Tiền trả" FieldName="TienTra" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
+                                                        <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
+                                                        <DataItemTemplate>
+                                                            <dx:ASPxSpinEdit ID="spTienTraReturn" AllowNull = "False" MinValue="0" MaxValue="10000000000" runat="server" Number='<%# Convert.ToDouble(Eval("TienTra")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spTienTraReturn_Init" Increment="5000" HorizontalAlign="Right">
+                                                                    <SpinButtons ShowIncrementButtons="false"></SpinButtons>
+                                                            </dx:ASPxSpinEdit>
+                                                        </DataItemTemplate>
+                                                        <CellStyle>
+                                                            <Paddings Padding="2px" />
+                                                        </CellStyle>
+                                                    </dx:GridViewDataSpinEditColumn>
+                                                </Columns>
+                                                <FormatConditions>
+                                                    <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
+                                                    <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
+                                                    <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText" CellStyle-HorizontalAlign="Center">
+                                                        <CellStyle HorizontalAlign="Center"></CellStyle>
+                                                    </dx:GridViewFormatConditionTopBottom>
+                                                </FormatConditions>
+                                                <TotalSummary>
+                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng mặt hàng: {0:N0}" FieldName="MaHang" ShowInColumn="Mã HH" SummaryType="Count" />
+                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="ThanhTien" ShowInColumn="Thành tiền" SummaryType="Sum" />
+                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="SoLuong" ShowInColumn="Số lượng" SummaryType="Sum" />
+                                                </TotalSummary>
+                                                <Styles>
+                                                    <Footer Font-Bold="True">
+                                                    </Footer>
+                                                </Styles>
+                                            </dx:ASPxGridView>
                                         </dx:PanelContent>
                                     </PanelCollection>
                                 </dx:ASPxCallbackPanel>

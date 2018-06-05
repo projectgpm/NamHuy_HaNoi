@@ -63,7 +63,8 @@
     <item Text="5. Báo cáo Nhập-Xuất-Tồn" NavigateUrl="~/Pages/BaoCao/NhapXuatTon.aspx" />
     <item Text="6. Báo cáo nhập kho chi tiết" NavigateUrl="~/Pages/BaoCao/ChiTietNhapKho.aspx" />
     <item Text="7. Báo cáo xuất kho chi tiết" NavigateUrl="~/Pages/BaoCao/ChiTietXuatKho.aspx" />
-    <item Text="8. Báo cáo lợi nhuận bán hàng" NavigateUrl="~/Pages/BaoCao/LoiNhuanBanHang.aspx" />
+    <item Text="8. Báo cáo chuyển kho" NavigateUrl="~/Pages/BaoCao/BaoCaoChuyenKho.aspx" />
+    <item Text="9. Báo cáo lợi nhuận bán hàng" NavigateUrl="~/Pages/BaoCao/LoiNhuanBanHang.aspx" />
   </item>
   <item Text="Hệ thống" ImageUrl="~/Menu/safebox.png">
     <item Text="1. Danh sách chi nhánh" NavigateUrl="~/Pages/HeThong/ChiNhanh.aspx" />
